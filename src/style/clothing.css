@@ -1,0 +1,95 @@
+*{
+    /* background: var(--fColor); */
+}
+#clothingIntro{
+    background-color: var(--fColor);
+    width: 100%;
+    min-height: 100vh;
+}
+#clothingMain h1{
+    letter-spacing: 4px;
+    color: var(--tColor);
+    font-size: 34px;
+}
+#quote{
+
+    height: 200px;
+    border:2px solid white
+}
+#questionSec{
+    margin-top:50px ;
+    border: 1px solid white;
+    position: relative;
+}
+#question{
+    /* margin-top: 50px; */
+    height: 300px;
+    /* width: 300px; */
+    border:2px solid white;
+    position: relative;
+    background-image: url("../../public/assets/images/yoga.jpg");
+    background-size: contain;
+}
+#question #qBody{
+    height: 200px;
+    width: 250px;
+    /* border:2px solid white; */
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top:50%;
+    left: 100%;
+    font-size: 30px;
+    background: #1C484A;
+    color: var(--foColor);
+}
+ #answers{
+    height: fit-content;
+    border: 1px solid white;
+    /* position: absolute;
+    top:50%;
+    right: 0px; */
+}
+
+/* *****************************************Clothing Details **************************************************** */
+#clothingDetails{
+    letter-spacing: 4px;
+    background: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+    #question #qBody{
+        left: 50%;
+    }
+    
+}
