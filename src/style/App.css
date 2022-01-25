@@ -1,5 +1,9 @@
-
-
+:root{
+  --fColor:#072227;
+  --sColor:#35858B;
+  --tColor:#4FBDBA;
+  --foColor:#AEFEFF;
+}
 *{
   margin:0px;
   padding: 0px;
@@ -12,3 +16,16 @@ body{
 ul{
 list-style:none
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

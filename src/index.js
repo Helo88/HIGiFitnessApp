@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "bulma/css/bulma.css"
-import "./index.css";
+import "./style/index.css";
 
 
 ReactDOM.render(<App />, document.getElementById("root"));
