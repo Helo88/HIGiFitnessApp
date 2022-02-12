@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import { Clothing } from "./components/clothing";
+
 import "./style/App.css";
 
 function App() {
