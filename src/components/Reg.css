@@ -1,0 +1,54 @@
+h1{
+    color: #072227;
+}
+h2{
+    color: #072227;
+}
+button.btn{
+     background-color: #35858B;
+     width: 300px;
+}
+button.btn:hover{
+    background-color: #AEFEFF;
+    color: #072227;
+}
+.des{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 100vh;
+    
+}
+.des1{
+    color: #072227;
+    /* margin-left: 40%;
+    */
+}
+.des2{
+    color: #35858B;   
+    /* margin-left: 15%; */
+}
+.des3{
+    color: #072227;
+    /* margin-left: 20%; */
+
+}
+
+.des4{
+    color: #35858B;
+    /* margin-left: 8%; */
+  
+}
+.des5{
+    color: #4FBDBA;
+    /* margin-left: 67%; */
+}
+.ic{
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 100vh;
+    /* color: #AEFEFF; */
+    color: #4FBDBA; 
+    font-size: 150px;
+}
