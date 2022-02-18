@@ -1,0 +1,82 @@
+
+@media all and (min-width: 992px) {
+	.dropdown-menu li{ position: relative; 	}
+	.nav-item .submenu{ 
+		display: none;
+		position: absolute;
+		left:100%; top:-7px;
+	}
+	.nav-item .submenu-left{ 
+		right:100%; left:auto;
+	}
+	.dropdown-menu > li:hover{ 
+        color:#35858B; 
+        background-color: #f1f1f1 
+    }
+	.dropdown-menu > li:hover > .submenu{ display: block; }
+}	
+
+
+@media (max-width: 991px) {
+  .dropdown-menu .dropdown-menu{
+      margin-left:0.7rem; margin-right:0.7rem; margin-bottom: .5rem;
+  }
+  .nav-item .submenu-left{ 
+    right:100%; left:auto;
+    }
+  .dropdown-menu > li:hover > .submenu{ display: block; }
+}	
+  
+.hoverable{
+    backface-visibility: hidden;
+    vertical-align: middle;
+    position:relative;
+    transform: translateZ(0);
+    transition-duration: .3s;
+    transition-property:transform;
+}
+      
+
+.hoverable:hover, .hoverable:active, .hoverable:focus{
+    transform: translateY(-5px);
+}
+   
+
+#navbar{
+    background-color: #072227;
+}
+  
+
+a.nav-link {
+    color: white;
+    transition: color 0.5s ease-in-out;
+}
+  
+a.nav-link:hover , a.dropdown-item:hover{
+    color: #35858B;
+    background-color: white;
+}
+  
+a.nav-link:focus  {
+    color: #AEFEFF;
+}
+
+#sign-btn{
+    background-color: #AEFEFF;
+}
+
+/*menu*/  
+.navbar-toggler{
+    color:  #072227;
+}
+
+.navbar-toggler:hover  {
+    color: #AEFEFF;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(255,255,255)	' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+  
+  
+  
