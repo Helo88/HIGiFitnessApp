@@ -31,7 +31,7 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item hoverable">
-                <Link className="nav-link" to={""}> <strong>Gyms</strong></Link>
+                <Link className="nav-link" to={"/gymslocations"}> <strong>Gyms</strong></Link>
               </li>
 
               <li className="nav-item hoverable">

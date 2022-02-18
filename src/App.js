@@ -11,6 +11,8 @@ import YogaDetails from "./components/YogaDetails";
 import HealthyTips from "./components/healthyTips";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
+import Gym from "./components/Gym"
+
 
 function App() {
   const [state, setState] = useState('start')
@@ -28,6 +30,7 @@ function App() {
             <Route path={"/yogaExercises"}  exact component={YogaExercises}/>
             <Route path={"/yoga/details"}  exact component={YogaDetails}/>
             <Route path={"/healthytips"} exact component={HealthyTips}  />
+            <Route path={"/gymslocations"} exact component={Gym}  />
             {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
            
