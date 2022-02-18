@@ -46,7 +46,9 @@ class ShowYogaPlans extends Component {
             to={{pathname:"/yogaExercises", state: item.name,}}  >
          <span>
           
-          <span className="main2 mt-6">{item.name}</span>
+          <div className="row">
+          <span className="main2 col text-center mt-1">{item.name}</span>
+          </div>
           <br/>
           
            
@@ -74,7 +76,7 @@ class ShowYogaPlans extends Component {
               
             </span>
             </Link>
-            <br/>
+    
         </div>
        
 
@@ -90,7 +92,7 @@ class ShowYogaPlans extends Component {
         <div className="row">
         <h1 className="f h1 d-flex justify-content-center mt-5">Workout Plans</h1>
         <br/>
-          <div className="col-md-6 col-sm-10 mx-auto p-0 mt-6">
+          <div className="col-md-6 col-sm-10 mx-auto p-0 mt-3">
          <br/>
             <div className="cardd">
            <br/>

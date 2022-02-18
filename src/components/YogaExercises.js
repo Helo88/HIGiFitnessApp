@@ -50,10 +50,15 @@ class YogaExercises extends Component {
                opacity: 0.9
           }}> 
 
-          
-          <span className="main2 pt-3">{item.name} Plan</span><br/>
-          <span className="main2 mt-1">Total Duration : {Math.floor(item.totalDuration / 60)}:{item.totalDuration - 
+            <div className="container">
+            <div className="row">
+          <span className="main2 col text-center pt-3">{item.name} Plan</span><br/>
+          </div>
+          <div className="row">
+          <span className="main2 col text-center mt-1">Total Duration : {Math.floor(item.totalDuration / 60)}:{item.totalDuration - 
              (Math.floor(item.totalDuration / 60)) * 60}  minutes</span>
+             </div>
+            </div>
             
              </div> 
             {
