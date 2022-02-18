@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import "./planStyle.css";
+import "../style/planStyle.css";
 
 
 class YogaDetails extends Component {

@@ -1,9 +1,9 @@
 import React, { Component } from "react"
-import "./planStyle.css";
-import myimg from "../fitness.jpg"
+import "../style/planStyle.css";
+import myimg from "../images/yoga2.jpg"
 import { Link } from 'react-router-dom';
 
-class Exercises extends Component {
+class YogaExercises extends Component {
   constructor(props) {
     super(props);
     console.log(this.props.location.state)
@@ -17,7 +17,7 @@ class Exercises extends Component {
         document.body.style.backgroundColor = "#4FBDBA"
         document.body.style.minHeight = "130vh"
         document.body.style.minWidth = "100vw"
-        const res = await fetch('http://localhost:8000/workoutplans/');
+        const res = await fetch('http://localhost:8000/yogaplans/');
         const exList = await res.json();
         this.setState({
           exList
@@ -27,7 +27,7 @@ class Exercises extends Component {
     }
     }
   
-  
+      
     renderItems = () => {
       
       const newItems = this.state.exList.filter(
@@ -50,16 +50,21 @@ class Exercises extends Component {
                opacity: 0.9
           }}> 
 
-          
-          <span className="main2 pt-3">{item.name} Plan</span><br/>
-          <span className="main2 mt-1">Total Duration : {Math.floor(item.totalTimeOfExercises / 60)}:{item.totalTimeOfExercises - 
-             (Math.floor(item.totalTimeOfExercises / 60)) * 60}  minutes</span>
+            <div className="container">
+            <div className="row">
+          <span className="main2 col text-center pt-3">{item.name} Plan</span><br/>
+          </div>
+          <div className="row">
+          <span className="main2 col text-center mt-1">Total Duration : {Math.floor(item.totalDuration / 60)}:{item.totalDuration - 
+             (Math.floor(item.totalDuration / 60)) * 60}  minutes</span>
+             </div>
+            </div>
             
              </div> 
             {
-                (item.exercise).map(ex => ( 
+                (item.exercises).map(ex => ( 
                 <div key={ex.id}> 
-                <Link to={{pathname:"/exercises/details", state: ex,}}>
+                <Link to={{pathname:"/yoga/details", state: ex,}}>
                 <span className="card" id="ex">{ex}</span>
                 </Link>
                  </div>  ))
@@ -89,4 +94,4 @@ class Exercises extends Component {
     }
   }
 
-export default Exercises;
+export default YogaExercises;

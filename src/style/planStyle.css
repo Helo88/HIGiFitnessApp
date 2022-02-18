@@ -44,10 +44,8 @@
 }
 
 .main2{
-    color: #072227;
-    font-size: larger;
-    margin: 30%;
-
+    color: #355358;
+    font-size: medium;
 }
 
 #exDets{
@@ -63,7 +61,7 @@
     border-radius: 4px;
     background: #fff;
     box-shadow: 0 6px 10px rgba(0,0,0,.08), 0 0 6px rgba(0,0,0,.05);
-      transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
+    transition: .3s transform cubic-bezier(.155,1.105,.295,1.12),.3s box-shadow,.3s -webkit-transform cubic-bezier(.155,1.105,.295,1.12);
   /* padding: 14px 80px 18px 36px; */
   cursor: pointer;
 }
@@ -76,13 +74,13 @@
 #btns{
     color: white;
     background-color: #072227;
-    margin-left: 30%;
+    margin-left: 45%;
     font-weight: bolder;
+    width: 130px;
+    height: 40px;
 
 }
 
 #btns:hover{
     background-color: #35858B;
 }
-
-

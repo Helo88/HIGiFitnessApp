@@ -1,8 +1,8 @@
 import React from "react";
 import { CssBaseline, makeStyles } from "@material-ui/core";
-import myimg from "../home.jpg"
+import myimg from "../images/home.jpg"
 import { Activity, HeartHalf } from 'react-bootstrap-icons';
-import "./Reg.css";
+import "../style/Reg.css";
 
 const useStyles = makeStyles((theme) => ({
 
