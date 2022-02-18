@@ -9,6 +9,7 @@ import ShowYogaPlans from './components/showYogaPlans'
 import YogaExercises from './components/YogaExercises'
 import YogaDetails from "./components/YogaDetails";
 import HealthyTips from "./components/healthyTips";
+import Navbar from "./components/Navbar";
 import { useState } from "react";
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     <div className="" style={{}}>
       {/* HELLO WORLD */}
       <Router>
-        { /*<Navbar/>*/}
+        { <Navbar/>}
          <Switch>
             <Route path={"/"} exact component={Homepage}/>
             <Route path={"/workoutplans"} exact component={ShowPlans}/>
