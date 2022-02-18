@@ -4,7 +4,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
-import "./Reg.css";
+import "../style/Reg.css";
 
 const UserForm = () => {
   const [userForm, setUserForm] = useState({
@@ -344,7 +344,7 @@ const UserForm = () => {
             </div>
             <br/>
 
-          <button type="submit" className="btn" >
+          <button type="submit" id="btn" >
             Register
           </button>
         </form>

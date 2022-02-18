@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import "./planStyle.css";
-import myimg from "../yoga2.jpg"
+import "../style/planStyle.css";
+import myimg from "../images/yoga2.jpg"
 import { Link } from 'react-router-dom';
 
 class YogaExercises extends Component {

@@ -2,12 +2,13 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./style/App.css";
 import Homepage from './components/Homepage';
 import RegisterForm from './components/RegisterForm'
-import ShowPlans from './plans/ShowPlans'
-import Exercises from './plans/exercises'
-import ExDetails from "./plans/ExDetails"
-import ShowYogaPlans from './plans/showYogaPlans'
-import YogaExercises from './plans/YogaExercises'
-import YogaDetails from "./plans/YogaDetails";
+import ShowPlans from './components/ShowPlans'
+import Exercises from './components/exercises'
+import ExDetails from "./components/ExDetails"
+import ShowYogaPlans from './components/showYogaPlans'
+import YogaExercises from './components/YogaExercises'
+import YogaDetails from "./components/YogaDetails";
+import HealthyTips from "./components/healthyTips";
 import { useState } from "react";
 
 function App() {
@@ -16,14 +17,16 @@ function App() {
     <div className="" style={{}}>
       {/* HELLO WORLD */}
       <Router>
-        {/* <NavBar/> */}
+        { /*<Navbar/>*/}
          <Switch>
-            <Route path={"/"} exact component={ShowPlans}/>
+            <Route path={"/"} exact component={Homepage}/>
+            <Route path={"/workoutplans"} exact component={ShowPlans}/>
             <Route path={"/exercises"}  exact component={Exercises}/>
             <Route path={"/exercises/details"}  exact component={ExDetails}/>
-            <Route path={"/yoga"} exact component={ShowYogaPlans}/>
+            <Route path={"/yogaplans"} exact component={ShowYogaPlans}/>
             <Route path={"/yogaExercises"}  exact component={YogaExercises}/>
             <Route path={"/yoga/details"}  exact component={YogaDetails}/>
+            <Route path={"/healthytips"} exact component={HealthyTips}  />
             {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
            

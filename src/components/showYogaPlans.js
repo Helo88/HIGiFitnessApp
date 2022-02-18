@@ -1,10 +1,10 @@
 import React, { Component } from "react"
-import "./planStyle.css";
+import "../style/planStyle.css";
 import { Alarm, LightningChargeFill } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 
 
-class ShowPlans extends Component {
+class ShowYogaPlans extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,9 +16,9 @@ class ShowPlans extends Component {
     async componentDidMount() {
       try {
         document.body.style.backgroundColor = "#4FBDBA"
-        document.body.style.minHeight = "800vh"
+        document.body.style.minHeight = "1200vh"
         document.body.style.minWidth = "100vw"
-        const res = await fetch('http://localhost:8000/workoutplans/');
+        const res = await fetch('http://localhost:8000/yogaplans/');
         const exList = await res.json();
         this.setState({
           exList
@@ -27,8 +27,8 @@ class ShowPlans extends Component {
         console.log(e);
     }
     }
-  
-    
+
+   
     renderItems = () => {
       
       const newItems = this.state.exList
@@ -43,7 +43,7 @@ class ShowPlans extends Component {
         >
             
             <Link 
-            to={{pathname:"/exercises", state: item.name,}}  >
+            to={{pathname:"/yogaExercises", state: item.name,}}  >
          <span>
           
           <span className="main2 mt-6">{item.name}</span>
@@ -54,7 +54,7 @@ class ShowPlans extends Component {
                backgroundImage: `url(${item.image})`,
                backgroundSize:'cover',
                minWidth: "49vw",
-               minHeight: "50vh",      
+               minHeight: "70vh",      
           }} className="card">
       
 
@@ -62,12 +62,12 @@ class ShowPlans extends Component {
            
             <span className="plans col text-white ms-5">
               <LightningChargeFill/> &nbsp; 
-            {item.numberOfEexercises} Eexercises</span>
+            {item.numberOfExercises} Eexercises</span>
             
             <span className="plans col text-white ms-5">
               <Alarm/> &nbsp; &nbsp; 
-             {Math.floor(item.totalTimeOfExercises / 60)}:{item.totalTimeOfExercises - 
-             (Math.floor(item.totalTimeOfExercises / 60)) * 60}  minutes</span>
+             {Math.floor(item.totalDuration / 60)}:{item.totalDuration - 
+             (Math.floor(item.totalDuration / 60)) * 60}  minutes</span>
              </div>
             
             </div> 
@@ -106,4 +106,4 @@ class ShowPlans extends Component {
     }
   }
 
-export default ShowPlans;
+export default ShowYogaPlans;
