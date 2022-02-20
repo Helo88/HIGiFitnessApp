@@ -19,6 +19,7 @@ function App() {
   return (
     <div className="" style={{}}>
       {/* HELLO WORLD */}
+      <Water />
       <Router>
         { <Navbar/>}
          <Switch>
