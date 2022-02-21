@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -17,13 +18,10 @@ import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
 import SignIn from "./components/Login";
 import Navbar from "./components/Navbar";
-import { useState } from "react";
 import Comm from './components/Community'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoggedInRoute from './components/LoggedInRoute'
-import Gym from "./components/Gym"
 import Water from "./components/Water"
-import WeightTracker from "./components/weightTracker"
 import Check from "./components/check";
 
 function App() {
@@ -69,14 +67,14 @@ function App() {
         { <Navbar/>}
          <Switch>
             <ProtectedRoute path={"/"} exact component={Homepage}/>
-            <ProtectedRoute path={"/workoutplans"} exact component={ShowPlans}/>
+            <ProtectedRoute path={"/workoutplans"} exact component={ShowWorkoutPlans}/>
             <ProtectedRoute path={"/exercises"}  exact component={Exercises}/>
             <ProtectedRoute path={"/exercises/details"}  exact component={ExDetails}/>
             <ProtectedRoute path={"/yogaplans"} exact component={ShowYogaPlans}/>
             <ProtectedRoute path={"/yogaExercises"}  exact component={YogaExercises}/>
             <ProtectedRoute path={"/yoga/details"}  exact component={YogaDetails}/>
             <ProtectedRoute path={"/healthytips"} exact component={HealthyTips}  />
-            <Route path={"/login"} exact component={Login}  />
+            <Route path={"/login"} exact component={SignIn}  />
             <LoggedInRoute path={"/comm"} component={Comm}  />
             <Route path={"/gymslocations"} exact component={Gym}  />
             <Route path={"/check"} exact component={Check}/>
