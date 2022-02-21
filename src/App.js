@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./style/App.css";
+import "./style/Gym.css";
 import Homepage from './components/Homepage';
 import RegisterForm from './components/RegisterForm'
 import Login from './components/Login'
@@ -12,13 +13,12 @@ import YogaDetails from "./components/YogaDetails";
 import HealthyTips from "./components/healthyTips";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
-import Login from './components/Login';
 import Comm from './components/Community'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoggedInRoute from './components/LoggedInRoute'
 import Gym from "./components/Gym"
 import Water from "./components/Water"
-
+import Check from "./components/check";
 
 function App() {
   const [state, setState] = useState('start')
@@ -40,6 +40,8 @@ function App() {
             <Route path={"/login"} exact component={Login}  />
             <LoggedInRoute path={"/comm"} component={Comm}  />
             <Route path={"/gymslocations"} exact component={Gym}  />
+            <Route path={"/check"} exact component={Check}/>
+
             {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
            
