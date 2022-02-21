@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import Swal from 'sweetalert2'
 // import withReactContent from 'sweetalert2-react-content'
 import axios from "axios";
+import {axiosInstance} from "../js/network/index";
+
 
 const Water = () => {
-
     const [count, setCount] = useState({currentAmount :0});
     var d = new Date()
     let date = d.getHours() + ":" + d.getMinutes();
+
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',
@@ -19,10 +21,13 @@ const Water = () => {
 
     useEffect(() => {
         // const interval = setInterval(() => {
-        axios.get('http://127.0.0.1:9000/water/3/', {
-            
-          }).then((res) => {
-            console.log("fffffffffffff:: "+ res.data.currentAmount)
+            axiosInstance.get('http://127.0.0.1:8000/water/',{				
+            })    
+        // axios.get(`http://127.0.0.1:8000/water/${localStorage.getItem('id')}/`, {
+        //     headers:headers
+        //   })
+        .then((res) => {
+            console.log( res)
             setCount({currentAmount :res.data.currentAmount})
             return res.data
         }).then((data)=>{
@@ -30,7 +35,7 @@ const Water = () => {
 
         })
         .then((res)=>{
-            if (date === "3:49" || date === "3:50" || date === "3.45"  || date === "18:00"  || date === "21:00"){
+            if (date === "3:30" || date === "3:31" || date === "2:53"  || date === "18:00"  || date === "21:00"){
                 console.log("nnnnnnnnnnnnnnnnnnnnnnn")
                 swalWithBootstrapButtons.fire({
                     title: 'Did you drink water ?',
@@ -47,9 +52,11 @@ const Water = () => {
                             'success'
                         )
                         setCount(count.currentAmount = count.currentAmount+1)
-                        console.log(count)
+                        console.log(count.currentAmount)
 
-                        axios.put(`http://localhost:9000/water/3/`,count)
+                        axiosInstance.put(`http://127.0.0.1:8000/water/`,{'count':count.currentAmount},{
+
+                        })
     
                     } else if (
                         /* Read more about handling dismissals below */
@@ -72,7 +79,7 @@ const Water = () => {
     
         })
 
-    // }, 60000);
+//     }, 60000);
 
 //  return () => clearInterval(interval);
     }, [])

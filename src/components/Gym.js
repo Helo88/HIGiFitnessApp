@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
-<<<<<<< HEAD
 import "../style/Gym.css";
-=======
->>>>>>> 674e926dc1bb11ed5315e21ca33918cc5817d789
 
 const Gym = () => {
   const [position, setPosition] = useState({
