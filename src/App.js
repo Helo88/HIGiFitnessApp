@@ -12,7 +12,6 @@ import YogaDetails from "./components/YogaDetails";
 import HealthyTips from "./components/healthyTips";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
-import Login from './components/Login';
 import Comm from './components/Community'
 import ProtectedRoute from './components/ProtectedRoute'
 import LoggedInRoute from './components/LoggedInRoute'
