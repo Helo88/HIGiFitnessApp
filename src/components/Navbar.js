@@ -6,7 +6,8 @@ import '../style/NavCSS.css';
 import mylogo from "../images/logo.jpg"
 
 const Navbar = () => {
-
+  let token = localStorage.getItem('token')
+  let email = localStorage.getItem('email')
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
@@ -31,7 +32,7 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item hoverable">
-                <Link className="nav-link" to={""}> <strong>Gyms</strong></Link>
+                <Link className="nav-link" to={"/gymslocations"}> <strong>Gyms</strong></Link>
               </li>
 
               <li className="nav-item hoverable">
@@ -65,12 +66,18 @@ const Navbar = () => {
               </li>
 
             </ul>
-
+            {token?
+            <li className="navbar-item" >
+              { email}
+            </li>:<span></span>}
 
             <div className="d-grid gap-2 d-md-flex ">
-              <button id="sign-btn" className="btn  hoverable" type="button"> <strong>Sign up</strong></button>
-             <Link to={"/login"}><button className="btn btn-light hoverable" type="button"> <strong>Log In</strong></button>
-             </Link> 
+               
+               {token? <Link className="btn btn-light hoverable" to={""}> <strong>Log out</strong></Link> : <Link id="sign-btn" class="btn  hoverable" to={""}> <strong>Sign up</strong></Link> }
+               
+               {!token? <Link className="btn btn-light hoverable" to={"/login"}> <strong>Log In</strong></Link>:<span></span> }
+               
+               
             </div>
 
           </div>
