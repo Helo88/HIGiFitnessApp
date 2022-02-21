@@ -16,8 +16,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Homepage(){
-    const classes = useStyles();
-    return <div className={classes.root}>
+    const classnamees = useStyles();
+    return <div className={classnamees.root}>
         <CssBaseline />
         <div className="row">
             <h1 className="des h1 col ms-5"> <strong>

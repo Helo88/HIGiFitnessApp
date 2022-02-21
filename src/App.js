@@ -11,6 +11,10 @@ import YogaDetails from "./components/YogaDetails";
 import HealthyTips from "./components/healthyTips";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
+import Login from './components/Login';
+import Comm from './components/Community'
+import ProtectedRoute from './components/ProtectedRoute'
+import LoggedInRoute from './components/LoggedInRoute'
 
 function App() {
   const [state, setState] = useState('start')
@@ -20,14 +24,16 @@ function App() {
       <Router>
         { <Navbar/>}
          <Switch>
-            <Route path={"/"} exact component={Homepage}/>
-            <Route path={"/workoutplans"} exact component={ShowPlans}/>
-            <Route path={"/exercises"}  exact component={Exercises}/>
-            <Route path={"/exercises/details"}  exact component={ExDetails}/>
-            <Route path={"/yogaplans"} exact component={ShowYogaPlans}/>
-            <Route path={"/yogaExercises"}  exact component={YogaExercises}/>
-            <Route path={"/yoga/details"}  exact component={YogaDetails}/>
-            <Route path={"/healthytips"} exact component={HealthyTips}  />
+            <ProtectedRoute path={"/"} exact component={Homepage}/>
+            <ProtectedRoute path={"/workoutplans"} exact component={ShowPlans}/>
+            <ProtectedRoute path={"/exercises"}  exact component={Exercises}/>
+            <ProtectedRoute path={"/exercises/details"}  exact component={ExDetails}/>
+            <ProtectedRoute path={"/yogaplans"} exact component={ShowYogaPlans}/>
+            <ProtectedRoute path={"/yogaExercises"}  exact component={YogaExercises}/>
+            <ProtectedRoute path={"/yoga/details"}  exact component={YogaDetails}/>
+            <ProtectedRoute path={"/healthytips"} exact component={HealthyTips}  />
+            <Route path={"/login"} exact component={Login}  />
+            <LoggedInRoute path={"/comm"} component={Comm}  />
             {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
            
