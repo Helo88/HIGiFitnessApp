@@ -22,6 +22,10 @@ export default function SignIn() {
 	  
 	const [userForm, setUserForm] = useState(initialFormData);
 
+	let loginCounter = localStorage.getItem('loginCountetr')?localStorage.getItem('loginCountetr'):0
+
+	//const [cookies, setCookie] = useCookies(['counter']);
+
 	const handleChange = (e) => {
 		setUserForm({
 			...userForm,
@@ -61,6 +65,8 @@ export default function SignIn() {
 				localStorage.setItem('id',token['user']['id'])
 				console.log("token ",`Token ${token['key']}`)
 				console.log( "is_staff ",token['user']['is_staff'])
+				loginCounter++;
+				localStorage.setItem('loginCounter',loginCounter)
 				//['token']:token['key'],'id':token['user']['id'
 				
 						// const headers= {
