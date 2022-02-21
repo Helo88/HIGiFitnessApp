@@ -1,15 +1,14 @@
 import React from "react";
 import { CssBaseline, makeStyles } from "@material-ui/core";
-// import myimg from "../home.jpg"
+import myimg from "../images/home.jpg"
 import { Activity, HeartHalf } from 'react-bootstrap-icons';
-
-
+import "../style/Reg.css";
 
 const useStyles = makeStyles((theme) => ({
 
     root: {
         minHeight: "100vh",
-        backgroundImage: `url("../../public/assets/images/home.jpg")`,
+        backgroundImage: `url(${myimg})`,
         backgroundRepeat:"no-repeat",
         backgroundSize:'cover',
         opacity: 1.5

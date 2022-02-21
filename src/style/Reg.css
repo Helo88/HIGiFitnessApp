@@ -4,11 +4,11 @@ h1{
 h2{
     color: #072227;
 }
-button.btn{
+#btn2{
      background-color: #35858B;
      width: 300px;
 }
-button.btn:hover{
+btn2:hover{
     background-color: #AEFEFF;
     color: #072227;
 }
