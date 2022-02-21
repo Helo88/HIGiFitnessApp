@@ -7,6 +7,8 @@ import mylogo from "../images/logo.jpg"
 
 const Navbar = () => {
 
+  let token = localStorage.getItem('token')
+  let email = localStorage.getItem('email')
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
@@ -31,7 +33,7 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item hoverable">
-                <Link className="nav-link" to={""}> <strong>Gyms</strong></Link>
+                <Link className="nav-link" to={"/gyms"}> <strong>Gyms</strong></Link>
               </li>
 
               <li className="nav-item hoverable">
@@ -43,8 +45,8 @@ const Navbar = () => {
                 <ul class="dropdown-menu">
                   <li> <Link class="dropdown-item" to={""}> Plans </Link>
                     <ul class="submenu dropdown-menu">
-                      <li><Link class="dropdown-item" to={"/plans"}>Workout</Link></li>
-                      <li><Link class="dropdown-item" to={"/yoga"}>Yoga</Link></li>
+                      <li><Link class="dropdown-item" to={"/workoutplans"}>Workout</Link></li>
+                      <li><Link class="dropdown-item" to={"/yogaplans"}>Yoga</Link></li>
                     </ul>
                   </li>
                   <li> <Link class="dropdown-item" to={""}> Healthy Life </Link>
@@ -67,9 +69,18 @@ const Navbar = () => {
             </ul>
 
 
-            <div class="d-grid gap-2 d-md-flex ">
-              <button id="sign-btn" class="btn  hoverable" type="button"> <strong>Sign up</strong></button>
-              <button class="btn btn-light hoverable" type="button"> <strong>Log In</strong></button>
+            {token?
+            <li className="navbar-item" >
+              { email}
+            </li>:<span></span>}
+
+            <div className="d-grid gap-2 d-md-flex ">
+               
+               {token? <Link className="btn btn-light hoverable" to={""}> <strong>Log out</strong></Link> : <Link id="sign-btn" class="btn  hoverable" to={""}> <strong>Sign up</strong></Link> }
+               
+               {!token? <Link className="btn btn-light hoverable" to={"/login"}> <strong>Log In</strong></Link>:<span></span> }
+               
+               
             </div>
 
           </div>

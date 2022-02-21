@@ -36,7 +36,7 @@
 }
 
 .f{
-    color: white;
+    color: #072227;
 }
 .main{
     color: #072227;
@@ -83,4 +83,8 @@
 
 #btns:hover{
     background-color: #35858B;
+}
+
+.containercolor{
+    background-color: #072227;
 }
