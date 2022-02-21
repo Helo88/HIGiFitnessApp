@@ -5,14 +5,14 @@ import axios from "axios";
 
 
 
-import "../../style/clothing.css";
+import "../style/clothing.css";
 
 export const Clothing = () => {
-  let [apidata,setdata]=useState([])
-  useEffect(()=>{
-   const url='http://127.0.0.1:8000/yogaexercises/'
-    fetch(url).then((data)=>data.json()).then((data)=>{console.log(data);setdata(data)})
-  },[])
+  // let [apidata,setdata]=useState([])
+  // useEffect(()=>{
+  //  const url='http://127.0.0.1:8000/yogaexercises/'
+  //   fetch(url).then((data)=>data.json()).then((data)=>{console.log(data);setdata(data)})
+  // },[])
 
 
   return (
@@ -384,6 +384,13 @@ export const Clothing = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* **********************************trird section****************************************** */}
+      <div id="map" className="row">
+        <h1 className="col-12 col-md-7 mt-5 p-5">
+          lets find the nearest shops to you !
+        </h1>
+       <div id="inside"className="col-12 mt-5 offset-0 offset-md-7 col-md-4" title="click me"></div>
       </div>
     </>
   );
