@@ -35,6 +35,7 @@ function App() {
             <Route path={"/healthytips"} exact component={HealthyTips}  />
             <Route path={"/gymslocations"} exact component={Gym}  />
             <Route path={"/login"} exact component={Login}  />
+            <Route path={"/signup"} exact component={RegisterForm}  />
             {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
            
