@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ReactNotifications from 'react-notifications-component';
 import "./style/App.css";
+import "./style/Gym.css";
 import Homepage from './components/Homepage';
 import RegisterForm from './components/RegisterForm'
 import ShowWorkoutPlans from "./components/ShowWorkoutPlans";
@@ -16,7 +17,14 @@ import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
 import SignIn from "./components/Login";
 import Navbar from "./components/Navbar";
-
+import { useState } from "react";
+import Comm from './components/Community'
+import ProtectedRoute from './components/ProtectedRoute'
+import LoggedInRoute from './components/LoggedInRoute'
+import Gym from "./components/Gym"
+import Water from "./components/Water"
+import WeightTracker from "./components/weightTracker"
+import Check from "./components/check";
 
 function App() {
   const [state, setState] = useState('start')
@@ -58,25 +66,26 @@ function App() {
     <div className="" style={{}}>
       {/* HELLO WORLD */}
       <Router>
-        {<WeightTracker />}
-        {<Navbar />}
-        <Switch>
-          <Route path={"/"} exact component={Homepage} />
-          
-          <Route exact path="/workoutplans" render={() => <ShowWorkoutPlans WorkoutPlans={workoutPlans} />}/>
-          <Route exact path="/yogaplans" render={() => <ShowYogaPlans YogaPlans={yogaPlans} />}/> 
-          <Route path={"/exercises"} exact component={Exercises} />
-          <Route path={"/exercises/details"} exact component={ExDetails} />
-      
-          <Route path={"/yogaExercises"} exact component={YogaExercises} />
-          <Route path={"/yoga/details"} exact component={YogaDetails} />
+        { <Navbar/>}
+         <Switch>
+            <ProtectedRoute path={"/"} exact component={Homepage}/>
+            <ProtectedRoute path={"/workoutplans"} exact component={ShowPlans}/>
+            <ProtectedRoute path={"/exercises"}  exact component={Exercises}/>
+            <ProtectedRoute path={"/exercises/details"}  exact component={ExDetails}/>
+            <ProtectedRoute path={"/yogaplans"} exact component={ShowYogaPlans}/>
+            <ProtectedRoute path={"/yogaExercises"}  exact component={YogaExercises}/>
+            <ProtectedRoute path={"/yoga/details"}  exact component={YogaDetails}/>
+            <ProtectedRoute path={"/healthytips"} exact component={HealthyTips}  />
+            <Route path={"/login"} exact component={Login}  />
+            <LoggedInRoute path={"/comm"} component={Comm}  />
+            <Route path={"/gymslocations"} exact component={Gym}  />
+            <Route path={"/check"} exact component={Check}/>
+            <Route path={"/WeightTracker"} exact component={WeightTracker} />
 
-          <Route path={"/healthytips"} exact component={HealthyTips} />
-          <Route path={"/gyms"} exact component={Gym} />
-          <Route path={"/WeightTracker"} exact component={WeightTracker} />
-          <Route path={"/login"} exact component={SignIn} />
-
-        </Switch>
+            {/* <Route  exact component={}/>
+            <Route path={"*"} exact component={} /> */}
+           
+          </Switch> 
         {/* <Footer /> */}
       </Router>
     </div>
