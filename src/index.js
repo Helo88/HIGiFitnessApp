@@ -7,7 +7,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "bulma/css/bulma.css"
 import "./style/index.css";
-
+import "leaflet/dist/leaflet.css"
 
 ReactDOM.render( 
 <CookiesProvider>

@@ -1,14 +1,16 @@
 import { useState } from "react";
+import {useHistory} from "react-router-dom"
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import "../style/Reg.css";
-
+import  {axiosInstance} from "../js/network/index"
 const UserForm = () => {
+  const history=useHistory()
   const [userForm, setUserForm] = useState({
-    namee: "",
+    username: "",
     age: "",
     weight: "",
     height: "",
@@ -20,9 +22,9 @@ const UserForm = () => {
   });
 
   const [userFormErrors, setUserFormErrors] = useState({
-    nameErr: null,
+    usernameErr: null,
     ageErr: null,
-    weightErr: null,
+    currentWeightErr: null,
     heightErr:null,
     emailErr: null,
     passErr: null,
@@ -49,7 +51,34 @@ const UserForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(userForm);
+    const data={
+      username:userForm.username,
+      age:userForm.age,
+      currentWeight:userForm.currentWeight,
+      height:userForm.height,
+      medicalHistory:true,
+      password1:userForm.password,
+      password2:userForm.conpassword
+
+    }
+    console.log(data);
+
+    axiosInstance
+			.post(`http://127.0.0.1:8000/users/registration/trainee/`, {
+        username:userForm.username,
+        age:userForm.age,
+        currentWeight:userForm.currentWeight,
+        height:userForm.height,
+        medicalHistory:true,
+        password1:userForm.password,
+        password2:userForm.conpassword,
+        email:userForm.email
+			})
+			.then((res) => {
+				history.push('/login');
+				console.log(res);
+				console.log(res.data);
+			}).catch((err)=>console.log(err))
   };
 
   const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -92,23 +121,37 @@ const UserForm = () => {
             ? "Password must contain atleast one lowercase, one uppercase , at least one digit and special character"
             : null,
       });
-    } else if (e.target.name === "namee") {
-      setUserForm({
-        ...userForm,
-        namee: e.target.value,
-      });
-      setUserFormErrors({
-        ...userFormErrors,
-        nameErr: e.target.value.length === 0 ? "This Field is required" : null,
-      });
-    } else if (e.target.name === "weight") {
+    } else if (e.target.name === "username") {
       setUserForm({
         ...userForm,
         username: e.target.value,
       });
       setUserFormErrors({
         ...userFormErrors,
-        weightErr:
+        usernameErr: e.target.value.length === 0 ? "This Field is required" : null,
+      });
+    }
+    //  else if (e.target.name === "initialWeight") {
+    //   setUserForm({
+    //     ...userForm,
+    //     initialWeight: e.target.value,
+    //   });
+    //   setUserFormErrors({
+    //     ...userFormErrors,
+    //     initialWeightErr:
+    //       e.target.value.length === 0
+    //         ? "This Field is required"
+    //         : null,
+    //   });
+    // } 
+    else if (e.target.name === "currentWeight") {
+      setUserForm({
+        ...userForm,
+        currentWeight: e.target.value,
+      });
+      setUserFormErrors({
+        ...userFormErrors,
+        currentWeightErr:
           e.target.value.length === 0
             ? "This Field is required"
             : null,
@@ -118,7 +161,7 @@ const UserForm = () => {
     else if (e.target.name === "height") {
       setUserForm({
         ...userForm,
-        username: e.target.value,
+        height: e.target.value,
       });
       setUserFormErrors({
         ...userFormErrors,
@@ -184,9 +227,9 @@ const UserForm = () => {
             <input
               type="text"
               className="form-control"
-              placeholder="Please Enter your name"
-              name="namee"
-              value={userForm.namee}
+              placeholder="Please Enter your username"
+              name="username"
+              value={userForm.username}
               onChange={(e) => handleChange(e)}
               id="exampleInputName"
             />
@@ -223,14 +266,14 @@ const UserForm = () => {
               type="text"
               className="form-control"
               placeholder="eg: 70KG"
-              name="weight"
-              value={userForm.weight}
+              name="currentWeight"
+              value={userForm.currentWeight}
               onChange={(e) => handleChange(e)}
               id="exampleInputName"
             />
             <div>
               <small className="text-danger">
-                {userFormErrors.weightErr}
+                {userFormErrors.currentWeightErr}
               </small>
             </div>
           </div>
@@ -344,7 +387,7 @@ const UserForm = () => {
             </div>
             <br/>
 
-          <button type="submit" className="btn" id="btn2">
+          <button type="submit" className="btn" >
             Register
           </button>
         </form>
