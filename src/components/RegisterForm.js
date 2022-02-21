@@ -1,14 +1,16 @@
 import { useState } from "react";
+import {useHistory} from "react-router-dom"
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import "../style/Reg.css";
-
+import  {axiosInstance} from "../js/network/index"
 const UserForm = () => {
+  const history=useHistory()
   const [userForm, setUserForm] = useState({
-    namee: "",
+    username: "",
     age: "",
     weight: "",
     height: "",
@@ -62,7 +64,7 @@ const UserForm = () => {
     console.log(data);
 
     axiosInstance
-			.post(`http://127.0.0.1:10000/users/registration/trainee/`, {
+			.post(`http://127.0.0.1:8000/users/registration/trainee/`, {
         username:userForm.username,
         age:userForm.age,
         currentWeight:userForm.currentWeight,
