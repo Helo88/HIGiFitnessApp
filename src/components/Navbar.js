@@ -32,20 +32,20 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item hoverable">
-                <Link className="nav-link" to={"/gymslocations"}> <strong>Gyms</strong></Link>
+                <Link className="nav-link" to={"/gyms"}> <strong>Gyms</strong></Link>
               </li>
 
               <li className="nav-item hoverable">
                 <Link className="nav-link" to={""}> <strong>Shops</strong></Link>
               </li>
 
-              <li className="nav-item dropdown" id="myDropdown">
-                <Link className="nav-link dropdown-toggle" to={""} data-bs-toggle="dropdown"> <strong>Fitness Tracker</strong>  </Link>
-                <ul className="dropdown-menu">
-                  <li> <Link className="dropdown-item" to={""}> Plans </Link>
-                    <ul className="submenu dropdown-menu">
-                      <li><Link className="dropdown-item" to={"/workoutplans"}>Workout</Link></li>
-                      <li><Link className="dropdown-item" to={"/yogaplans"}>Yoga</Link></li>
+              <li class="nav-item dropdown" id="myDropdown">
+                <Link class="nav-link dropdown-toggle" to={""} data-bs-toggle="dropdown"> <strong>Fitness Tracker</strong>  </Link>
+                <ul class="dropdown-menu">
+                  <li> <Link class="dropdown-item" to={""}> Plans </Link>
+                    <ul class="submenu dropdown-menu">
+                      <li><Link class="dropdown-item" to={"/workoutplans"}>Workout</Link></li>
+                      <li><Link class="dropdown-item" to={"/yogaplans"}>Yoga</Link></li>
                     </ul>
                   </li>
                   <li> <Link className="dropdown-item" to={""}> Healthy Life </Link>
@@ -66,6 +66,7 @@ const Navbar = () => {
               </li>
 
             </ul>
+
             {token?
             <li className="navbar-item" >
               { email}
