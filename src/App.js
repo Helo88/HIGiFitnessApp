@@ -12,6 +12,10 @@ import YogaDetails from "./components/YogaDetails";
 import HealthyTips from "./components/healthyTips";
 import Navbar from "./components/Navbar";
 import { useState } from "react";
+import Login from './components/Login';
+import Comm from './components/Community'
+import ProtectedRoute from './components/ProtectedRoute'
+import LoggedInRoute from './components/LoggedInRoute'
 import Gym from "./components/Gym"
 import Water from "./components/Water"
 
@@ -25,17 +29,21 @@ function App() {
       <Router>
         { <Navbar/>}
          <Switch>
-            <Route path={"/"} exact component={Homepage}/>
-            <Route path={"/workoutplans"} exact component={ShowPlans}/>
-            <Route path={"/exercises"}  exact component={Exercises}/>
-            <Route path={"/exercises/details"}  exact component={ExDetails}/>
-            <Route path={"/yogaplans"} exact component={ShowYogaPlans}/>
-            <Route path={"/yogaExercises"}  exact component={YogaExercises}/>
-            <Route path={"/yoga/details"}  exact component={YogaDetails}/>
-            <Route path={"/healthytips"} exact component={HealthyTips}  />
-            <Route path={"/gymslocations"} exact component={Gym}  />
+            <ProtectedRoute path={"/"} exact component={Homepage}/>
+            <ProtectedRoute path={"/workoutplans"} exact component={ShowPlans}/>
+            <ProtectedRoute path={"/exercises"}  exact component={Exercises}/>
+            <ProtectedRoute path={"/exercises/details"}  exact component={ExDetails}/>
+            <ProtectedRoute path={"/yogaplans"} exact component={ShowYogaPlans}/>
+            <ProtectedRoute path={"/yogaExercises"}  exact component={YogaExercises}/>
+            <ProtectedRoute path={"/yoga/details"}  exact component={YogaDetails}/>
+            <ProtectedRoute path={"/healthytips"} exact component={HealthyTips}  />
             <Route path={"/login"} exact component={Login}  />
+<<<<<<< HEAD
             <Route path={"/signup"} exact component={RegisterForm}  />
+=======
+            <LoggedInRoute path={"/comm"} component={Comm}  />
+            <Route path={"/gymslocations"} exact component={Gym}  />
+>>>>>>> a542b133bdcb6d3964af3c1146923cb0180472a6
             {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
            
