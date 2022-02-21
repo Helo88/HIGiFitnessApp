@@ -6,7 +6,6 @@ import '../style/NavCSS.css';
 import mylogo from "../images/logo.jpg"
 
 const Navbar = () => {
-
   let token = localStorage.getItem('token')
   let email = localStorage.getItem('email')
   return (
@@ -49,16 +48,16 @@ const Navbar = () => {
                       <li><Link class="dropdown-item" to={"/yogaplans"}>Yoga</Link></li>
                     </ul>
                   </li>
-                  <li> <Link class="dropdown-item" to={""}> Healthy Life </Link>
-                    <ul class="submenu dropdown-menu">
-                      <li><Link class="dropdown-item" to={""}> Water Tracker</Link></li>
-                      <li><Link class="dropdown-item" to={""}>Weight Tracker</Link></li>
+                  <li> <Link className="dropdown-item" to={""}> Healthy Life </Link>
+                    <ul className="submenu dropdown-menu">
+                      <li><Link className="dropdown-item" to={""}> Water Tracker</Link></li>
+                      <li><Link className="dropdown-item" to={""}>Weight Tracker</Link></li>
                       <hr className="navbar-divider" />
-                      <li><Link class="dropdown-item" to={"/healthytips"}><strong>Healthy Tips</strong></Link></li>
+                      <li><Link className="dropdown-item" to={"/healthytips"}><strong>Healthy Tips</strong></Link></li>
                     </ul>
                   </li>
                   <hr className="navbar-divider" />
-                  <li><Link class="dropdown-item important" to={""}> <strong>Report an issue </strong> </Link></li>
+                  <li><Link className="dropdown-item important" to={""}> <strong>Report an issue </strong> </Link></li>
                 </ul>
               </li>
 
@@ -67,7 +66,6 @@ const Navbar = () => {
               </li>
 
             </ul>
-
 
             {token?
             <li className="navbar-item" >

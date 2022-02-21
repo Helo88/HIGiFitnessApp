@@ -118,7 +118,7 @@ const ShowYogaPlans = (props) => {
                         backgroundImage: `url(${plan.image})`,
                         backgroundSize: 'cover',
                         minWidth: "40vw",
-                        minHeight: "45vh",
+                        minHeight: "55vh",
                       }} className="card  shadow-lg">
 
 

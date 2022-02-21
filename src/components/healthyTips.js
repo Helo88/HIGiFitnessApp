@@ -41,10 +41,10 @@ const HealthyTips = () => {
         showConfirmButton: false,
         denyButtonColor: '#35858B',
         denyButtonText: `Close`,
-        showClass: {
+        showClassName: {
             popup: 'animate__animated animate__fadeInDown'
         },
-        hideClass: {
+        hideClassName: {
             popup: 'animate__animated animate__fadeOutUp'
         }
     })

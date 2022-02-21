@@ -1,0 +1,65 @@
+.vplayer {
+    width: 100%;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 100vh;
+}
+
+.inner {
+    display: table;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    z-index: 2;
+    text-shadow: 0 1px 5px white(0, 0, 0, .5);
+    transform: translateY(170%);
+}
+
+.inner>div {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    padding: 0 2em;
+}
+
+.inner .btn-info {
+    color: white;
+}
+
+/* .fullsize-video-bg {
+    position: relative;
+} */
+
+#video-viewport {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+h1 {
+    font-family: "Raleway", sans-serif;
+    font-size: 3em;
+    line-height: .9;
+    font-weight: 900;
+    letter-spacing: -.025em;
+    text-transform: uppercase;
+    margin-bottom: .5em;
+    color: white;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 100vh;
+}

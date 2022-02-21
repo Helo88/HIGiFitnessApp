@@ -14,7 +14,7 @@ import YogaDetails from "./components/YogaDetails";
 import HealthyTips from "./components/healthyTips";
 import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
-import SignIn from "./components/login";
+import SignIn from "./components/Login";
 import Navbar from "./components/Navbar";
 
 
@@ -75,10 +75,6 @@ function App() {
           <Route path={"/gyms"} exact component={Gym} />
           <Route path={"/WeightTracker"} exact component={WeightTracker} />
           <Route path={"/login"} exact component={SignIn} />
-
-
-          {/* <Route  exact component={}/>
-            <Route path={"*"} exact component={} /> */}
 
         </Switch>
         {/* <Footer /> */}
