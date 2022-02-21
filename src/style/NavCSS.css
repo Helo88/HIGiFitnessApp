@@ -45,6 +45,12 @@
 #navbar{
     background-color: #072227;
 }
+
+#logo{
+    min-width: 90px;
+    min-height: 50px;
+
+}
   
 
 a.nav-link {

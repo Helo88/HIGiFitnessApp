@@ -14,6 +14,7 @@ class YogaDetails extends Component {
     async componentDidMount() {
       try {
         document.body.style.backgroundColor = "#4FBDBA"
+        document.body.style.maxHeight = "100vh"
         const res = await fetch('http://localhost:8000/yogaexercises/');
         const exList = await res.json();
         this.setState({

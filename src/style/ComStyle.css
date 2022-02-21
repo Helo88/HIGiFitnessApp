@@ -1,0 +1,35 @@
+#body {
+    min-height: 100vh;
+    background-color: #072227;
+}
+#tit{
+    color:#072227;
+    max-height: 10vh;
+}
+
+#com{
+    color: #35858B;
+}
+
+#postBtn{
+    color: white;
+    background-color: #35858B;
+}
+
+.h7 {
+    font-size: 0.8rem;
+}
+
+.gedf-wrapper {
+    margin-top: 0.97rem;
+}
+
+@media (min-width: 992px) {
+    .gedf-main {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+    .gedf-card {
+        margin-bottom: 2.77rem;
+    }
+}
