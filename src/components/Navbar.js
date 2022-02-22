@@ -4,10 +4,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import '../style/NavCSS.css';
 import mylogo from "../images/logo.jpg"
+import {axiosInstance} from '../js/network/index';
 
 const Navbar = () => {
   let token = localStorage.getItem('token')
   let email = localStorage.getItem('email')
+  let is_staff=localStorage.getItem('is_staff')
+  function logoutHandle(){
+   axiosInstance.post('http://127.0.0.1:8000/rest-auth/logout/')
+   .then( ()=>{
+    //  localStorage.setItem('email','');
+    //  localStorage.setItem('token','');
+    //  if(is_staff){
+    //       localStorage.setItem('address','')
+    //  }
+    //  else{
+
+    //  }
+    //  localStorage.setItem('is_staff','');
+    localStorage.clear();
+   })
+  }
+
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
@@ -73,7 +91,7 @@ const Navbar = () => {
 
             <div className="d-grid gap-2 d-md-flex ">
                
-               {token? <Link className="btn btn-light hoverable" to={""}> <strong>Log out</strong></Link> : <Link id="sign-btn" class="btn  hoverable" to={""}> <strong>Sign up</strong></Link> }
+               {token? <Link className="btn btn-light hoverable" to={""} onClick={logoutHandle}> <strong>Log out</strong></Link> : <Link id="sign-btn" class="btn  hoverable" to={""}> <strong>Sign up</strong></Link> }
                
                {!token? <Link className="btn btn-light hoverable" to={"/login"}> <strong>Log In</strong></Link>:<span></span> }
                
