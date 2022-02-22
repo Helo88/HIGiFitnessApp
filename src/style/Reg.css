@@ -1,54 +1,63 @@
-h1{
+h1 {
     color: #072227;
 }
-h2{
+
+h2 {
     color: #072227;
 }
-#btn2{
-     background-color: #35858B;
-     width: 300px;
+
+#btn2 {
+    background-color: #35858B;
+    width: 300px;
 }
-btn2:hover{
+
+btn2:hover {
     background-color: #AEFEFF;
     color: #072227;
 }
-.des{
+
+.des {
     display: flex;
     justify-content: left;
     align-items: center;
     min-height: 100vh;
-    
+
 }
-.des1{
+
+.des1 {
     color: #072227;
     /* margin-left: 40%;
     */
 }
-.des2{
-    color: #35858B;   
+
+.des2 {
+    color: #35858B;
     /* margin-left: 15%; */
 }
-.des3{
+
+.des3 {
     color: #072227;
     /* margin-left: 20%; */
 
 }
 
-.des4{
+.des4 {
     color: #35858B;
     /* margin-left: 8%; */
-  
+
 }
-.des5{
+
+.des5 {
     color: #4FBDBA;
     /* margin-left: 67%; */
 }
-.ic{
+
+.ic {
     display: flex;
     justify-content: right;
     align-items: center;
     min-height: 100vh;
     /* color: #AEFEFF; */
-    color: #4FBDBA; 
+    color: #4FBDBA;
     font-size: 150px;
 }

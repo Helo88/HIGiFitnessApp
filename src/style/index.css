@@ -1,10 +1,10 @@
  @font-face {
    font-family: "Mochiy";
-  font-style: normal;
-  font-weight: normal;
-  src: url("/public/assets/fonts/Mochiy_Pop_P_One/MochiyPopPOne-Regular.ttf") format("truetype"); 
-}
+   font-style: normal;
+   font-weight: normal;
+   src: url("/public/assets/fonts/Mochiy_Pop_P_One/MochiyPopPOne-Regular.ttf") format("truetype");
+ }
 
-*{
-   font-family: Mochiy; 
-} 
+ * {
+   font-family: Mochiy;
+ }

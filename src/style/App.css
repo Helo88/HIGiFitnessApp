@@ -1,23 +1,27 @@
-
-:root{
-  --fColor:#072227;
-  --sColor:#35858B;
-  --tColor:#4FBDBA;
-  --foColor:#AEFEFF;
+:root {
+  --fColor: #072227;
+  --sColor: #35858B;
+  --tColor: #4FBDBA;
+  --foColor: #AEFEFF;
 }
-*{
-  margin:0px;
+
+* {
+  margin: 0px;
   padding: 0px;
   box-sizing: border-box;
   text-decoration: none;
 }
-body{
-  height:100vh
-}
-ul{
-list-style:none
+
+body {
+  height: 100vh;
 }
 
+ul {
+  list-style: none
+}
 
-
-
+#title {
+  font-size: 2.3em !important;
+  color: white !important;
+  padding-bottom: 1.3em;
+}

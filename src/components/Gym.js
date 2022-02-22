@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Icon } from "leaflet";
-<<<<<<< HEAD
 import "../style/Gym.css";
-=======
->>>>>>> 674e926dc1bb11ed5315e21ca33918cc5817d789
 
 const Gym = () => {
   const [position, setPosition] = useState({
@@ -43,7 +40,7 @@ const Gym = () => {
         <section className="fullsize-video-bg">
           <div className="inner">
             <div>
-              <h1>Find Your Nearest Gym</h1>
+              <h1 id="title">Find Your Nearest Gym</h1>
               <button
                 type="button"
                 className="btn btn-info"
