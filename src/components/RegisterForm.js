@@ -75,7 +75,7 @@ const UserForm = () => {
         email:userForm.email
 			})
 			.then((res) => {
-				history.push('/login');
+				history.push('/login')
 				console.log(res);
 				console.log(res.data);
 			}).catch((err)=>console.log(err))

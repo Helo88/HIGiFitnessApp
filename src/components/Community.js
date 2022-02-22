@@ -2,17 +2,26 @@ import React, { useEffect, useState } from "react";
 import "../style/ComStyle.css";
 import mylogo from "../images/logo.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
+import {axiosInstance} from '../js/network/index';
+import { useHistory } from 'react-router-dom';
 
 const Community = () => {
+  const[trainerDetail,setTrainerDetail]=useState({})
+  // useEffect(()=>{
+  //   axiosInstance
+  //   .get(`http://127.0.0.1:8000/users/trainerDetail/`, {
+      
+  //   })
+  //   .then((data)=>data.data.trainer)
+  //   .then((res)=>setTrainerDetail(res))
+  //   .then(()=>console.log("details ",trainerDetail))
+   
+  // })
   return (
     <>
-      <div className="container-fluid" id="tit">
-        <span href="#" className="navbar-brand" id="tit2">
-          HIGE Fitness App Community
-        </span>
-      </div>
+ 
 
-      <div className="container-fluid gedf-wrapper pt-5" id="body">
+      <div className="container-fluid gedf-wrapper pt-0" id="body">
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-6 gedf-main">

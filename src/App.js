@@ -17,7 +17,8 @@ import ProtectedRoute from './components/ProtectedRoute'
 import LoggedInRoute from './components/LoggedInRoute'
 import Gym from "./components/Gym"
 import Water from "./components/Water"
-
+import {Clothing} from "./components/Clothing"
+import TrainerProfile from "./components/TrainerProfile"
 
 function App() {
   const [state, setState] = useState('start')
@@ -37,12 +38,10 @@ function App() {
             <ProtectedRoute path={"/yoga/details"}  exact component={YogaDetails}/>
             <ProtectedRoute path={"/healthytips"} exact component={HealthyTips}  />
             <Route path={"/login"} exact component={Login}  />
-<<<<<<< HEAD
-            <Route path={"/signup"} exact component={RegisterForm}  />
-=======
             <LoggedInRoute path={"/comm"} component={Comm}  />
             <Route path={"/gymslocations"} exact component={Gym}  />
->>>>>>> a542b133bdcb6d3964af3c1146923cb0180472a6
+            <Route path={"/shops"} exact component={Clothing}  />
+            <Route path={"/trainer"} exact component={TrainerProfile}  />
             {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
            
