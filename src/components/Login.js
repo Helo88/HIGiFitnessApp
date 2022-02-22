@@ -13,6 +13,7 @@ import Input from "@material-ui/core/Input";
 
 export default function SignIn() {
 	const history = useHistory();
+	const[trainerDetail,setTrainerDetail]=useState({})
 	const initialFormData = Object.freeze({
 		email: '',
 		password: '',
@@ -21,10 +22,6 @@ export default function SignIn() {
 	
 	  
 	const [userForm, setUserForm] = useState(initialFormData);
-
-	let loginCounter = localStorage.getItem('loginCountetr')?localStorage.getItem('loginCountetr'):0
-
-	//const [cookies, setCookie] = useCookies(['counter']);
 
 	const handleChange = (e) => {
 		setUserForm({
@@ -63,45 +60,70 @@ export default function SignIn() {
 				localStorage.setItem('token',`${token['key']}`)
 				localStorage.setItem('is_staff',token['user']['is_staff'])
 				localStorage.setItem('id',token['user']['id'])
+				localStorage.setItem('email',token['user']['email'])
+				localStorage.setItem('username',token['user']['username'])
 				console.log("token ",`Token ${token['key']}`)
 				console.log( "is_staff ",token['user']['is_staff'])
-				loginCounter++;
-				localStorage.setItem('loginCounter',loginCounter)
+				return token
 				//['token']:token['key'],'id':token['user']['id'
 				
-						// const headers= {
-						// 	'Content-Type': 'application/json',
-						// 	'Authorization':`Token ${token['key']}`
-						// }
 					
 					
 					// axiosInstance.get('http://127.0.0.1:10000/workoutfavplan/', {
 					// 	// headers: headers
-					//   })
-					axiosInstance.put('http://127.0.0.1:8000/addWorkoutPlan/',{'id':8} ,{
+				// 	//   })
+				// 	axiosInstance.put('http://127.0.0.1:8000/addWorkoutPlan/',{'id':8} ,{
 						
-					  })
+				// 	  })
 
-				  .then((res) => {
-                     console.log("mystate is ",state)
-					// console.log(res.data)
-					// console.log(res.data.fields)
+				//   .then((res) => {
+                //      console.log("mystate is ",state)
+				// 	// console.log(res.data)
+				// 	// console.log(res.data.fields)
 
-				  })
-                      .catch(err=>{
-						console.log("login error")  
-						// history.push("/signup")
-					})
+				//   })
+                //       .catch(err=>{
+				// 		console.log("login error")  
+				// 		// history.push("/signup")
+				// 	})
 
 					  
 				// }
 				// else {
 				// 	history.push("/clothing")
 				// }
-			}).catch(err=>{
+			}).then( (token)=>{   
+			if (token['user']['is_staff']){
+				axiosInstance
+				.get(`http://127.0.0.1:8000/users/trainerDetail/`, {
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization':`Token ${token['key']}`
+					}
+				
+				  
+				})
+				.then((data)=>(data.data.trainer)[0])
+				.then((res)=>{
+					console.log(res)
+					setTrainerDetail(()=>res.fields)
+								
+					localStorage.setItem('age',res.fields.age)
+					 localStorage.setItem('phone',res.fields.phoneNumber)
+					localStorage.setItem('address',res.fields.address)
+					console.log("my details ",trainerDetail)
+				})
+			  }
+			  else {
+				  //trainee data
+			  }
+			})
+			   .then(history.push("/me"))
+			.catch(err=>{
 				console.log("login error")  
 				// history.push("/signup")
 			})
+		
 		
 	};
 
