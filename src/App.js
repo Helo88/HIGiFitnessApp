@@ -16,6 +16,7 @@ import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
 import SignIn from "./components/Login";
 import Navbar from "./components/Navbar";
+import Reminder from './components/Reminder'
 
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
           <Route path={"/gyms"} exact component={Gym} />
           <Route path={"/WeightTracker"} exact component={WeightTracker} />
           <Route path={"/login"} exact component={SignIn} />
+          <Route path={"/task"} exact component={Reminder} />
 
         </Switch>
         {/* <Footer /> */}
