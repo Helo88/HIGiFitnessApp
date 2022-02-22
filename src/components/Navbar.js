@@ -6,6 +6,8 @@ import "../style/NavCSS.css";
 import mylogo from "../images/logo.jpg";
 
 const Navbar = () => {
+  let token = localStorage.getItem('token')
+  let email = localStorage.getItem('email')
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">

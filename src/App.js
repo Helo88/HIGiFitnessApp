@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
@@ -9,6 +10,9 @@ import ShowYogaPlans from "./components/ShowYogaPlans";
 import ShowWorkoutPlans from "./components/ShowWorkoutPlans";
 import YogaExercises from "./components/YogaExercises";
 import HealthyTips from "./components/healthyTips";
+import Gym from "./components/Gym";
+import WeightTracker from "./components/weightTracker";
+import SignIn from "./components/Login";
 import Navbar from "./components/Navbar";
 import Gym from "./components/Gym";
 import SignIn from "./components/Login";
