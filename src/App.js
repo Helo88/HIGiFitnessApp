@@ -21,15 +21,14 @@ import TrainerProfile from "./components/TrainerProfile"
 import TraineeProfile from "./components/TraineeProfile"
 import {axiosInstance} from './js/network/index';
 import React, { useEffect, useState } from "react";
-import { AuthDataContext } from "./context";
+
 function App() {
-  const [authData, setAuthData] = useState({});
-  console.log("state context ",authData)
+
   return (
     <div className="" style={{}}>
       {/* HELLO WORLD */}
          {/* <Water /> */}
-         <AuthDataContext.Provider value={{ authData, setAuthData}}>
+        
       <Router>
         { <Navbar/>}
          <Switch>
@@ -53,7 +52,7 @@ function App() {
           </Switch> 
         {/* <Footer /> */}
         </Router>
-      </AuthDataContext.Provider>
+   
     </div>
   );
 }

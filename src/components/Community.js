@@ -4,11 +4,10 @@ import mylogo from "../images/logo.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
 import {axiosInstance} from '../js/network/index';
 import { useHistory,useParams} from 'react-router-dom';
-import { AuthDataContext } from "../context";
+
 
 const Community = () => {
-	const { authData, setAuthData } = useContext(AuthDataContext);
-  console.log("context data from community ",authData)
+
   let { id } = useParams();
   console.log("post id ",id)
   const[post,setPost]=useState({})
