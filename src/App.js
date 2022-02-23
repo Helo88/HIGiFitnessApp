@@ -25,6 +25,7 @@ import Check from "./components/check";
 import TrainerProfile from "./components/TrainerProfile";
 import EditTrainerProfile from "./components/EditTrainerProfile"
 import Navbar from "./components/Navbar";
+import Reminder from './components/Reminder'
 
 
 function App() {
