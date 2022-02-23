@@ -2,13 +2,14 @@ import React from "react";
 import { Alarm, LightningChargeFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Loader from "./Loader";
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
 
 const ShowYogaPlans = (props) => {
-  const { YogaPlans } = props;
+  const { YogaPlans,isLoading } = props;
 
   const handleClick = (e, id) => {
     if (
@@ -86,7 +87,10 @@ const ShowYogaPlans = (props) => {
     }
   };
 
-  return (
+  return 
+  isLoading ? (   //Checkif if is loading
+    <Loader/>
+    ) : (
     <main className="bg">
        
       <h1 className="f h1 d-flex justify-content-center mt-5">Yo<span className="text-info">ga</span>&nbsp;Plans</h1><br/>
@@ -105,7 +109,7 @@ const ShowYogaPlans = (props) => {
                         <button className="btn shadow-lg" onClick={(e) => handleClick(e, plan.id)}>
                           {" "}
                           {plan.id ===
-                          Number(localStorage.getItem("yogafavplanid")) ? (<i class="bi bi-star-fill"></i>) : (<i class="bi bi-star"></i>)}
+                          Number(localStorage.getItem("yogafavplanid")) ? (<i className="bi bi-star-fill"></i>) : (<i className="bi bi-star"></i>)}
                         </button>
                         <NotificationContainer />
                         {plan.name}

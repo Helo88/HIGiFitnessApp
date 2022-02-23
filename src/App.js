@@ -1,31 +1,29 @@
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import ReactNotifications from 'react-notifications-component';
-import "./style/App.css";
-import "./style/Gym.css";
-import Homepage from './components/Homepage';
-import RegisterForm from './components/RegisterForm'
-import ShowWorkoutPlans from "./components/ShowWorkoutPlans";
-import Exercises from './components/exercises'
-import ExDetails from "./components/ExDetails"
+
+import Homepage from "./components/Homepage";
+// import RegisterForm from "./components/RegisterForm";
+// import WorkoutExercises from "./components/WorkoutExercises";
+// import WorkoutPlanDetails from "./components/WorkoutPlanDetails";
 import ShowYogaPlans from "./components/ShowYogaPlans";
-import YogaExercises from './components/YogaExercises'
-import YogaDetails from "./components/YogaDetails";
+import ShowWorkoutPlans from "./components/ShowWorkoutPlans";
+import YogaExercises from "./components/YogaExercises";
 import HealthyTips from "./components/healthyTips";
-import Gym from "./components/Gym";
-import WeightTracker from "./components/weightTracker";
-import SignIn from "./components/Login";
 import Navbar from "./components/Navbar";
-import Comm from './components/Community'
-import ProtectedRoute from './components/ProtectedRoute'
-import LoggedInRoute from './components/LoggedInRoute'
-import Water from "./components/Water"
-import Check from "./components/check";
+import Gym from "./components/Gym";
+import Login from "./components/Login";
+import axios from "axios";
+// import FavPlans from "./components/FavPlans";
+// import YogaPlanDetails from "./components/YogaPlanDetails";
+// import StartWorkoutPlanExercise from "./components/StartWorkoutPlanExercise";
+// import StartYogaPlanExercise from "./components/StartYogaPlanExercise";
+import Water from "./components/Water";
+
+import "./style/App.css";
+import "./style/planStyle.css";
 
 function App() {
-  const [state, setState] = useState('start')
+  const [state, setState] = useState("start");
 
   const workoutplansapi = "http://localhost:8000/workoutplans/";
   const yogaplansapi = "http://localhost:8000/yogaplans/";
@@ -36,6 +34,7 @@ function App() {
   const [workoutPlans, SetworkoutPlans] = useState([]);
   const [workoutExercises, SetworkoutExercises] = useState([]);
   const [yogaExercises, SetyogaExercises] = useState([]);
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     axios.get(`${workoutplansapi}`).then((res) => {
@@ -59,34 +58,74 @@ function App() {
       SetyogaExercises(res.data);
     });
   }, []);
-
   return (
-    <div className="" style={{}}>
-      {/* HELLO WORLD */}
+    <>
       <Router>
-        { <Navbar/>}
-         <Switch>
-            <ProtectedRoute path={"/"} exact component={Homepage}/>
-            <ProtectedRoute path={"/workoutplans"} exact component={ShowWorkoutPlans}/>
-            <ProtectedRoute path={"/exercises"}  exact component={Exercises}/>
-            <ProtectedRoute path={"/exercises/details"}  exact component={ExDetails}/>
-            <ProtectedRoute path={"/yogaplans"} exact component={ShowYogaPlans}/>
-            <ProtectedRoute path={"/yogaExercises"}  exact component={YogaExercises}/>
-            <ProtectedRoute path={"/yoga/details"}  exact component={YogaDetails}/>
-            <ProtectedRoute path={"/healthytips"} exact component={HealthyTips}  />
-            <Route path={"/login"} exact component={SignIn}  />
-            <LoggedInRoute path={"/comm"} component={Comm}  />
-            <Route path={"/gymslocations"} exact component={Gym}  />
-            <Route path={"/check"} exact component={Check}/>
-            <Route path={"/WeightTracker"} exact component={WeightTracker} />
-
-            {/* <Route  exact component={}/>
+        {<Navbar />}
+        <Switch>
+          <Route path={"/"} exact component={Homepage} />
+          <Route
+            exact
+            path="/workoutplans"
+            render={() => <ShowWorkoutPlans WorkoutPlans={workoutPlans}  />}
+          ></Route>
+          <Route
+            exact
+            path="/yogaplans"
+            render={() => <ShowYogaPlans YogaPlans={yogaPlans} />}
+          ></Route>
+          {/* <Route
+            exact
+            path="/favplans"
+            render={() => (
+              <FavPlans YogaPlans={yogaPlans} WorkoutPlans={workoutPlans} />
+            )}
+          ></Route> */}
+          {/* <Route
+            exact
+            path="/workoutexercises"
+            render={() => <WorkoutExercises WorkoutPlans={workoutPlans} />}
+          ></Route> */}
+          <Route
+            exact
+            path="/yogaexercises"
+            render={() => <YogaExercises YogaPlans={yogaPlans} />}
+          ></Route>
+          {/* <Route
+            exact
+            path="/workoutexercises/details"
+            render={() => (
+              <WorkoutPlanDetails workoutExercises={workoutExercises} />
+            )}
+          ></Route> */}
+          {/* <Route
+            exact
+            path="/yogaexercises/details"
+            render={() => <YogaPlanDetails yogaExercises={yogaExercises} />}
+          ></Route> */}
+          {/* <Route
+            exact
+            path="/workoutexercises/start"
+            render={() => (
+              <StartWorkoutPlanExercise workoutExercises={workoutExercises} />
+            )}
+          ></Route> */}
+          {/* <Route
+            exact
+            path="/yogaexercises/start"
+            render={() => (
+              <StartYogaPlanExercise yogaExercises={yogaExercises} />
+            )}
+          ></Route> */}
+          <Route path={"/healthytips"} exact component={HealthyTips} />
+          <Route path={"/login"} exact component={Login} />
+          <Route path={"/gymslocations"} exact component={Gym} />
+          {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
-           
-          </Switch> 
+        </Switch>
         {/* <Footer /> */}
       </Router>
-    </div>
+    </>
   );
 }
 

@@ -6,9 +6,10 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import Loader from "./Loader";
 
 const ShowWorkoutPlans = (props) => {
-  const { WorkoutPlans } = props;
+  const { WorkoutPlans,isLoading } = props;
 
   const handleClick = (e, id) => {
     if (
@@ -89,72 +90,75 @@ const ShowWorkoutPlans = (props) => {
 
   console.log(WorkoutPlans)
 
-  return (
-    <main className="bg">
+  return 
+    isLoading ? (   //Checkif if is loading
+      <Loader/>
+      ) : (
+        <main className="bg">
 
-      <h1 className="f h1 d-flex justify-content-center mt-5">Work<span className="text-info">out</span>&nbsp;Plans</h1><br />
-      <div className="container containercolor">
-        <br /><br />
-        <div className="row">
-          {
-            WorkoutPlans.map((plan) => (
+          <h1 className="f h1 d-flex justify-content-center mt-5">Work<span className="text-info">out</span>&nbsp;Plans</h1><br />
+          <div className="container containercolor">
+            <br /><br />
+            <div className="row">
+              {
+                WorkoutPlans.map((plan) => (
 
-              <div className="col mb-6  d-flex ms-3 ">
+                  <div className="col mb-6  d-flex ms-3 ">
 
-                <div key={plan.id} className="list-group-item  justify-content-between align-items-center">
+                    <div key={plan.id} className="list-group-item  justify-content-between align-items-center">
 
-                  <span>
-                    <div className="row mt-2 shadow-sm">
-                      <span className="main2 col text-center mt-3 mb-3 ">
-                        <button className="btn shadow-lg" onClick={(e) => handleClick(e, plan.id)} >
-                          {" "}
-                          {
-                          plan.id === Number(localStorage.getItem("workoutfavplanid")) ?
-                              (<i class="bi bi-star-fill"></i>) : (<i class="bi bi-star"></i>)
-                          }
-                        </button>
+                      <span>
+                        <div className="row mt-2 shadow-sm">
+                          <span className="main2 col text-center mt-3 mb-3 ">
+                            <button className="btn shadow-lg" onClick={(e) => handleClick(e, plan.id)} >
+                              {" "}
+                              {
+                              plan.id === Number(localStorage.getItem("workoutfavplanid")) ?
+                                  (<i className="bi bi-star-fill"></i>) : (<i className="bi bi-star"></i>)
+                              }
+                            </button>
 
-                        <NotificationContainer />
-                        {plan.name}
-                      </span><br />
-                    </div>
-                    <br />
-
-                    <Link to={{ pathname: "/workoutexercises", state: plan.id }}>
-                      <div style={{
-                        backgroundImage: `url(${plan.image})`,
-                        backgroundSize: 'cover',
-                        minWidth: "40vw",
-                        minHeight: "55vh",
-                      }} className="card  shadow-lg">
-
-                        <div className="row container-fluid" id="exDets">
-                          <span className="plans col text-white ms-5">
-                            <LightningChargeFill /> &nbsp;
-                            {plan.numberOfEexercises} Exercises
-                          </span>
-
-                          <span className="plans col text-white ms-5">
-                            <Alarm /> &nbsp; &nbsp;
-                            {Math.floor(plan.totalTimeOfExercises / 60)}:
-                            {plan.totalTimeOfExercises -
-                              Math.floor(plan.totalTimeOfExercises / 60) *
-                              60}{" "}
-                            minutes
-                          </span>
+                            <NotificationContainer />
+                            {plan.name}
+                          </span><br />
                         </div>
-                      </div>
-                    </Link>
-                  </span>
-                  <br />
-                </div>
-              </div>
-            ))
-          }
-        </div>
-      </div>
-      <br /><br />
-    </main>
+                        <br />
+
+                        <Link to={{ pathname: "/workoutexercises", state: plan.id }}>
+                          <div style={{
+                            backgroundImage: `url(${plan.image})`,
+                            backgroundSize: 'cover',
+                            minWidth: "40vw",
+                            minHeight: "55vh",
+                          }} className="card  shadow-lg">
+
+                            <div className="row container-fluid" id="exDets">
+                              <span className="plans col text-white ms-5">
+                                <LightningChargeFill /> &nbsp;
+                                {plan.numberOfEexercises} Exercises
+                              </span>
+
+                              <span className="plans col text-white ms-5">
+                                <Alarm /> &nbsp; &nbsp;
+                                {Math.floor(plan.totalTimeOfExercises / 60)}:
+                                {plan.totalTimeOfExercises -
+                                  Math.floor(plan.totalTimeOfExercises / 60) *
+                                  60}{" "}
+                                minutes
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                      </span>
+                      <br />
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+          <br /><br />
+        </main>
   );
 };
 
