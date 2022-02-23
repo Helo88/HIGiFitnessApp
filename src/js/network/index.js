@@ -48,8 +48,4 @@ axiosInstance.interceptors.response.use(
     console.log("Interceptor error", error);
     return Promise.reject(error);
   }
-<<<<<<< HEAD
 );
-=======
-);
->>>>>>> refs/remotes/origin/main

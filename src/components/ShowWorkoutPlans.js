@@ -149,6 +149,7 @@ const ShowWorkoutPlans = (props) => {
                   <br />
                 </div>
               </div>
+            
             ))
           }
         </div>

@@ -15,6 +15,7 @@ import HealthyTips from "./components/healthyTips";
 import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
 import SignIn from "./components/Login";
+import TraineeProfile from "./components/traineeProfile";
 import Navbar from "./components/Navbar";
 
 
@@ -76,9 +77,8 @@ function App() {
           <Route path={"/gyms"} exact component={Gym} />
           <Route path={"/WeightTracker"} exact component={WeightTracker} />
           <Route path={"/login"} exact component={SignIn} />
-
-
-            <Route path={"/signup"} exact component={RegisterForm}  />
+          <Route path={"/signup"} exact component={RegisterForm}  />
+          <Route path={"/trainee"} exact component={TraineeProfile} />
         
         </Switch>
         {/* <Footer /> */}
