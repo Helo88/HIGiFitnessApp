@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import '../style/NavCSS.css';
 import mylogo from "../images/logo.jpg"
 
+
 const Navbar = () => {
   let token = localStorage.getItem('token')
   let email = localStorage.getItem('email')
@@ -18,7 +19,6 @@ const Navbar = () => {
                <img src={`${mylogo}`} id="logo" /> 
             </Link>
           </div>
-
         
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon text-white"></span>
@@ -77,7 +77,6 @@ const Navbar = () => {
                {token? <Link className="btn btn-light hoverable" to={""}> <strong>Log out</strong></Link> : <Link id="sign-btn" className="btn  hoverable" to={""}> <strong>Sign up</strong></Link> }
                
                {!token? <Link className="btn btn-light hoverable" to={"/login"}> <strong>Log In</strong></Link>:<span></span> }
-               
                
             </div>
 

@@ -1,22 +1,25 @@
 import Water from "./Water";
-//import WeightTracker from "./weightTracker";
+import WeightTracker from "./weightTracker";
 import Community from "./Community";
+import TrainerProfile from "./TrainerProfile";
 
 function Check() {
     const isLoggedIn = localStorage.token;
     const isStaff = localStorage.is_staff;
-    if (isLoggedIn && isStaff) {
-      return
-       <Community />;
-      
+    if ((isLoggedIn) && (isStaff ===  true)) {
+      return(
+        <TrainerProfile />
+      );
     }
+    
     return( 
         <>
-    <Water />
-    {/* <WeightTracker /> */}
+    <Community />
+    {/* <WeightTracker />   */}
     
     </>
     );
+    
   }
   
 //   ReactDOM.render(
