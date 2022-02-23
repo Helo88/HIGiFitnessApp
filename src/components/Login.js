@@ -98,6 +98,7 @@ export default function SignIn() {
         localStorage.setItem("token", `${token["key"]}`);
         localStorage.setItem("is_staff", token["user"]["is_staff"]);
         localStorage.setItem("id", token["user"]["id"]);
+        localStorage.setItem("email", token["user"]["email"]);
 
         setToken(localStorage.getItem("token"));
       });

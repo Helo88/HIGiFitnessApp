@@ -4,10 +4,23 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "../style/NavCSS.css";
 import mylogo from "../images/logo.jpg";
+import axios from "axios";
 
 const Navbar = () => {
-  let token = localStorage.getItem('token')
-  let email = localStorage.getItem('email')
+  let token = localStorage.getItem("token");
+  let email = localStorage.getItem("email");
+  const logoutHandle = () => {
+    axios
+      .post("http://127.0.0.1:8000/rest-auth/logout/", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+      })
+      .then(() => {
+        localStorage.clear();
+      });
+  };
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
@@ -132,19 +145,31 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <div class="d-grid gap-2 d-md-flex ">
-              <Link  to={"/login"}>
-                <button id="sign-btn" class="btn  hoverable" type="button">
+            {token ? <li className="navbar-item">{email}</li> : <span></span>}
+            <div className="d-grid gap-2 d-md-flex ">
+              {token ? (
+                <Link
+                  className="btn btn-light hoverable"
+                  onClick={logoutHandle}
+                  to={""}
+                >
+                  {" "}
+                  <strong>Log out</strong>
+                </Link>
+              ) : (
+                <Link id="sign-btn" class="btn hoverable" to={""}>
                   {" "}
                   <strong>Sign up</strong>
-                </button>
-              </Link>
-              <Link  to={"/login"}>
-                <button class="btn btn-light hoverable" type="button">
+                </Link>
+              )}
+              {!token ? (
+                <Link className="btn btn-light hoverable" to={"/login"}>
                   {" "}
                   <strong>Log In</strong>
-                </button>
-              </Link>
+                </Link>
+              ) : (
+                <span></span>
+              )}
             </div>
           </div>
         </div>

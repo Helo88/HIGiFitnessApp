@@ -14,8 +14,6 @@ import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
 import SignIn from "./components/Login";
 import Navbar from "./components/Navbar";
-import Gym from "./components/Gym";
-import SignIn from "./components/Login";
 import axios from "axios";
 import FavPlans from "./components/FavPlans";
 import YogaPlanDetails from "./components/YogaPlanDetails";
