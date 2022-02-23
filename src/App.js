@@ -24,6 +24,7 @@ import React, { useEffect, useState } from "react";
 import { AuthDataContext } from "./context";
 function App() {
   const [authData, setAuthData] = useState({});
+  console.log("state context ",authData)
   return (
     <div className="" style={{}}>
       {/* HELLO WORLD */}

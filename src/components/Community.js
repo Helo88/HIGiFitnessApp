@@ -1,15 +1,17 @@
-import React, { useEffect, useState, useLayoutEffect } from "react";
+import React, { useEffect, useState, useLayoutEffect ,useContext} from "react";
 import "../style/ComStyle.css";
 import mylogo from "../images/logo.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
 import {axiosInstance} from '../js/network/index';
 import { useHistory,useParams} from 'react-router-dom';
+import { AuthDataContext } from "../context";
 
 const Community = () => {
+	const { authData, setAuthData } = useContext(AuthDataContext);
+  console.log("context data from community ",authData)
   let { id } = useParams();
   console.log("post id ",id)
   const[post,setPost]=useState({})
-  console.log("id ",id)
   const[comment,setComment]=useState({})
   const [myPosts,setPosts]=useState([])
   const [postComments,setPostComments]=useState([])

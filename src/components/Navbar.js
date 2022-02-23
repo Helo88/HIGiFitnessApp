@@ -13,15 +13,7 @@ const Navbar = () => {
   function logoutHandle(){
    axiosInstance.post('http://127.0.0.1:8000/rest-auth/logout/')
    .then( ()=>{
-    //  localStorage.setItem('email','');
-    //  localStorage.setItem('token','');
-    //  if(is_staff){
-    //       localStorage.setItem('address','')
-    //  }
-    //  else{
 
-    //  }
-    //  localStorage.setItem('is_staff','');
     localStorage.clear();
    })
   }
