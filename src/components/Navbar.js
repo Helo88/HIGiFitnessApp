@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import '../style/NavCSS.css';
 import mylogo from "../images/logo.jpg"
 
+
 const Navbar = () => {
   let token = localStorage.getItem('token')
   let email = localStorage.getItem('email')
@@ -18,7 +19,6 @@ const Navbar = () => {
                <img src={`${mylogo}`} id="logo" /> 
             </Link>
           </div>
-
         
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon text-white"></span>
@@ -39,13 +39,13 @@ const Navbar = () => {
                 <Link className="nav-link" to={""}> <strong>Shops</strong></Link>
               </li>
 
-              <li class="nav-item dropdown" id="myDropdown">
-                <Link class="nav-link dropdown-toggle" to={""} data-bs-toggle="dropdown"> <strong>Fitness Tracker</strong>  </Link>
-                <ul class="dropdown-menu">
-                  <li> <Link class="dropdown-item" to={""}> Plans </Link>
-                    <ul class="submenu dropdown-menu">
-                      <li><Link class="dropdown-item" to={"/workoutplans"}>Workout</Link></li>
-                      <li><Link class="dropdown-item" to={"/yogaplans"}>Yoga</Link></li>
+              <li className="nav-item dropdown" id="myDropdown">
+                <Link className="nav-link dropdown-toggle" to={""} data-bs-toggle="dropdown"> <strong>Fitness Tracker</strong>  </Link>
+                <ul className="dropdown-menu">
+                  <li> <Link className="dropdown-item" to={""}> Plans </Link>
+                    <ul className="submenu dropdown-menu">
+                      <li><Link className="dropdown-item" to={"/workoutplans"}>Workout</Link></li>
+                      <li><Link className="dropdown-item" to={"/yogaplans"}>Yoga</Link></li>
                     </ul>
                   </li>
                   <li> <Link className="dropdown-item" to={""}> Healthy Life </Link>
@@ -74,10 +74,9 @@ const Navbar = () => {
 
             <div className="d-grid gap-2 d-md-flex ">
                
-               {token? <Link className="btn btn-light hoverable" to={""}> <strong>Log out</strong></Link> : <Link id="sign-btn" class="btn  hoverable" to={""}> <strong>Sign up</strong></Link> }
+               {token? <Link className="btn btn-light hoverable" to={""}> <strong>Log out</strong></Link> : <Link id="sign-btn" className="btn  hoverable" to={""}> <strong>Sign up</strong></Link> }
                
                {!token? <Link className="btn btn-light hoverable" to={"/login"}> <strong>Log In</strong></Link>:<span></span> }
-               
                
             </div>
 

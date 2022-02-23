@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { CookiesProvider } from "react-cookie";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.min.js";
@@ -12,8 +11,7 @@ import store from './redux/store';
 import { Provider } from 'react-redux';
 
 ReactDOM.render( 
-<CookiesProvider>
 <Provider store={store}>
     <App />
 </Provider>
- </CookiesProvider>, document.getElementById("root"));
+, document.getElementById("root"));

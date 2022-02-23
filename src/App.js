@@ -1,26 +1,35 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ReactNotifications from 'react-notifications-component';
+import ReactNotifications from "react-notifications-component";
 import "./style/App.css";
-import Homepage from './components/Homepage';
-import RegisterForm from './components/RegisterForm'
+import "./style/Gym.css";
+import Homepage from "./components/Homepage";
+import RegisterForm from "./components/RegisterForm";
 import ShowWorkoutPlans from "./components/ShowWorkoutPlans";
-import Exercises from './components/exercises'
-import ExDetails from "./components/ExDetails"
+import Exercises from "./components/exercises";
+import ExDetails from "./components/ExDetails";
 import ShowYogaPlans from "./components/ShowYogaPlans";
-import YogaExercises from './components/YogaExercises'
+import YogaExercises from "./components/YogaExercises";
 import YogaDetails from "./components/YogaDetails";
 import HealthyTips from "./components/healthyTips";
 import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
 import SignIn from "./components/Login";
+import TraineeProfile from "./components/traineeProfile";
+import Comm from "./components/Community";
+import ProtectedRoute from "./components/ProtectedRoute";
+import LoggedInRoute from "./components/LoggedInRoute";
+import Water from "./components/Water";
+import Check from "./components/check";
+import TrainerProfile from "./components/TrainerProfile";
+import EditTrainerProfile from "./components/EditTrainerProfile"
 import Navbar from "./components/Navbar";
 import Reminder from './components/Reminder'
 
 
 function App() {
-  const [state, setState] = useState('start')
+  const [state, setState] = useState("start");
 
   const workoutplansapi = "http://localhost:8000/workoutplans/";
   const yogaplansapi = "http://localhost:8000/yogaplans/";
@@ -31,6 +40,7 @@ function App() {
   const [workoutPlans, SetworkoutPlans] = useState([]);
   const [workoutExercises, SetworkoutExercises] = useState([]);
   const [yogaExercises, SetyogaExercises] = useState([]);
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     axios.get(`${workoutplansapi}`).then((res) => {
@@ -54,34 +64,58 @@ function App() {
       SetyogaExercises(res.data);
     });
   }, []);
-
   return (
-    <div className="" style={{}}>
-      {/* HELLO WORLD */}
+    <>
       <Router>
-        {<WeightTracker />}
         {<Navbar />}
+        {<Water />}
         <Switch>
-          <Route path={"/"} exact component={Homepage} />
-          
-          <Route exact path="/workoutplans" render={() => <ShowWorkoutPlans WorkoutPlans={workoutPlans} />}/>
-          <Route exact path="/yogaplans" render={() => <ShowYogaPlans YogaPlans={yogaPlans} />}/> 
-          <Route path={"/exercises"} exact component={Exercises} />
-          <Route path={"/exercises/details"} exact component={ExDetails} />
-      
-          <Route path={"/yogaExercises"} exact component={YogaExercises} />
-          <Route path={"/yoga/details"} exact component={YogaDetails} />
-
-          <Route path={"/healthytips"} exact component={HealthyTips} />
-          <Route path={"/gyms"} exact component={Gym} />
-          <Route path={"/WeightTracker"} exact component={WeightTracker} />
+          <ProtectedRoute path={"/"} exact component={Homepage} />
+          <ProtectedRoute
+            exact
+            path="/workoutplans"
+            render={() => <ShowWorkoutPlans WorkoutPlans={workoutPlans} />}
+          />
+          <ProtectedRoute path={"/exercises"} exact component={Exercises} />
+          <ProtectedRoute
+            path={"/exercises/details"}
+            exact
+            component={ExDetails}
+          />
+          <ProtectedRoute
+            exact
+            path="/yogaplans"
+            render={() => <ShowYogaPlans YogaPlans={yogaPlans} />}
+          />
+          <ProtectedRoute
+            path={"/yogaExercises"}
+            exact
+            component={YogaExercises}
+          />
+          <ProtectedRoute
+            path={"/yoga/details"}
+            exact
+            component={YogaDetails}
+          />
+          <ProtectedRoute path={"/healthytips"} exact component={HealthyTips} />
           <Route path={"/login"} exact component={SignIn} />
-          <Route path={"/task"} exact component={Reminder} />
+          <LoggedInRoute path={"/comm"} component={Comm} />
+          <Route path={"/gyms"} exact component={Gym} />
+          {/* <Route path={"/check"} exact component={Check} />  */}
+          <Route path={"/WeightTracker"} exact component={WeightTracker} />
+          <Route path={"/editTrainer"} exact component={EditTrainerProfile} />
+          <Route path="/me"
+            render={() => <TrainerProfile  />}></Route>
 
+          {/* <Route  exact component={}/>
+            <Route path={"*"} exact component={} />
+
+            {/* <Route  exact component={}/>
+            <Route path={"*"} exact component={} /> */}
         </Switch>
         {/* <Footer /> */}
       </Router>
-    </div>
+    </>
   );
 }
 
