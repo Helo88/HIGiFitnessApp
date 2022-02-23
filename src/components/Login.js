@@ -9,12 +9,12 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 
 
-import {AuthDataContext} from "../context"
+
 
 export default function SignIn() {
 	const history = useHistory();
 	const[trainerDetail,setTrainerDetail]=useState({})
-	const { authData, setAuthData } = useContext(AuthDataContext);
+
 
 	const initialFormData = Object.freeze({
 		email: '',

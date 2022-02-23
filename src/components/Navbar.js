@@ -6,6 +6,7 @@ import '../style/NavCSS.css';
 import mylogo from "../images/logo.jpg"
 import {axiosInstance} from '../js/network/index';
 
+
 const Navbar = () => {
   let token = localStorage.getItem('token')
   let email = localStorage.getItem('email')
@@ -25,11 +26,10 @@ const Navbar = () => {
 
           <div className="navbar-brand" >
             <Link className="navbar-item" to={""}>
-               <img src={`${mylogo}`} id="logo" /> 
+               <img src={`${mylogo}`} id="logo" />
             </Link>
           </div>
 
-        
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon text-white"></span>
           </button>
@@ -42,7 +42,7 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item hoverable">
-                <Link className="nav-link" to={"/gymslocations"}> <strong>Gyms</strong></Link>
+                <Link className="nav-link" to={"/gyms"}> <strong>Gyms</strong></Link>
               </li>
 
               <li className="nav-item hoverable">
@@ -76,6 +76,7 @@ const Navbar = () => {
               </li>
 
             </ul>
+
             {token?
             <li className="navbar-item" >
               { email}
@@ -86,7 +87,6 @@ const Navbar = () => {
                {token? <Link className="btn btn-light hoverable" to={""} onClick={logoutHandle}> <strong>Log out</strong></Link> : <Link id="sign-btn" class="btn  hoverable" to={""}> <strong>Sign up</strong></Link> }
                
                {!token? <Link className="btn btn-light hoverable" to={"/login"}> <strong>Log In</strong></Link>:<span></span> }
-               
                
             </div>
 

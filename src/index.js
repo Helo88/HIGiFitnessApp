@@ -7,5 +7,11 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "bulma/css/bulma.css"
 import "./style/index.css";
 import "leaflet/dist/leaflet.css"
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render( 
+<Provider store={store}>
+    <App />
+</Provider>
+, document.getElementById("root"));

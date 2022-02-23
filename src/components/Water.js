@@ -4,10 +4,12 @@ import Swal from 'sweetalert2'
 // import withReactContent from 'sweetalert2-react-content'
 import axios from "axios";
 import {axiosInstance} from "../js/network/index";
-
+import Loader from "./Loader";
 
 const Water = () => {
     const [count, setCount] = useState({currentAmount :0});
+    const [isLoading, setLoading] = useState(true)
+
     var d = new Date()
     let date = d.getHours() + ":" + d.getMinutes();
 
@@ -23,19 +25,17 @@ const Water = () => {
         // const interval = setInterval(() => {
             axiosInstance.get('http://127.0.0.1:8000/water/',{				
             })    
-        // axios.get(`http://127.0.0.1:8000/water/${localStorage.getItem('id')}/`, {
-        //     headers:headers
-        //   })
         .then((res) => {
             console.log( res)
             setCount({currentAmount :res.data.currentAmount})
+            setLoading(false)
             return res.data
         }).then((data)=>{
             console.log(count)
 
         })
         .then((res)=>{
-            if (date === "3:30" || date === "3:31" || date === "2:53"  || date === "18:00"  || date === "21:00"){
+            if (date === "19:15" || date === "3:31" || date === "2:53"  || date === "18:00"  || date === "21:00"){
                 console.log("nnnnnnnnnnnnnnnnnnnnnnn")
                 swalWithBootstrapButtons.fire({
                     title: 'Did you drink water ?',
@@ -83,10 +83,10 @@ const Water = () => {
 
 //  return () => clearInterval(interval);
     }, [])
-    return (
-        <div>
-            {/* {count} */}
-        </div>
+    return isLoading ? (   //Checkif if is loading
+        <Loader/>
+        ) : (
+            <div>{count.currentAmount}</div>
     );
 }
 
