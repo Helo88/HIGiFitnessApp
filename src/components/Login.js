@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import {axiosInstance} from '../js/network/index';
 import { useHistory } from 'react-router-dom';
-
-
 import Container from '@material-ui/core/Container';
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
@@ -11,9 +9,13 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 
 
+import {AuthDataContext} from "../context"
+
 export default function SignIn() {
 	const history = useHistory();
 	const[trainerDetail,setTrainerDetail]=useState({})
+	const { authData, setAuthData } = useContext(AuthDataContext);
+
 	const initialFormData = Object.freeze({
 		email: '',
 		password: '',
@@ -64,6 +66,11 @@ export default function SignIn() {
 				localStorage.setItem('username',token['user']['username'])
 				console.log("token ",`Token ${token['key']}`)
 				console.log( "is_staff ",token['user']['is_staff'])
+			    setAuthData(()=>{return{ authData:{
+                    'token':`${token['key']}`,
+					 'is_staff':token['user']['is_staff']
+
+				}}})
 				return token
 				//['token']:token['key'],'id':token['user']['id'
 				
