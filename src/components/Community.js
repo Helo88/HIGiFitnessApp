@@ -1,18 +1,80 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useLayoutEffect ,useContext} from "react";
 import "../style/ComStyle.css";
 import mylogo from "../images/logo.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
+import {axiosInstance} from '../js/network/index';
+import { useHistory,useParams} from 'react-router-dom';
+
 
 const Community = () => {
+
+  let { id } = useParams();
+  console.log("post id ",id)
+  const[post,setPost]=useState({})
+  const[comment,setComment]=useState({})
+  const [myPosts,setPosts]=useState([])
+  const [postComments,setPostComments]=useState([])
+  const handleChange = (e) => {
+		setComment({
+			...comment,
+			[e.target.name]: e.target.value,
+		});
+	};
+  const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log("comment is",comment);
+    		axiosInstance.post('http://127.0.0.1:8000/addPostComment/',{content:comment.content,id:id} ,{
+					  }).then(()=>{console.log("comment submitted ")
+             getComments()
+          })
+            .catch(console.log("try again"))
+  }
+  function getComments(){
+    axiosInstance.post(`http://127.0.0.1:8000/getPostComments/`,{'id':id}, {
+      
+    })
+    .then((data)=>{
+      console.log("comments data")
+      console.log(data.data.result)
+      return data
+    // .then((res)=>setTrainerDetail(res))
+    // .then(()=>console.log("details ",trainerDetail))
+  }).then((data)=>{setPostComments(()=>data.data.result);console.log(postComments)})
+  .catch((err)=>console.log(err))
+    
+  
+
+  }
+
+  useLayoutEffect(()=>{
+  const getPost=()=>{
+     axiosInstance
+    .post(`http://127.0.0.1:8000/getPost/`,{'id':id}, {
+      
+    })
+    .then((data)=>{
+      console.log("post data")
+      console.log(data.data)
+      setPost(()=>data.data)
+    // .then((res)=>setTrainerDetail(res))
+    // .then(()=>console.log("details ",trainerDetail))
+   
+  }).then(
+    getComments()
+  )
+   .catch(()=>console.log("false assginment"))
+  }
+getPost()
+},[])
+
+
+
+
   return (
     <>
-      <div className="container-fluid" id="tit">
-        <span href="#" className="navbar-brand" id="tit2">
-          HIGE Fitness App Community
-        </span>
-      </div>
+ 
 
-      <div className="container-fluid gedf-wrapper pt-5" id="body">
+      <div className="container-fluid gedf-wrapper pt-0" id="body">
         <div className="row">
           <div className="col-md-3"></div>
           <div className="col-md-6 gedf-main">
@@ -27,25 +89,21 @@ const Community = () => {
                   >
                     <div className="form-group">
                       <label className="sr-only" for="message">
-                        Write a post
+                      <span className="text-primary"> {post.username} </span> suggests :
                       </label>
                       <textarea
                         className="form-control mt-3"
                         id="message"
                         rows="3"
-                        placeholder="What are you thinking?"
+                       value={post.username?(post.result[0].fields.text):null}
+                       disabled
                       ></textarea>
+                     <ClockFill/>  <sub>{post.username?(post.result[0].fields.createdAt):null}</sub>
                     </div>
                   </div>
                 </div>
                 <br />
-                <div className="btn-toolbar justify-content-between">
-                  <div className="btn-group">
-                    <button type="submit" className="btn" id="postBtn">
-                      Share Post
-                    </button>
-                  </div>
-                </div>
+             
               </div>
             </div>
 
@@ -63,27 +121,35 @@ const Community = () => {
                       />
                     </div>
                     <div className="ml-2">
-                      <div className="h5 m-0">Trainee username</div>
-                      <div className="h7 text-muted">
-                        Trainee Name or any other detail
-                      </div>
+                      <div className="h5 m-0">Trainees Comments</div>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="card-body">
-                <div className="text-muted h7 mb-2">
-                  {" "}
-                  <ClockFill/> Time Created
-                </div>
-                
-
-                <p className="card-text">Post content</p>
+                 <ul>
+                {postComments.map((comment)=><li key={comment.pk}> {comment.fields.content}
+                <sub>{comment.fields.createdAt}</sub>
+                </li>)}
+                </ul>
               </div>
               <div className="card-footer">
                 <span href="#" className="card-link" id="com">
-                  <ChatDotsFill /> Comment
+                  <ChatDotsFill /> 
                 </span>
+              { localStorage.getItem('is_staff')=='false'?
+                <form onSubmit={handleSubmit}>
+                  <input  
+                    className="form-control"
+                    placeholder="Please Enter your comment"
+                    name="content"
+                    value={comment.content}
+                    onChange={(e) => handleChange(e)}
+                  />
+                  <button className="btn btn-primary" type="submit"> submit </button>
+                </form>:
+                <></>
+}
               </div>
               
             </div>
@@ -93,5 +159,4 @@ const Community = () => {
     </>
   );
 };
-
 export default Community;
