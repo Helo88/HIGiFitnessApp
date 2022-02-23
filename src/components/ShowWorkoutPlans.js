@@ -125,11 +125,7 @@ const ShowWorkoutPlans = (props) => {
                         backgroundImage: `url(${plan.image})`,
                         backgroundSize: 'cover',
                         minWidth: "40vw",
-<<<<<<< HEAD
-                        minHeight: "45vh",
-=======
                         minHeight: "55vh",
->>>>>>> ca9fee9322209a82e1f185380839f0356b8f89af
                       }} className="card  shadow-lg">
 
                         <div className="row container-fluid" id="exDets">
@@ -153,10 +149,7 @@ const ShowWorkoutPlans = (props) => {
                   <br />
                 </div>
               </div>
-<<<<<<< HEAD
             
-=======
->>>>>>> ca9fee9322209a82e1f185380839f0356b8f89af
             ))
           }
         </div>

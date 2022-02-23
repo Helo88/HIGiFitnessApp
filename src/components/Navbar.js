@@ -66,10 +66,6 @@ const Navbar = () => {
               </li>
 
             </ul>
-<<<<<<< HEAD
-           
-=======
->>>>>>> ca9fee9322209a82e1f185380839f0356b8f89af
 
             {token?
             <li className="navbar-item" >

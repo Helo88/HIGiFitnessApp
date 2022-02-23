@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../js/network/index';
-<<<<<<< HEAD
-=======
-import { useCookies } from 'react-cookie';
->>>>>>> ca9fee9322209a82e1f185380839f0356b8f89af
 import axios from 'axios';
 import ReactDOM from "react-dom";
 import 'sweetalert2/dist/sweetalert2.all.min.js'
@@ -15,10 +11,7 @@ const WeightTracker = () => {
 
     const [weightList, setWeightList] = useState({
         currentWeight: "",
-<<<<<<< HEAD
         numOfLogin: 0,
-=======
->>>>>>> ca9fee9322209a82e1f185380839f0356b8f89af
     });
 
 
@@ -63,7 +56,6 @@ const WeightTracker = () => {
 
             setWeightList(() => {
                 weightList.currentWeight = traineeWeight
-<<<<<<< HEAD
                 weightList.numOfLogin += 1
             })
 
@@ -71,11 +63,6 @@ const WeightTracker = () => {
                 'currentWeight': parseFloat(weightList.currentWeight),
                 'currentCounter': parseInt(weightList.numOfLogin)
             })
-=======
-            })
-
-            axiosInstance.put('http://127.0.0.1:8000/TraineeCurrentWeight/', { 'currentWeight': parseFloat(weightList.currentWeight)})
->>>>>>> ca9fee9322209a82e1f185380839f0356b8f89af
         }
     }
 
@@ -85,7 +72,6 @@ const WeightTracker = () => {
             .then((res) => {
                 setWeightList(() => {
                     weightList.currentWeight = res.data.result
-<<<<<<< HEAD
                     weightList.numOfLogin = res.data.counter
                 })
             }).then(() => {
@@ -121,18 +107,6 @@ const WeightTracker = () => {
             })
             .catch((err) => console.log(err));
 
-=======
-                })
-            })
-            .catch((err) => console.log(err));
-
-        const d = new Date();
-
-        if (d.getDay() == 1) {
-            setCurrentWeight();
-        }
-
->>>>>>> ca9fee9322209a82e1f185380839f0356b8f89af
     }, []);
 
     return (
