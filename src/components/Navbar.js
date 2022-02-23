@@ -32,7 +32,7 @@ const Navbar = () => {
               </li>
 
               <li className="nav-item hoverable">
-                <Link className="nav-link" to={"/gymslocations"}> <strong>Gyms</strong></Link>
+                <Link className="nav-link" to={"/gyms"}> <strong>Gyms</strong></Link>
               </li>
 
               <li className="nav-item hoverable">
@@ -66,7 +66,10 @@ const Navbar = () => {
               </li>
 
             </ul>
+<<<<<<< HEAD
            
+=======
+>>>>>>> ca9fee9322209a82e1f185380839f0356b8f89af
 
             {token?
             <li className="navbar-item" >
