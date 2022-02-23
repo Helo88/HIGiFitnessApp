@@ -10,11 +10,12 @@ function ProtectedRoute({ component: Component, ...restOfProps }) {
     <Route
       {...restOfProps}
       render={(props) =>
-        (isStaff === true) ? (
-          console.log("yaraaabbb",isStaff),
+        isStaff === "false" ? (
           <Component {...props} />
         ) : (
-          <Redirect to={{ pathname: "/comm", state: { from: props.location } }} />
+          <Redirect
+            to={{ pathname: "/comm", state: { from: props.location } }}
+          />
         )
       }
     />

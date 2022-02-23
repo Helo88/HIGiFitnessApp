@@ -1,9 +1,7 @@
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import Homepage from "./components/Homepage";
-// import RegisterForm from "./components/RegisterForm";
 import WorkoutExercises from "./components/WorkoutExercises";
 import WorkoutPlanDetails from "./components/WorkoutPlanDetails";
 import ShowYogaPlans from "./components/ShowYogaPlans";
@@ -13,15 +11,26 @@ import HealthyTips from "./components/healthyTips";
 import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
 import SignIn from "./components/Login";
-import Navbar from "./components/Navbar";
 import axios from "axios";
 import FavPlans from "./components/FavPlans";
 import YogaPlanDetails from "./components/YogaPlanDetails";
 import StartWorkoutPlanExercise from "./components/StartWorkoutPlanExercise";
 import StartYogaPlanExercise from "./components/StartYogaPlanExercise";
+import TraineeProfile from "./components/TraineeProfile";
+import Comm from "./components/Community";
+import ProtectedRoute from "./components/ProtectedRoute";
+import LoggedInRoute from "./components/LoggedInRoute";
+import Water from "./components/Water";
+import Check from "./components/check";
+import TrainerProfile from "./components/TrainerProfile";
+import EditTrainerProfile from "./components/EditTrainerProfile"
+import Reminder from './components/Reminder'
+import { Clothing } from "./components/Clothing"; 
+import Navbar from "./components/Navbar";
 
 import "./style/App.css";
 import "./style/planStyle.css";
+
 
 function App() {
   const [state, setState] = useState("start");
@@ -35,6 +44,7 @@ function App() {
   const [workoutPlans, SetworkoutPlans] = useState([]);
   const [workoutExercises, SetworkoutExercises] = useState([]);
   const [yogaExercises, SetyogaExercises] = useState([]);
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     axios.get(`${workoutplansapi}`).then((res) => {
@@ -62,6 +72,7 @@ function App() {
     <>
       <Router>
         {<Navbar />}
+        {<Water />}
         <Switch>
           <Route path={"/"} exact component={Homepage} />
           <Route

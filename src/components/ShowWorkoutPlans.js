@@ -167,11 +167,13 @@ const ShowWorkoutPlans = (props) => {
                   <br />
                 </div>
               </div>
-            ))}
-          </div>
+            
+            ))
+          }
         </div>
         <br />
         <br />
+      </div>
       </div>
     </main>
   );

@@ -1,6 +1,7 @@
 #body {
     min-height: 100vh;
-    background-color: #072227;
+    background-color:var(--fColor);
+    margin-top: -10px;
 }
 #tit{
     color:#072227;

@@ -1,121 +1,144 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
-
-import Container from "@material-ui/core/Container";
+import React, { useState,useContext } from 'react';
+import {axiosInstance} from '../js/network/index';
+import { useHistory } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 
+
+
+
 export default function SignIn() {
-  const initialFormData = Object.freeze({
-    email: "",
-    password: "",
-  });
+	const history = useHistory();
+	const[trainerDetail,setTrainerDetail]=useState({})
 
-  const [userForm, setUserForm] = useState(initialFormData);
 
-  const [token, setToken] = useState();
+	const initialFormData = Object.freeze({
+		email: '',
+		password: '',
+	});
+     const [state,setState]=useState({})
+	
+	  
+	const [userForm, setUserForm] = useState(initialFormData);
 
-  const handleChange = (e) => {
-    setUserForm({
-      ...userForm,
-      [e.target.name]: e.target.value.trim(),
-    });
-  };
+	const handleChange = (e) => {
+		setUserForm({
+			...userForm,
+			[e.target.name]: e.target.value.trim(),
+		});
+	};
+	const handleClickShowPassword = () => {
+		setUserForm({ ...userForm, showPassword: !userForm.showPassword });
+	  };
+	
+	  const handleClickShowconPassword = () => {
+		setUserForm({ ...userForm, showconPassword: !userForm.showconPassword });
+	  };
+	  
+	  const handleMouseDownPassword = (event) => {
+		event.preventDefault();
+	  };
+	  
+	  const handlePasswordChange = (prop) => (event) => {
+		setUserForm({ ...userForm, [prop]: event.target.value });
+	  };
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(userForm);
 
-  const handleClickShowPassword = () => {
-    setUserForm({ ...userForm, showPassword: !userForm.showPassword });
-  };
+		axiosInstance
+			.post(`http://127.0.0.1:8000/users/login/`, {
+				email: userForm.email,
+				password: userForm.password,
+			})
+			.then(data=>data.data)
+			
+			.then((token)=>{
+				console.log(token)
+				localStorage.setItem('token',`${token['key']}`)
+				localStorage.setItem('is_staff',token['user']['is_staff'])
+				localStorage.setItem('id',token['user']['id'])
+				localStorage.setItem('email',token['user']['email'])
+				localStorage.setItem('username',token['user']['username'])
+				console.log("token ",`Token ${token['key']}`)
+				console.log( "is_staff ",token['user']['is_staff'])
+			    setAuthData(()=>{return{ authData:{
+                    'token':`${token['key']}`,
+					 'is_staff':token['user']['is_staff']
 
-  // const handleClickShowconPassword = () => {
-  //   setUserForm({ ...userForm, showconPassword: !userForm.showconPassword });
-  // };
+				}}})
+				return token
+				//['token']:token['key'],'id':token['user']['id'
+				
+					
+					
+					// axiosInstance.get('http://127.0.0.1:10000/workoutfavplan/', {
+					// 	// headers: headers
+				// 	//   })
+				// 	axiosInstance.put('http://127.0.0.1:8000/addWorkoutPlan/',{'id':8} ,{
+						
+				// 	  })
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
+				//   .then((res) => {
+                //      console.log("mystate is ",state)
+				// 	// console.log(res.data)
+				// 	// console.log(res.data.fields)
 
-  const handlePasswordChange = (prop) => (event) => {
-    setUserForm({ ...userForm, [prop]: event.target.value });
-  };
+				//   })
+                //       .catch(err=>{
+				// 		console.log("login error")  
+				// 		// history.push("/signup")
+				// 	})
 
-  const headers = {
-    "Content-Type": "application/json",
-    Authorization: `Token ${token}`,
-  };
-  const getTraineeFavPlans = () => {
-    setToken(localStorage.getItem("token"));
-    axios
-      .get("http://localhost:8000/yogafavplan/", {
-        headers: headers,
-      })
-      .then((res) => {
-        console.log(typeof res.data.result === "string");
-        if (typeof res.data.result === "string") {
-          localStorage.setItem("yogafavplanid", "No Available Yoga Plans");
-        } else {
-          localStorage.setItem(
-            "yogafavplanid",
-            JSON.parse(res.data.result)[0].pk
-          );
-        }
-      });
+					  
+				// }
+				// else {
+				// 	history.push("/clothing")
+				// }
+			}).then( (token)=>{   
+			if (token['user']['is_staff']){
+				axiosInstance
+				.get(`http://127.0.0.1:8000/users/trainerDetail/`, {
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization':`Token ${token['key']}`
+					}
+				
+				  
+				})
+				.then((data)=>(data.data.trainer)[0])
+				.then((res)=>{
+					console.log(res)
+					setTrainerDetail(()=>res.fields)
+								
+					localStorage.setItem('age',res.fields.age)
+					 localStorage.setItem('phone',res.fields.phoneNumber)
+					localStorage.setItem('address',res.fields.address)
+					console.log("my details ",trainerDetail)
+				}).then(history.push("/me"))
+			  }
+			  else {
+				  //trainee data
+			  }
+			})
+			   
+			.catch(err=>{
+				console.log("login error")  
+				// history.push("/signup")
+			})
+		
+		
+	};
 
-    axios
-      .get("http://localhost:8000/workoutfavplan/", {
-        headers: headers,
-      })
+	
 
-      .then((res) => {
-        console.log(typeof res.data.result === "string");
-        if (typeof res.data.result === "string") {
-          localStorage.setItem(
-            "workoutfavplanid",
-            "No Available Workout Plans"
-          );
-        } else {
-          localStorage.setItem(
-            "workoutfavplanid",
-            JSON.parse(res.data.result)[0].pk
-          );
-        }
-      });
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    axios
-      .post(`http://localhost:8000/users/login/`, {
-        email: userForm.email,
-        password: userForm.password,
-      })
-      .then((res) => res.data)
-
-      .then((token) => {
-        localStorage.setItem("token", `${token["key"]}`);
-        localStorage.setItem("is_staff", token["user"]["is_staff"]);
-        localStorage.setItem("id", token["user"]["id"]);
-        localStorage.setItem("email", token["user"]["email"]);
-
-        setToken(localStorage.getItem("token"));
-      });
-    getTraineeFavPlans();
-  };
-
-  return (
-    <Container component="main" maxWidth="xs">
-      <form
-        style={{ minWidth: "450px", maxWidth: "500px" }}
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <div className="mb-3">
-          <h2 className="h2 mb-5">Register Now!</h2>
-          <label htmlFor="exampleInputName" className="form-label h3">
-            Name
-          </label>
+	return (
+		<Container component="main" maxWidth="xs">
+          <form style={{minWidth: "450px", maxWidth: "500px"}} onSubmit={(e) => handleSubmit(e)}>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label h3">
               Email Address
@@ -168,7 +191,6 @@ export default function SignIn() {
               </>
             )}
           </button>
-        </div>
       </form>
     </Container>
   );
