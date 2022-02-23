@@ -17,7 +17,7 @@ import HealthyTips from "./components/healthyTips";
 import Gym from "./components/Gym";
 import WeightTracker from "./components/weightTracker";
 import SignIn from "./components/Login";
-import Navbar from "./components/Navbar";
+import TraineeProfile from "./components/traineeProfile";
 import Comm from "./components/Community";
 import ProtectedRoute from "./components/ProtectedRoute";
 import LoggedInRoute from "./components/LoggedInRoute";
@@ -25,6 +25,8 @@ import Water from "./components/Water";
 import Check from "./components/check";
 import TrainerProfile from "./components/TrainerProfile";
 import EditTrainerProfile from "./components/EditTrainerProfile"
+import Navbar from "./components/Navbar";
+
 
 function App() {
   const [state, setState] = useState("start");
