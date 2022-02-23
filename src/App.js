@@ -24,7 +24,6 @@ import Water from "./components/Water";
 import Check from "./components/check";
 import TrainerProfile from "./components/TrainerProfile";
 import EditTrainerProfile from "./components/EditTrainerProfile"
-import Water from "./components/Water"
 import Navbar from "./components/Navbar";
 
 

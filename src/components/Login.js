@@ -121,7 +121,7 @@ export default function SignIn() {
 				  //trainee data
 			  }
 			})
-			   .then(history.push("/me"))
+			.then(history.push("/me"))
 			.catch(err=>{
 				console.log("login error")  
 				// history.push("/signup")
@@ -132,8 +132,7 @@ export default function SignIn() {
 
 	
 			
-	
-		};
+
 
 
 
