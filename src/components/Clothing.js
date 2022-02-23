@@ -97,28 +97,28 @@ export const Clothing = () => {
           <div className="row">
             <div className="col-12 col-md-5">
               <div
-                class="image-flip"
+                className="image-flip"
                 onTouchStart="this.classList.toggle('hover');"
               >
-                <div class="mainflip">
-                  <div class="frontside">
-                    <div class="card" id="workout"></div>
+                <div className="mainflip">
+                  <div className="frontside">
+                    <div className="card" id="workout"></div>
                   </div>
-                  <div class="backside w-100 h-100 ">
-                    <div class="card w-100 h-100 ">
-                      <div class="card-body text-center ">
+                  <div className="backside w-100 h-100 ">
+                    <div className="card w-100 h-100 ">
+                      <div className="card-body text-center ">
                         <>
                           <div
                             id="carouselExampleDark"
-                            class="carousel carousel-dark slide h-100"
+                            className="carousel carousel-dark slide h-100"
                             data-bs-ride="carousel"
                           >
-                            <div class="carousel-indicators">
+                            <div className="carousel-indicators">
                               <button
                                 type="button"
                                 data-bs-target="#carouselExampleDark"
                                 data-bs-slide-to="0"
-                                class="active"
+                                className="active"
                                 aria-current="true"
                                 aria-label="Slide 1"
                               ></button>
@@ -135,17 +135,17 @@ export const Clothing = () => {
                                 aria-label="Slide 3"
                               ></button>
                             </div>
-                            <div class="carousel-inner  h-100">
+                            <div className="carousel-inner  h-100">
                               <div
-                                class="carousel-item active"
+                                className="carousel-item active"
                                 data-bs-interval="10000"
                               >
                                 <img
                                   src="./assets/images/shirts.jpeg"
-                                  class="d-block w-100"
+                                  className="d-block w-100"
                                   alt="..."
                                 />
-                                {/* <div class="carousel-caption d-none d-md-block">
+                                {/* <div className="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
        
       </div> */}
@@ -162,15 +162,15 @@ export const Clothing = () => {
                                 </p>
                               </div>
                               <div
-                                class="carousel-item"
+                                className="carousel-item"
                                 data-bs-interval="2000"
                               >
                                 <img
                                   src="./assets/images/pants.jpeg"
-                                  class="d-block w-100"
+                                  className="d-block w-100"
                                   alt="..."
                                 />
-                                {/* <div class="carousel-caption d-none d-md-block">
+                                {/* <div className="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         </div> */}
                                 <p className="caption">
@@ -186,13 +186,13 @@ export const Clothing = () => {
                                   you blend in
                                 </p>
                               </div>
-                              <div class="carousel-item">
+                              <div className="carousel-item">
                                 <img
                                   src="./assets/images/shoes.jpeg"
-                                  class="d-block w-100"
+                                  className="d-block w-100"
                                   alt="..."
                                 />
-                                {/* <div class="carousel-caption d-none d-md-block">
+                                {/* <div className="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         </div> */}
                                 <p className="caption">
@@ -207,28 +207,28 @@ export const Clothing = () => {
                               </div>
                             </div>
                             <button
-                              class="carousel-control-prev"
+                              className="carousel-control-prev"
                               type="button"
                               data-bs-target="#carouselExampleDark"
                               data-bs-slide="prev"
                             >
                               <span
-                                class="carousel-control-prev-icon"
+                                className="carousel-control-prev-icon"
                                 aria-hidden="true"
                               ></span>
-                              <span class="visually-hidden">Previous</span>
+                              <span className="visually-hidden">Previous</span>
                             </button>
                             <button
-                              class="carousel-control-next"
+                              className="carousel-control-next"
                               type="button"
                               data-bs-target="#carouselExampleDark"
                               data-bs-slide="next"
                             >
                               <span
-                                class="carousel-control-next-icon"
+                                className="carousel-control-next-icon"
                                 aria-hidden="true"
                               ></span>
-                              <span class="visually-hidden">Next</span>
+                              <span className="visually-hidden">Next</span>
                             </button>
                           </div>
                         </>
@@ -241,28 +241,28 @@ export const Clothing = () => {
 
             <div className="col-12 offset-0 offset-md-2 col-md-5 mt-0 mt-sm-4">
               <div
-                class="image-flip"
+                className="image-flip"
                 onTouchStart="this.classList.toggle('hover');"
               >
-                <div class="mainflip">
-                  <div class="frontside">
-                    <div class="card" id="yoga"></div>
+                <div className="mainflip">
+                  <div className="frontside">
+                    <div className="card" id="yoga"></div>
                   </div>
-                  <div class="backside w-100 h-100 ">
-                    <div class="card w-100 h-100 ">
-                      <div class="card-body text-center ">
+                  <div className="backside w-100 h-100 ">
+                    <div className="card w-100 h-100 ">
+                      <div className="card-body text-center ">
                         <>
                           <div
                             id="carouselExampleDark"
-                            class="carousel carousel-dark slide h-100"
+                            className="carousel carousel-dark slide h-100"
                             data-bs-ride="carousel"
                           >
-                            <div class="carousel-indicators">
+                            <div className="carousel-indicators">
                               <button
                                 type="button"
                                 data-bs-target="#carouselExampleDark"
                                 data-bs-slide-to="0"
-                                class="active"
+                                className="active"
                                 aria-current="true"
                                 aria-label="Slide 1"
                               ></button>
@@ -279,17 +279,17 @@ export const Clothing = () => {
                                 aria-label="Slide 3"
                               ></button>
                             </div>
-                            <div class="carousel-inner  h-100">
+                            <div className="carousel-inner  h-100">
                               <div
-                                class="carousel-item active"
+                                className="carousel-item active"
                                 data-bs-interval="10000"
                               >
                                 <img
                                   src="./assets/images/shirts.jpeg"
-                                  class="d-block w-100"
+                                  className="d-block w-100"
                                   alt="..."
                                 />
-                                {/* <div class="carousel-caption d-none d-md-block">
+                                {/* <div className="carousel-caption d-none d-md-block">
         <h5>First slide label</h5>
        
       </div> */}
@@ -306,15 +306,15 @@ export const Clothing = () => {
                                 </p>
                               </div>
                               <div
-                                class="carousel-item"
+                                className="carousel-item"
                                 data-bs-interval="2000"
                               >
                                 <img
                                   src="./assets/images/pants.jpeg"
-                                  class="d-block w-100"
+                                  className="d-block w-100"
                                   alt="..."
                                 />
-                                {/* <div class="carousel-caption d-none d-md-block">
+                                {/* <div className="carousel-caption d-none d-md-block">
         <h5>Second slide label</h5>
         </div> */}
                                 <p className="caption">
@@ -330,13 +330,13 @@ export const Clothing = () => {
                                   you blend in
                                 </p>
                               </div>
-                              <div class="carousel-item">
+                              <div className="carousel-item">
                                 <img
                                   src="./assets/images/shoes.jpeg"
-                                  class="d-block w-100"
+                                  className="d-block w-100"
                                   alt="..."
                                 />
-                                {/* <div class="carousel-caption d-none d-md-block">
+                                {/* <div className="carousel-caption d-none d-md-block">
         <h5>Third slide label</h5>
         </div> */}
                                 <p className="caption">
@@ -351,28 +351,28 @@ export const Clothing = () => {
                               </div>
                             </div>
                             <button
-                              class="carousel-control-prev"
+                              className="carousel-control-prev"
                               type="button"
                               data-bs-target="#carouselExampleDark"
                               data-bs-slide="prev"
                             >
                               <span
-                                class="carousel-control-prev-icon"
+                                className="carousel-control-prev-icon"
                                 aria-hidden="true"
                               ></span>
-                              <span class="visually-hidden">Previous</span>
+                              <span className="visually-hidden">Previous</span>
                             </button>
                             <button
-                              class="carousel-control-next"
+                              className="carousel-control-next"
                               type="button"
                               data-bs-target="#carouselExampleDark"
                               data-bs-slide="next"
                             >
                               <span
-                                class="carousel-control-next-icon"
+                                className="carousel-control-next-icon"
                                 aria-hidden="true"
                               ></span>
-                              <span class="visually-hidden">Next</span>
+                              <span className="visually-hidden">Next</span>
                             </button>
                           </div>
                         </>

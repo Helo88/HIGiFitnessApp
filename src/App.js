@@ -1,4 +1,3 @@
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
@@ -40,6 +39,7 @@ function App() {
   const [workoutPlans, SetworkoutPlans] = useState([]);
   const [workoutExercises, SetworkoutExercises] = useState([]);
   const [yogaExercises, SetyogaExercises] = useState([]);
+  const [isLoading, setLoading] = useState(true)
 
   useEffect(() => {
     axios.get(`${workoutplansapi}`).then((res) => {
@@ -63,12 +63,11 @@ function App() {
       SetyogaExercises(res.data);
     });
   }, []);
-
   return (
-    <div className="" style={{}}>
-      {/* HELLO WORLD */}
+    <>
       <Router>
         {<Navbar />}
+        {<Water />}
         <Switch>
           <ProtectedRoute path={"/"} exact component={Homepage} />
           <ProtectedRoute
@@ -115,7 +114,7 @@ function App() {
         </Switch>
         {/* <Footer /> */}
       </Router>
-    </div>
+    </>
   );
 }
 
