@@ -60,79 +60,52 @@ export default function SignIn() {
 
 			.then((token) => {
 				console.log(token)
-				localStorage.setItem('token',`${token['key']}`)
-				localStorage.setItem('is_staff',token['user']['is_staff'])
-				localStorage.setItem('id',token['user']['id'])
-				localStorage.setItem('email',token['user']['email'])
-				localStorage.setItem('username',token['user']['username'])
-				console.log("token ",`Token ${token['key']}`)
-				console.log( "is_staff ",token['user']['is_staff'])
-				return token
+				localStorage.setItem('token', `${token['key']}`)
+				localStorage.setItem('is_staff', token['user']['is_staff'])
+				localStorage.setItem('id', token['user']['id'])
+				console.log("token ", `Token ${token['key']}`)
+				console.log("is_staff ", token['user']['is_staff'])
+				setFlag(!flag);
 				//['token']:token['key'],'id':token['user']['id'
-				
-					
-					
-					// axiosInstance.get('http://127.0.0.1:10000/workoutfavplan/', {
-					// 	// headers: headers
-				// 	//   })
-				// 	axiosInstance.put('http://127.0.0.1:8000/addWorkoutPlan/',{'id':8} ,{
-						
-				// 	  })
 
-				//   .then((res) => {
-                //      console.log("mystate is ",state)
-				// 	// console.log(res.data)
-				// 	// console.log(res.data.fields)
+				// const headers= {
+				// 	'Content-Type': 'application/json',
+				// 	'Authorization':`Token ${token['key']}`
+				// }
 
+
+				// axiosInstance.get('http://127.0.0.1:10000/workoutfavplan/', {
+				// 	// headers: headers
 				//   })
-                //       .catch(err=>{
-				// 		console.log("login error")  
-				// 		// history.push("/signup")
-				// 	})
+				axiosInstance.put('http://127.0.0.1:8000/addWorkoutPlan/', { 'id': 8 }, {
+
+				})
+
+					.then((res) => {
+						console.log("mystate is ", state)
+						// console.log(res.data)
+						// console.log(res.data.fields)
+
+					})
+					.catch(err => {
+						console.log("login error")
+						// history.push("/signup")
+					})
 
 
 				// }
 				// else {
 				// 	history.push("/clothing")
 				// }
-			}).then( (token)=>{   
-			if (token['user']['is_staff']){
-				axiosInstance
-				.get(`http://127.0.0.1:8000/users/trainerDetail/`, {
-					headers: {
-						'Content-Type': 'application/json',
-						'Authorization':`Token ${token['key']}`
-					}
-				
-				  
-				})
-				.then((data)=>(data.data.trainer)[0])
-				.then((res)=>{
-					console.log(res)
-					setTrainerDetail(()=>res.fields)
-								
-					localStorage.setItem('age',res.fields.age)
-					 localStorage.setItem('phone',res.fields.phoneNumber)
-					localStorage.setItem('address',res.fields.address)
-					console.log("my details ",trainerDetail)
-				})
-			  }
-			  else {
-				  //trainee data
-			  }
-			})
-			.then(history.push("/me"))
-			.catch(err=>{
-				console.log("login error")  
+			}).catch(err => {
+				console.log("login error")
 				// history.push("/signup")
 			})
-		
-		
-	};
 
 	
 			
-
+	
+		};
 
 
 
