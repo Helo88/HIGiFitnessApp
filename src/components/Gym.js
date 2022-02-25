@@ -5,7 +5,6 @@
 // import axios from "axios";
 import React, { Component, useEffect } from "react";
 // import { Map, GoogleApiWrapper } from "google-maps-react";
-// const apikey = "AIzaSyD2X23P9TqphXlrzI7O2OyZVVkYrcRWBnI";
 import { axiosInstance } from "../js/network";
 
 const Gym = () => {
