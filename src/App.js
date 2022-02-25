@@ -9,28 +9,29 @@ import ShowWorkoutPlans from "./components/ShowWorkoutPlans";
 import YogaExercises from "./components/YogaExercises";
 import HealthyTips from "./components/healthyTips";
 import Gym from "./components/Gym";
-import WeightTracker from "./components/weightTracker";
+// import WeightTracker from "./components/weightTracker";
+import UserForm from "./components/RegisterForm";
 import SignIn from "./components/Login";
-import axios from "axios";
 import FavPlans from "./components/FavPlans";
 import YogaPlanDetails from "./components/YogaPlanDetails";
 import StartWorkoutPlanExercise from "./components/StartWorkoutPlanExercise";
 import StartYogaPlanExercise from "./components/StartYogaPlanExercise";
 import TraineeProfile from "./components/TraineeProfile";
-import Comm from "./components/Community";
-import ProtectedRoute from "./components/ProtectedRoute";
-import LoggedInRoute from "./components/LoggedInRoute";
+// import Comm from "./components/Community";
+// import ProtectedRoute from "./components/ProtectedRoute";
+// import LoggedInRoute from "./components/LoggedInRoute";
 import Water from "./components/Water";
-import Check from "./components/check";
-import TrainerProfile from "./components/TrainerProfile";
-import EditTrainerProfile from "./components/EditTrainerProfile"
-import Reminder from './components/Reminder'
-import { Clothing } from "./components/Clothing"; 
-import Navbar from "./components/Navbar";
-
+// import Check from "./components/check";
+// import TrainerProfile from "./components/TrainerProfile";
+// import EditTrainerProfile from "./components/EditTrainerProfile"
+// import Reminder from './components/Reminder'
+import { axiosInstance } from "./js/network";
+import { Clothing } from "./components/Clothing";
+import "../node_modules/slick-carousel/slick/slick.css";
+import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "./style/App.css";
 import "./style/planStyle.css";
-
+import Navbar from "./components/Navbar";
 
 function App() {
   const [state, setState] = useState("start");
@@ -44,35 +45,48 @@ function App() {
   const [workoutPlans, SetworkoutPlans] = useState([]);
   const [workoutExercises, SetworkoutExercises] = useState([]);
   const [yogaExercises, SetyogaExercises] = useState([]);
-  const [isLoading, setLoading] = useState(true)
+  const [workoutfavplan, Setworkoutfavplan] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${workoutplansapi}`).then((res) => {
+    axiosInstance.get(`${workoutplansapi}`).then((res) => {
       SetworkoutPlans(res.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get(`${yogaplansapi}`).then((res) => {
+    axiosInstance.get(`${yogaplansapi}`).then((res) => {
       SetyogaPlans(res.data);
     });
   }, []);
 
   useEffect(() => {
-    axios.get(`${workoutexercisesapi}`).then((res) => {
+    axiosInstance.get(`${workoutexercisesapi}`).then((res) => {
       SetworkoutExercises(res.data);
     });
   }, []);
   useEffect(() => {
-    axios.get(`${yogaexercisesapi}`).then((res) => {
+    axiosInstance.get(`${yogaexercisesapi}`).then((res) => {
       SetyogaExercises(res.data);
     });
   }, []);
+
+  // useEffect(() => {
+  //   axiosInstance.get("http://localhost:8000/workoutfavplan/").then((res) => {
+  //     console.log(Number(JSON.parse(res.data.result)[0].pk))
+  //   if(Number(JSON.parse(res.data.result)[0].pk)){
+  //     Setworkoutfavplan(Number(JSON.parse(res.data.result)[0].pk));
+  //         localStorage.setItem("workoutfavplanid",Number(JSON.parse(res.data.result)[0].pk))
+  //   } else{
+  //     Setworkoutfavplan(res.data.result);
+  //   }
+  //   });
+  // });
   return (
     <>
       <Router>
-        {<Navbar />}
-        {<Water />}
+        <Navbar />
+        <Water />
         <Switch>
           <Route path={"/"} exact component={Homepage} />
           <Route
@@ -129,8 +143,11 @@ function App() {
             )}
           ></Route>
           <Route path={"/healthytips"} exact component={HealthyTips} />
+          <Route path={"/trainee"} exact component={TraineeProfile} />
           <Route path={"/login"} exact component={SignIn} />
+          <Route path={"/signup"} exact component={UserForm} />
           <Route path={"/gymslocations"} exact component={Gym} />
+          <Route path={"/clothing"} exact component={Clothing} />
           {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
         </Switch>

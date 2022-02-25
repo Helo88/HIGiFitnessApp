@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -7,6 +7,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import "../style/Reg.css";
 import { axiosInstance } from "../js/network/index";
+
 const UserForm = () => {
   const history = useHistory();
   const [userForm, setUserForm] = useState({
@@ -380,10 +381,11 @@ const UserForm = () => {
             <label for="no"> &nbsp; No</label>
           </div>
           <br />
-
+          <Link to="/login">
           <button type="submit" className="btn">
             Register
           </button>
+          </Link>
         </form>
       </div>
     </div>

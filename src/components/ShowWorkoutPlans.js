@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Alarm, LightningChargeFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { axiosInstance } from "../js/network";
 import {
   NotificationContainer,
   NotificationManager,
@@ -9,6 +9,7 @@ import {
 
 const ShowWorkoutPlans = (props) => {
   const { WorkoutPlans } = props;
+  const [change, setChange] = useState(0);
 
   const handleClick = (e, id) => {
     if (
@@ -16,8 +17,10 @@ const ShowWorkoutPlans = (props) => {
       localStorage.getItem("workoutfavplanid") === null
     ) {
       handleAddPlan(e, id);
+      setChange((c) => c + 1);
     } else {
       handleDeletePlan(e, id);
+      setChange((c) => c + 1);
     }
   };
 
@@ -25,32 +28,8 @@ const ShowWorkoutPlans = (props) => {
     NotificationManager.success(
       "Workout Plan has been added successfully to your favorite "
     );
-    axios
-      .put(
-        "http://localhost:8000/addWorkoutPlan/",
-        { id: id },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then(() => {
-        return axios
-          .get("http://localhost:8000/workoutfavplan/", {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Token ${localStorage.getItem("token")}`,
-            },
-          })
-          .then((res) => {
-            localStorage.setItem(
-              "workoutfavplanid",
-              JSON.parse(res.data.result)[0].pk
-            );
-          });
-      });
+    localStorage.setItem("workoutfavplanid", id);
+    axiosInstance.put("http://localhost:8000/addWorkoutPlan/", { id: id });
   };
 
   const handleDeletePlan = (e, id) => {
@@ -59,33 +38,12 @@ const ShowWorkoutPlans = (props) => {
         "Workout Plan has been removed successfully from your favorite "
       );
       localStorage.removeItem("workoutfavplanid");
-      axios
-        .get("http://localhost:8000/deleteworkoutplan/", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        })
-        .then(() => {
-          return axios
-            .get("http://localhost:8000/workoutfavplan/", {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Token ${localStorage.getItem("token")}`,
-              },
-            })
-            .then((res) => {
-              localStorage.setItem(
-                "workoutfavplanid",
-                JSON.parse(res.data.result)[0].pk
-              );
-            });
-        });
+      axiosInstance.get("http://localhost:8000/deleteworkoutplan/");
     } else {
       handleAddPlan(e, id);
     }
   };
-
+  useEffect(() => {}, [change]);
   return (
     <main className="bg">
       <div className="row">
@@ -136,7 +94,6 @@ const ShowWorkoutPlans = (props) => {
                           <div
                             style={{
                               backgroundImage: `url(${plan.image})`,
-
                             }}
                             className="card  shadow-lg planbg"
                           >
@@ -160,20 +117,16 @@ const ShowWorkoutPlans = (props) => {
                       </span>
                     </div>
                     <br />
-
-                   
                   </span>
 
                   <br />
                 </div>
               </div>
-            
-            ))
-          }
+            ))}
+          </div>
+          <br />
+          <br />
         </div>
-        <br />
-        <br />
-      </div>
       </div>
     </main>
   );

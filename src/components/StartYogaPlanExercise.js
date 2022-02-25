@@ -1,138 +1,161 @@
 import React, { useRef, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
-import "../style/swiper.css";
-import $ from "jquery";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
-import fitness from "../images/fitness.jpg";
-import home from "../images/home.jpg";
-import yoga from "../images/yoga.jpg";
-
 import Slider from "react-slick";
+import Swal from "sweetalert2";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import "../style/planStyle.css";
+import {
+  useHistory,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 
-import "../../node_modules/slick-carousel/slick/slick.css";
-import "../../node_modules/slick-carousel/slick/slick-theme.css";
-const StartYogaPlanExercise = (props) => {
-  const [state, setState] = useState({
-    nav2: null,
-  });
-  const slider2 = useRef();
-  useEffect(() => {
-    setState({
-      nav2: slider2.current,
-    });
-  }, []);
-  const { yogaExercises } = props;
-  const location = useLocation();
-  const startexercise = yogaExercises.filter((s) =>
-    location.planexercises.includes(s.name)
-  );
-  const SampleNextArrow=(props) =>{
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "#4FBDBA" }}
-        onClick={onClick}
-      />
-    );
-  }
-  
-  const SamplePrevArrow=(props) =>{
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block", background: "#35858B" }}
-        onClick={onClick}
-      />
-    );
-  }
-  const settings = {
-    speed: 500,
-    slidesToShow: 1,
-    vertical: true,
-    verticalSwiping: true,
-    infinite: false,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-    centerMode: true,
-  };
-  const play = () => {
-    console.log(props);
-    slider2.current.slickPlay();
-  };
-  const pause = () => {
-    slider2.current.slickPause();
-  };
+const NextArrow = ({ onClick }) => {
   return (
-    <main className="bg">
-      <h3> Let's Go </h3>
-      <div className="container containercolor">
-        <Slider ref={(slider) => (slider2.current = slider)} {...settings} autoplaySpeed={5000} autoplay>
-          {startexercise.map((exercise) => (
-            <div key={exercise.id}>
-              {console.log(exercise.duration)}
-              <span>{exercise.name}</span>
-              <span className="plans col text-white ms-5">
-                {exercise.duration}
-                seconds
-              </span>
-              <img src={exercise.image}></img>
-            </div>
-          ))}
-          <div></div>
-        </Slider>
-        <button className="button" onClick={() => play()}>
-          Play
-        </button>
-        <button className="button" onClick={() => pause()}>
-          Pause
-        </button>
-      </div>
-    </main>
+    <div className="nextArrow" onClick={onClick}>
+      <BsChevronRight />
+    </div>
   );
 };
 
-// {/* <main className="bg">
-//   <div className="row">
-//     <h1 className="f h1 d-flex justify-content-center mt-5">Exercises</h1>
-//     <div className="col-md-6 col-sm-10 mx-auto p-0 mt-6">
-//       <div className="card">
-//       <ul className="list-group list-group-flush">
-//           {startexercise.map((plan) => (
-//         <div
-//           key={plan.id}
-//           className="list-group-item d-flex justify-content-between align-items-center"
-//         >
-//           <span>
-//             {plan.name}
-//             <br />
-//               <div
-//                 style={{
-//                   backgroundImage: `url(${plan.gif})`,
-//                   backgroundSize: "cover",
-//                   maxWidth: "100vh",
-//                   minHeight: "30vh",
-//                 }}
-//                 className="card"
-//               >
-//                 <div className="row container-fluid" id="exDets">
+const PrevArrow = ({ onClick }) => {
+  return (
+    <div className="prevArrow" onClick={onClick}>
+      <BsChevronLeft />
+    </div>
+  );
+};
 
-//                   <span className="plans col text-white ms-5">
-//                     {plan.duration}
-//                     seconds
-//                   </span>
-//                 </div>
-//               </div>
+const StartYogaPlanExercise = (props) => {
+  const { yogaExercises } = props;
+  const location = useLocation();
+  const history = useHistory();
+  const [startexercise, setStartExercise] = useState([]);
+  const [duration, setDuration] = useState(7);
+  const [count, setCount] = useState(0);
+  const slider1 = useRef();
+  const [imageIndex, setImageIndex] = useState(0);
+  useEffect(() => {
+    setStartExercise(
+      yogaExercises.filter((s) => location.planexercises.includes(s.name))
+    );
+  }, []);
 
-//           </span>
-//         </div>
-//       ))}
-//       </ul>
-//       </div>
-//     </div>
-//   </div>
-// </main> */}
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: false,
+    dots: false,
+    speed: 500,
+    slidesToShow: 1,
+    centerPadding: "0",
+    autoplaySpeed: 7000,
+    autoplay: true,
+    focusOnSelect: true,
+    nextArrow: <NextArrow onClick />,
+    prevArrow: <PrevArrow onClick />,
+    beforeChange: (current, next) => setImageIndex(next),
+    responsive: [
+      {
+        breakpoint: 1490,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 820,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+    afterChange: function (currentSlide) {
+      console.log(currentSlide);
+      console.log(startexercise.length);
+      setDuration(7);
+      if (startexercise.length - 1 === currentSlide) {
+        setTimeout(() => {
+          Swal.fire({
+            title: "Congratulations!",
+            text: "Great Gob You Finish This Plan , Go On And Finsh Another One.",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          history.push("/favplans");
+        }, 6000);
+      }
+    },
+  };
+  const setTimer = () => {
+    const count =
+      duration > 0 &&
+      setInterval(() => setDuration((prevCount) => prevCount - 1), 1000);
+    setCount(count);
+  };
+  const clearTimer = () => {
+    if (count) {
+      clearInterval(count);
+      setCount(0);
+      return;
+    }
+  };
+  const play = () => {
+    slider1.current.slickPlay();
+    setTimer();
+  };
+  const pause = () => {
+    slider1.current.slickPause();
+    clearTimer();
+  };
+  useEffect(() => {
+    if (duration === 0) {
+      setDuration(7);
+    }
+  }, [duration]);
+  const exerciseTemplate = startexercise.map((exercise, idx) => {
+    return (
+      <div
+        key={exercise.id}
+      >
+        <div className="slideWrapper">
+          <span className="main2 col text-center mt-3 mb-3 ">
+            {exercise.name}
+          </span>
+          <br></br>
+          {
+            <img
+              className="exercisegif"
+              src={exercise.image}
+              alt="exercise gif"
+            />
+          }
+          <br></br>
+          <span className="main2 col text-center mt-3 mb-3 ">
+            {duration} seconds
+          </span>
+        </div>
+      </div>
+    );
+  });
+
+  return (
+    <>
+      <div className="text-info h3">
+        <h3>Let's Go , Just Follow My Steps....</h3>
+      </div>
+      <Slider ref={(slider) => (slider1.current = slider)} {...settings}>
+        {exerciseTemplate}
+      </Slider>
+      <div className="btnscontainer">
+        <button className="btn shadow-lg btns" onClick={() => play()}>
+          Play
+        </button>
+        <button className="btn shadow-lg btns" onClick={() => pause()}>
+          Pause
+        </button>
+      </div>
+    </>
+  );
+};
 
 export default StartYogaPlanExercise;

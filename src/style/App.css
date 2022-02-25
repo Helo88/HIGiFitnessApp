@@ -25,3 +25,18 @@ ul {
   color: white !important;
   padding-bottom: 1.3em;
 }
+
+.slick-prev {
+  left: -3%;
+}
+.slick-next{
+  left: 100%;
+}
+.slick-prev, .slick-next {
+  background-color: white !important;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #35858B !important;
+
+}

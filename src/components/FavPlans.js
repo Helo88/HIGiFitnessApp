@@ -3,80 +3,58 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { Alarm, LightningChargeFill } from "react-bootstrap-icons";
+import { axiosInstance } from "../js/network";
 
 const FavPlans = (props) => {
   const { WorkoutPlans, YogaPlans } = props;
-
-  let favYogaPlan = YogaPlans.filter(
-    (e) => e.id === Number(localStorage.getItem("yogafavplanid"))
-  );
-  let favWorkoutPlan = WorkoutPlans.filter(
-    (e) => e.id === Number(localStorage.getItem("workoutfavplanid"))
-  );
   const [change, setChange] = useState(0);
+  const [calculation, setCalculation] = useState([]);
+  const [favYogaPlan, setfavYogaPlan] = useState([]);
+  const [favWorkoutPlan, setfavWorkoutPlan] = useState([]);
 
-  const handleDelWorkoutPlan = (e, id) => {
-    NotificationManager.success(
-      "Workout Plan has been removed successfully from your favorite "
-    );
+  const handleDelWorkoutPlan = (e) => {
     localStorage.removeItem("workoutfavplanid");
-    axios
-      .get("http://localhost:8000/deleteworkoutplan/", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
-      })
-      .then(() => {
-        return axios
-          .get("http://localhost:8000/workoutfavplan/", {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Token ${localStorage.getItem("token")}`,
-            },
-          })
-          .then((res) => {
-            localStorage.setItem(
-              "workoutfavplanid",
-              JSON.parse(res.data.result)[0].pk
-            );
-          });
-      });
+    axiosInstance.get("http://localhost:8000/deleteworkoutplan/").then((res)=>{
+      return axiosInstance.get("http://localhost:8000/workoutfavplan/")
+    });
     setChange((c) => c + 1);
   };
-  const handleDelYogaPlan = (e, id) => {
-    NotificationManager.success(
-      "Yoga Plan has been removed successfully from your favorite "
-    );
+
+  const handleDelYogaPlan = (e) => {
     localStorage.removeItem("yogafavplanid");
-    axios
-      .get("http://localhost:8000/deleteyogaplan/", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Token ${localStorage.getItem("token")}`,
-        },
-      })
-      .then(() => {
-        return axios
-          .get("http://localhost:8000/yogafavplan/", {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Token ${localStorage.getItem("token")}`,
-            },
-          })
-          .then((res) => {
-            localStorage.setItem(
-              "yogafavplanid",
-              JSON.parse(res.data.result)[0].pk
-            );
-          });
-      });
+    axiosInstance.get("http://localhost:8000/deleteyogaplan/").then((res)=>{
+      return axiosInstance.get("http://localhost:8000/yogafavplan/")
+    });
     setChange((c) => c + 1);
   };
-  useEffect(() => {}, [change]);
+  useEffect(() => {
+    axiosInstance.get("http://localhost:8000/workoutfavplan/").then((res) => {
+      try {
+        setfavWorkoutPlan(
+          WorkoutPlans.filter(
+            (e) => e.id === Number(JSON.parse(res.data.result)[0].pk)
+            )
+            );
+          } catch {
+            setfavWorkoutPlan(res.data.result);
+          }
+    });
+    axiosInstance.get("http://localhost:8000/yogafavplan/").then((res) => {
+      try {
+        setfavYogaPlan(
+          YogaPlans.filter(
+            (e) => e.id === Number(JSON.parse(res.data.result)[0].pk)
+          )
+        );
+      } catch {
+        setfavYogaPlan(res.data.result);
+      }
+    });
+  },[]);
+  useEffect(()=>{},[change])
+ 
   return (
     <main className="bg">
       <br />
@@ -86,7 +64,7 @@ const FavPlans = (props) => {
           Your Favorite <span className="text-info"> Workout </span>&nbsp; Plan
         </h1>
         <div className="col mb-6  d-flex ms-3 ">
-          {favWorkoutPlan.length === 0 ? (
+          {typeof favWorkoutPlan === "string" ? (
             <h3 className="tit">No Avaliable Workout Plans , Add One</h3>
           ) : (
             favWorkoutPlan.map((plan) => (
@@ -99,10 +77,11 @@ const FavPlans = (props) => {
                     <span className="main2 col text-center mt-3 mb-3 ">
                       <button
                         className="btn shadow-lg"
-                        onClick={(e) => handleDelWorkoutPlan(e, plan.id)}
+                        onClick={(e) => handleDelWorkoutPlan(e)}
                       >
                         <i class="bi bi-star-fill"></i>
                       </button>
+                      <NotificationContainer />
                       {plan.name}
                       <br />
                       <Link
@@ -157,7 +136,7 @@ const FavPlans = (props) => {
           Your Favorite <span className="text-info"> Yoga </span>&nbsp; Plan
         </h1>
         <div className="col mb-6  d-flex ms-3 ">
-          {favYogaPlan.length === 0 ? (
+          {typeof favYogaPlan === "string" ? (
             <h3 className="tit">No Avaliable Yoga Plans , Add One</h3>
           ) : (
             favYogaPlan.map((plan) => (
@@ -170,10 +149,11 @@ const FavPlans = (props) => {
                     <span className="main2 col text-center mt-3 mb-3 ">
                       <button
                         className="btn shadow-lg"
-                        onClick={(e) => handleDelYogaPlan(e, plan.id)}
+                        onClick={(e) => handleDelYogaPlan(e)}
                       >
                         <i class="bi bi-star-fill"></i>
                       </button>
+                      <NotificationContainer />
                       {plan.name}
                       <br />
                       <Link to={{ pathname: "/yogaexercises", state: plan.id }}>

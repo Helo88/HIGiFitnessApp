@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Alarm, LightningChargeFill } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import { axiosInstance } from "../js/network";
 import {
   NotificationContainer,
   NotificationManager,
@@ -9,6 +9,7 @@ import {
 
 const ShowYogaPlans = (props) => {
   const { YogaPlans } = props;
+  const [change, setChange] = useState(0);
 
   const handleClick = (e, id) => {
     if (
@@ -16,8 +17,10 @@ const ShowYogaPlans = (props) => {
       localStorage.getItem("yogafavplanid") === null
     ) {
       handleAddPlan(e, id);
+      setChange((c) => c + 1);
     } else {
       handleDeletePlan(e, id);
+      setChange((c) => c + 1);
     }
   };
 
@@ -25,32 +28,8 @@ const ShowYogaPlans = (props) => {
     NotificationManager.success(
       "Yoga Plan has been added successfully to your favorite "
     );
-    axios
-      .put(
-        "http://localhost:8000/addYogaPlan/",
-        { id: id },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        }
-      )
-      .then(() => {
-        return axios
-          .get("http://localhost:8000/yogafavplan/", {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Token ${localStorage.getItem("token")}`,
-            },
-          })
-          .then((res) => {
-            localStorage.setItem(
-              "yogafavplanid",
-              JSON.parse(res.data.result)[0].pk
-            );
-          });
-      });
+    localStorage.setItem("yogafavplanid", id);
+    axiosInstance.put("http://localhost:8000/addYogaPlan/", { id: id });
   };
 
   const handleDeletePlan = (e, id) => {
@@ -59,32 +38,12 @@ const ShowYogaPlans = (props) => {
         "Yoga Plan has been removed successfully from your favorite "
       );
       localStorage.removeItem("yogafavplanid");
-      axios
-        .get("http://localhost:8000/deleteyogaplan/", {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        })
-        .then(() => {
-          return axios
-            .get("http://localhost:8000/yogafavplan/", {
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Token ${localStorage.getItem("token")}`,
-              },
-            })
-            .then((res) => {
-              localStorage.setItem(
-                "yogafavplanid",
-                JSON.parse(res.data.result)[0].pk
-              );
-            });
-        });
+      axiosInstance.get("http://localhost:8000/deleteyogaplan/");
     } else {
       handleAddPlan(e, id);
     }
   };
+  useEffect(() => {}, [change]);
 
   return (
     <main className="bg">
@@ -126,7 +85,6 @@ const ShowYogaPlans = (props) => {
                     <div
                       style={{
                         backgroundImage: `url(${plan.image})`,
-                       
                       }}
                       className="card  shadow-lg planbg"
                     >

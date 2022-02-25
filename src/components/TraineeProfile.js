@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import '../style/traineeProfile.css';
+import React, { useEffect } from 'react';
+
 import avatar from "../images/av.jpg"
-import { Link } from "react-router-dom";
-import axios from "axios";
+// import { Link } from "react-router-dom";
+// import axios from "axios";
 import { axiosInstance } from '../js/network/index';
 
 const TraineeProfile = () => {

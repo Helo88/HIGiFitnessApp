@@ -10,7 +10,8 @@ import "bulma/css/bulma.css";
 import "./style/index.css";
 import "leaflet/dist/leaflet.css";
 import "react-notifications/lib/notifications.css";
-
+import 'bootstrap/dist/js/bootstrap.min.js';
+import './style/traineeProfile.css';
 
 ReactDOM.render( 
 <Provider store={store}>
