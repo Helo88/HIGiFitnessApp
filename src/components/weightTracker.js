@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../js/network/index';
-import axios from 'axios';
-import ReactDOM from "react-dom";
 import 'sweetalert2/dist/sweetalert2.all.min.js'
 import 'sweetalert2/dist/sweetalert2.min.js'
 import 'sweetalert2/dist/sweetalert2.min.css'

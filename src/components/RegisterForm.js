@@ -1,22 +1,23 @@
 import { useState } from "react";
-import {useHistory} from "react-router-dom"
+import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import "../style/Reg.css";
-import  {axiosInstance} from "../js/network/index"
+import { axiosInstance } from "../js/network/index";
+
 const UserForm = () => {
-  const history=useHistory()
+  const history = useHistory();
   const [userForm, setUserForm] = useState({
     username: "",
     age: "",
     weight: "",
     height: "",
     email: "",
-    password : "",
-    conpassword : "",
+    password: "",
+    conpassword: "",
     showPassword: false,
     showconPassword: false,
   });
@@ -25,12 +26,11 @@ const UserForm = () => {
     usernameErr: null,
     ageErr: null,
     currentWeightErr: null,
-    heightErr:null,
+    heightErr: null,
     emailErr: null,
     passErr: null,
     confpasswordErr: null,
   });
-
 
   const handleClickShowPassword = () => {
     setUserForm({ ...userForm, showPassword: !userForm.showPassword });
@@ -39,46 +39,45 @@ const UserForm = () => {
   const handleClickShowconPassword = () => {
     setUserForm({ ...userForm, showconPassword: !userForm.showconPassword });
   };
-  
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  
+
   const handlePasswordChange = (prop) => (event) => {
     setUserForm({ ...userForm, [prop]: event.target.value });
   };
-  
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data={
-      username:userForm.username,
-      age:userForm.age,
-      currentWeight:userForm.currentWeight,
-      height:userForm.height,
-      medicalHistory:true,
-      password1:userForm.password,
-      password2:userForm.conpassword
-
-    }
+    const data = {
+      username: userForm.username,
+      age: userForm.age,
+      currentWeight: userForm.currentWeight,
+      height: userForm.height,
+      medicalHistory: true,
+      password1: userForm.password,
+      password2: userForm.conpassword,
+    };
     console.log(data);
 
     axiosInstance
-			.post(`http://127.0.0.1:8000/users/registration/trainee/`, {
-        username:userForm.username,
-        age:userForm.age,
-        currentWeight:userForm.currentWeight,
-        height:userForm.height,
-        medicalHistory:true,
-        password1:userForm.password,
-        password2:userForm.conpassword,
-        email:userForm.email
-			})
-			.then((res) => {
-				history.push('/login')
-				console.log(res);
-				console.log(res.data);
-			}).catch((err)=>console.log(err))
+      .post(`http://127.0.0.1:8000/users/registration/trainee/`, {
+        username: userForm.username,
+        age: userForm.age,
+        currentWeight: userForm.currentWeight,
+        height: userForm.height,
+        medicalHistory: true,
+        password1: userForm.password,
+        password2: userForm.conpassword,
+        email: userForm.email,
+      })
+      .then((res) => {
+        history.push("/login");
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -128,7 +127,8 @@ const UserForm = () => {
       });
       setUserFormErrors({
         ...userFormErrors,
-        usernameErr: e.target.value.length === 0 ? "This Field is required" : null,
+        usernameErr:
+          e.target.value.length === 0 ? "This Field is required" : null,
       });
     }
     //  else if (e.target.name === "initialWeight") {
@@ -143,7 +143,7 @@ const UserForm = () => {
     //         ? "This Field is required"
     //         : null,
     //   });
-    // } 
+    // }
     else if (e.target.name === "currentWeight") {
       setUserForm({
         ...userForm,
@@ -152,13 +152,9 @@ const UserForm = () => {
       setUserFormErrors({
         ...userFormErrors,
         currentWeightErr:
-          e.target.value.length === 0
-            ? "This Field is required"
-            : null,
+          e.target.value.length === 0 ? "This Field is required" : null,
       });
-    } 
-    
-    else if (e.target.name === "height") {
+    } else if (e.target.name === "height") {
       setUserForm({
         ...userForm,
         height: e.target.value,
@@ -166,27 +162,18 @@ const UserForm = () => {
       setUserFormErrors({
         ...userFormErrors,
         heightErr:
-          e.target.value.length === 0
-            ? "This Field is required"
-            : null,
+          e.target.value.length === 0 ? "This Field is required" : null,
       });
-    }
-
-    else if (e.target.name === "age") {
+    } else if (e.target.name === "age") {
       setUserForm({
         ...userForm,
         age: e.target.value,
       });
       setUserFormErrors({
         ...userFormErrors,
-        ageErr:
-          e.target.value.length === 0
-            ? "This Field is required"
-            : null,
+        ageErr: e.target.value.length === 0 ? "This Field is required" : null,
       });
-    }
-
-    else if (e.target.name === "conpassword") {
+    } else if (e.target.name === "conpassword") {
       setUserForm({
         ...userForm,
         conpassword: e.target.value,
@@ -204,21 +191,28 @@ const UserForm = () => {
   };
 
   return (
-    <div className="row"
+    <div
+      className="row"
       style={{
         backgroundImage: `url("https://www.panattasport.com/resources/home/home-fitness-home.jpg")`,
         opacity: 0.8,
-        backgroundRepeat:"no-repeat",
-        backgroundSize:'100%'
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100%",
       }}
     >
       <h1 className="h1 pt-5 d-flex justify-content-center">
-       <strong>HIGE FITNESS APP</strong></h1>
-     
-      <div className="container  d-flex justify-content-left ms-5 " style={{color: "#35858B"}}>
-        
+        <strong>HIGE FITNESS APP</strong>
+      </h1>
+
+      <div
+        className="container  d-flex justify-content-left ms-5 "
+        style={{ color: "#35858B" }}
+      >
         <br />
-        <form style={{minWidth: "450px", maxWidth: "500px"}} onSubmit={(e) => handleSubmit(e)}>
+        <form
+          style={{ minWidth: "450px", maxWidth: "500px" }}
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <div className="mb-3">
             <h2 className="h2 mb-5">Register Now!</h2>
             <label htmlFor="exampleInputName" className="form-label h3">
@@ -240,7 +234,7 @@ const UserForm = () => {
 
           <div className="mb-3">
             <label htmlFor="exampleInputName" className="form-label h3">
-             Age
+              Age
             </label>
             <input
               type="text"
@@ -252,15 +246,13 @@ const UserForm = () => {
               id="exampleInputName"
             />
             <div>
-              <small className="text-danger">
-                {userFormErrors.ageErr}
-              </small>
+              <small className="text-danger">{userFormErrors.ageErr}</small>
             </div>
           </div>
 
           <div className="mb-3">
             <label htmlFor="exampleInputName" className="form-label h3">
-             Weight
+              Weight
             </label>
             <input
               type="text"
@@ -280,7 +272,7 @@ const UserForm = () => {
 
           <div className="mb-3">
             <label htmlFor="exampleInputName" className="form-label h3">
-            Height
+              Height
             </label>
             <input
               type="text"
@@ -292,9 +284,7 @@ const UserForm = () => {
               id="exampleInputName"
             />
             <div>
-              <small className="text-danger">
-                {userFormErrors.heightErr}
-              </small>
+              <small className="text-danger">{userFormErrors.heightErr}</small>
             </div>
           </div>
 
@@ -317,79 +307,85 @@ const UserForm = () => {
               <small className="text-danger">{userFormErrors.emailErr}</small>
             </div>
           </div>
-        
+
           <div className="mb-3">
             <label htmlFor="exampleInputPassword" className="form-label h3">
               Password
             </label>
             <Input
-            type={userForm.showPassword ? "text" : "password"}
-            onChange={handlePasswordChange("password")}
-            value={userForm.password}
-            name="password"
-            className="form-control"
-            placeholder="password"
-            onChange={(e) => handleChange(e)}
-            id="exampleInputPassword" 
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  
-                >
-                  {userForm.showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            }
+              type={userForm.showPassword ? "text" : "password"}
+              onChange={handlePasswordChange("password")}
+              value={userForm.password}
+              name="password"
+              className="form-control"
+              placeholder="password"
+              onChange={(e) => handleChange(e)}
+              id="exampleInputPassword"
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {userForm.showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              }
             />
-             <small className="text-danger">{userFormErrors.passErr}</small> <br />
+            <small className="text-danger">{userFormErrors.passErr}</small>{" "}
+            <br />
           </div>
-          
+
           <div className="mb-3">
             <label htmlFor="exampleInputconPassword" className="form-label h3">
               Confirm Password
             </label>
             <Input
-            type={userForm.showconPassword ? "text" : "password"}
-            onChange={handlePasswordChange("conpassword")}
-            value={userForm.conpassword}
-            name="conpassword"
-            className="form-control"
-            placeholder="Confirm password"
-            onChange={(e) => handleChange(e)}
-            id="exampleInputconPassword"
+              type={userForm.showconPassword ? "text" : "password"}
+              onChange={handlePasswordChange("conpassword")}
+              value={userForm.conpassword}
+              name="conpassword"
+              className="form-control"
+              placeholder="Confirm password"
+              onChange={(e) => handleChange(e)}
+              id="exampleInputconPassword"
               endAdornment={
                 <InputAdornment position="end">
                   <IconButton
                     onClick={handleClickShowconPassword}
                     onMouseDown={handleMouseDownPassword}
-                    
                   >
-                    {userForm.showconPassword ? <Visibility /> : <VisibilityOff />}
+                    {userForm.showconPassword ? (
+                      <Visibility />
+                    ) : (
+                      <VisibilityOff />
+                    )}
                   </IconButton>
                 </InputAdornment>
               }
             />
-            <small className="text-danger">{userFormErrors.confpasswordErr}
-          </small>
-          <br />
+            <small className="text-danger">
+              {userFormErrors.confpasswordErr}
+            </small>
+            <br />
           </div>
-          
+
           <div className="mb-3">
             <label htmlFor="exampleInputGender" className="form-label h3">
               Do you have any chronic diseases?
-            </label> <br/>
+            </label>{" "}
+            <br />
             <input type="radio" id="yes" name="medical" value="yes" />
             <label for="yes"> &nbsp; Yes</label> &nbsp; &nbsp;
-            <input type="radio" id="no" name="medical" value="no"/>
+            <input type="radio" id="no" name="medical" value="no" />
             <label for="no"> &nbsp; No</label>
-            </div>
-            <br/>
-
-          <button type="submit" className="btn" >
+          </div>
+          <br />
+          <Link to="/login">
+          <button type="submit" className="btn">
             Register
           </button>
+          </Link>
         </form>
       </div>
     </div>

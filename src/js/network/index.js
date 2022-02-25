@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 export const axiosInstance = axios.create({
   baseURL: "http://127.0.0.1:8000/",
 });
@@ -9,21 +7,19 @@ export const axiosInstance = axios.create({
 // Add a request interceptor
 
 axiosInstance.interceptors.request.use(
- 
   function (config) {
     console.log("Interceptor request", config);
 
-	const token=localStorage.getItem('token')
-	console.log("inter ",token)
+    const token = localStorage.getItem("token");
+    console.log("inter ", token);
     config.params = {
-        ...config.params,
-        // api_key:token,
-        
+      ...config.params,
+      // api_key:token,
     };
     config.headers = {
       ...config.headers,
-	  'Authorization':token?`Token ${token}`:null
-    }
+      Authorization: token ? `Token ${token}` : null,
+    };
     // Do something before request is sent
     return config;
   },

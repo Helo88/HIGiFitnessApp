@@ -1,13 +1,13 @@
 import React from "react";
+import myimg from "../images/fitness.jpg";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 
-const YogaExercises = (props) => {
-  const { YogaPlans } = props;
+const WorkoutExercises = (props) => {
+  const { WorkoutPlans } = props;
   const location = useLocation();
-
   const renderItems = () => {
-    const planExercises = YogaPlans.filter(
+    const planExercises = WorkoutPlans.filter(
       (plan) => plan.id === parseInt(location.state)
     );
     return planExercises.map((plan) => (
@@ -17,7 +17,12 @@ const YogaExercises = (props) => {
           className="list-group-item  justify-content-between align-items-center"
         >
           <span>
-            <div className="planbg yogaexbg">
+            <div
+              style={{
+                backgroundImage: `url(${myimg})`,
+              }}
+              className="planbg"
+            >
               <div className="container">
                 <div className="row">
                   <span className="main2 col text-center pt-3">
@@ -25,19 +30,20 @@ const YogaExercises = (props) => {
                   </span>
                   <br />
                 </div>
-                <div className="row planbg">
+                <div className="row">
                   <span className="main2 col text-center mt-1">
-                    Total Duration : {Math.floor(plan.totalDuration / 60)}:
-                    {plan.totalDuration -
-                      Math.floor(plan.totalDuration / 60) * 60}{" "}
+                    Total Duration :{" "}
+                    {Math.floor(plan.totalTimeOfExercises / 60)}:
+                    {plan.totalTimeOfExercises -
+                      Math.floor(plan.totalTimeOfExercises / 60) * 60}{" "}
                     minutes
                   </span>
                 </div>
               </div>
             </div>
-            {plan.exercises.map((ex) => (
+            {plan.exercise.map((ex) => (
               <div key={ex.id}>
-                <Link to={{ pathname: "/yogaexercises/details", state: ex }}>
+                <Link to={{ pathname: "/workoutexercises/details", state: ex }}>
                   <span className="card" id="ex">
                     {ex}
                   </span>
@@ -65,4 +71,4 @@ const YogaExercises = (props) => {
   );
 };
 
-export default YogaExercises;
+export default WorkoutExercises;
