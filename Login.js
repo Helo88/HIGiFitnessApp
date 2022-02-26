@@ -115,7 +115,7 @@ export default function SignIn() {
 					 localStorage.setItem('phone',res.fields.phoneNumber)
 					localStorage.setItem('address',res.fields.address)
 					console.log("my details ",trainerDetail)
-				}).then(history.push("/me"))
+				}).then(history.push("/check"))
 			  }
 			  else {
 				axiosInstance

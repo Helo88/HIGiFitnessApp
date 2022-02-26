@@ -32,6 +32,8 @@ import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "./style/App.css";
 import "./style/planStyle.css";
 import Navbar from "./components/Navbar";
+import WeightReport from "./components/WeightReport"
+import WaterReport from "./components/WaterReport";
 
 function App() {
   const [state, setState] = useState("start");
@@ -151,6 +153,8 @@ function App() {
           <Route path={"/clothing"} exact component={Clothing} />
           {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
+          <Route path={"/we"} exact component={WeightReport} />
+          <Route path={"/water"} exact component={WaterReport} />
         </Switch>
         {/* <Footer /> */}
       </Router>

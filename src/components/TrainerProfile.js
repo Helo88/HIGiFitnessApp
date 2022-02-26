@@ -22,14 +22,14 @@ import { type } from "@testing-library/user-event/dist/type";
 const TrainerProfile = () => {
   // const[trainerDetail,setTrainerDetail]=useState({})
   const [show, setShow] = useState(true);
-
-  const [postForm,setPostForm]=useState({})
-  const [myPosts,setPosts]=useState([])
+  const [postForm, setPostForm] = useState({});
+  const [myPosts, setPosts] = useState([]);
   const handleChange = (e) => {
-		setPostForm({
-			...postForm,
-			[e.target.name]: e.target.value,
-		});
+    setPostForm({
+      ...postForm,
+      [e.target.name]: e.target.value,
+    });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(postForm);
@@ -136,9 +136,8 @@ const TrainerProfile = () => {
           </div>
         </div>
       </div>
-
     </>
   );
 };
-}
+
 export default TrainerProfile;
