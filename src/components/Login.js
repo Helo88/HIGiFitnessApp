@@ -107,7 +107,7 @@ export default function SignIn() {
               localStorage.setItem("address", res.fields.address);
               console.log("my details ", trainerDetail);
             })
-            .then(history.push("/me"));
+            .then(history.push("/check"));
         } else {
           axiosInstance
             .get(`http://127.0.0.1:8000/users/traineeDetail/`, {
