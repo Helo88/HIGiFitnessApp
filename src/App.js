@@ -21,7 +21,7 @@ import TraineeProfile from "./components/TraineeProfile";
 // import ProtectedRoute from "./components/ProtectedRoute";
 // import LoggedInRoute from "./components/LoggedInRoute";
 import Water from "./components/Water";
-// import Check from "./components/check";
+import Check from "./components/check";
 // import TrainerProfile from "./components/TrainerProfile";
 // import EditTrainerProfile from "./components/EditTrainerProfile"
 // import Reminder from './components/Reminder'
@@ -142,6 +142,7 @@ function App() {
               <StartYogaPlanExercise yogaExercises={yogaExercises} />
             )}
           ></Route>
+          <Route path={"/check"} exact component={Check} />  
           <Route path={"/healthytips"} exact component={HealthyTips} />
           <Route path={"/trainee"} exact component={TraineeProfile} />
           <Route path={"/login"} exact component={SignIn} />

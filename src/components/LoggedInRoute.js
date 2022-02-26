@@ -3,14 +3,14 @@ import { Redirect, Route } from "react-router-dom";
 
 function LoggedRoute({ component: Component, ...restOfProps }) {
   const logged = localStorage.getItem("token");
-  // console.log("this is check", isStaff);
+  const isStaff = localStorage.getItem("is_staff");
 
   return (
     <Route
       {...restOfProps}
       render={(props) =>
-        (logged) ? (
-          <Component {...props} />
+        (isStaff === 'false') ? (
+          <Component {...restOfProps} {...props} />
         ) : (
           <Redirect to={{ pathname: "/login", state: { from: props.location } }} />
         )
