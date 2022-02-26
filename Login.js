@@ -137,7 +137,7 @@ export default function SignIn() {
 					 localStorage.setItem('trainerID',res.fields.trainerID)
 					 localStorage.setItem('workoutPlan',res.fields.workoutPlan)
 					 localStorage.setItem('yogaPlan',res.fields.yogaPlan)
-				}).then(history.push("/me"))
+				}).then(history.push("/check"))
 			  }
 			})
 			   
