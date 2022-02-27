@@ -4,7 +4,6 @@
 #clothingIntro{
     background-color: var(--fColor);
     width: 100%;
-    min-height: 100vh;
     border: 1px solid var(--fColor);;
 }
 #clothingMain h1{
@@ -14,6 +13,7 @@
     -webkit-background-clip: text;
     color:transparent;
     font-size: 34px;
+    margin-top: 1.5em;
 }
 #quote{
     margin-top: 40px;
@@ -313,4 +313,7 @@ color: var(--sColor);
     -webkit-background-clip: text;
     color:transparent;
     font-size: 50px;
+}
+#inside:hover{
+cursor: pointer;
 }

@@ -29,9 +29,11 @@ ul {
 .slick-prev {
   left: -3%;
 }
-.slick-next{
+
+.slick-next {
   left: 100%;
 }
+
 .slick-prev, .slick-next {
   background-color: white !important;
 }
@@ -39,4 +41,12 @@ ul {
 .slick-prev:before, .slick-next:before {
   color: #35858B !important;
 
+}
+
+.message {
+  background-color: transparent !important;
+}
+#btn2{
+  color: white;
+  margin-top: 1.5em;
 }
