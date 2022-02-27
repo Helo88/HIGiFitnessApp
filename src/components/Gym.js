@@ -8,22 +8,8 @@ const Gym = () => {
     var googleMapSrc = `http://maps.google.com/maps/search/nearst+gyms`;
     window.open(googleMapSrc, "_blank");
   };
-  // const clo = () => {
-  //   axiosInstance.put("http://127.0.0.1:8000/updateTraineeFavPlans/", {
-  //     'id': 2,
-  //     'yogaID': 12,
-  //     'workoutID': 10,
-  //   })
-  // };
 
-  //   });
-  axiosInstance
-      .get(`http://127.0.0.1:8000/users/traineeDetail/`)
-      .then((res)=>{
-        console.log(res)
-      })
-  useEffect(() => {
-  }, []);
+
   return (
     <>
       <div className="px-2 " id="gymIntro">
