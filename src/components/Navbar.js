@@ -11,7 +11,6 @@ const Navbar = () => {
   let email = localStorage.getItem("email");
   let is_staff = localStorage.getItem("is_staff");
   const [changelogout, setChangeLogout] = useState(0);
-  const [changelogin, setChangeLogin] = useState(false);
 
   function logoutHandle() {
     axiosInstance.post("http://127.0.0.1:8000/rest-auth/logout/").then(() => {
@@ -19,10 +18,8 @@ const Navbar = () => {
       setChangeLogout((c) => c + 1);
     });
   }
-  useEffect(() => {}, [changelogout]);
-  // useEffect(() => {
-  // }, [changelogin,login]);
 
+  useEffect(() => {}, [changelogout]);
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
@@ -177,9 +174,6 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <>
-                  {/* {() => {
-                  loginHandle();
-                }} */}
                   <span></span>
                 </>
               )}

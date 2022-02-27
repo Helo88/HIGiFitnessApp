@@ -33,6 +33,8 @@ import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "./style/App.css";
 import "./style/planStyle.css";
 import Navbar from "./components/Navbar";
+import WeightReport from "./components/WeightReport"
+import WaterReport from "./components/WaterReport";
 
 export const LoginContext = createContext();
 function App() {
@@ -47,7 +49,8 @@ function App() {
   const [isLoading, setLoading] = useState(true);
   const [workoutExercises, SetworkoutExercises] = useState([]);
   const [yogaExercises, SetyogaExercises] = useState([]);
-  const [changelogin, setChangeLogin] = useState(false);
+  const [workoutfavplan, Setworkoutfavplan] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     axiosInstance.get(`${workoutplansapi}`).then((res) => {
@@ -66,7 +69,7 @@ function App() {
       SetworkoutExercises(res.data);
     });
   }, []);
-  useEffect(() => {
+  useEffect((    ) => {
     axiosInstance.get(`${yogaexercisesapi}`).then((res) => {
       SetyogaExercises(res.data);
     });
@@ -155,13 +158,12 @@ function App() {
               ></Route>
               <Route path={"/trainer"} exact component={TrainerProfile} />
               <Route path={"/healthytips"} exact component={HealthyTips} />
-              {/* <Route exact path="/login" render={() => <SignIn />}></Route> */}
               <Route path={"/login"} exact component={SignIn} />
               <Route path={"/signup"} exact component={UserForm} />
               <Route path={"/gymslocations"} exact component={Gym} />
               <Route path={"/clothing"} exact component={Clothing} />
-              {/* <Route  exact component={}/>
-            <Route path={"*"} exact component={} /> */}
+              <Route path={"/we"} exact component={WeightReport} />
+              <Route path={"/water"} exact component={WaterReport} />
             </Switch>
             {/* <Footer /> */}
           </Router>

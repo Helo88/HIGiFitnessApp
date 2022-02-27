@@ -42,7 +42,13 @@ ul {
   color: #35858B !important;
 
 }
+.slick-prev, .slick-next {
+  background-color: white !important;
+}
 
+.slick-prev:before, .slick-next:before {
+  color: #35858B !important;
+}
 .message {
   background-color: transparent !important;
 }

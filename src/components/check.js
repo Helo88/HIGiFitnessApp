@@ -6,7 +6,7 @@ import TrainerProfile from "./TrainerProfile";
 function Check() {
     const isLoggedIn = localStorage.token;
     const isStaff = localStorage.is_staff;
-    if ((isLoggedIn) && (isStaff ===  true)) {
+    if (isStaff ===  'true') {
       return(
         <TrainerProfile />
       );
@@ -15,17 +15,10 @@ function Check() {
     return( 
         <>
     <Community />
-    {/* <WeightTracker />   */}
     
     </>
     );
     
   }
-  
-//   ReactDOM.render(
-//     // Try changing to isLoggedIn={true}:
-//     <Check isLoggedIn={false} />,
-//     document.getElementById('root')
-//   );
 
   export default Check;

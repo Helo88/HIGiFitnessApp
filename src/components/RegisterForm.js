@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -381,11 +381,11 @@ const UserForm = () => {
             <label for="no"> &nbsp; No</label>
           </div>
           <br />
+          <Link to="/login">
           <button type="submit" className="btn" id="btn2">
-            Sign up
+            Sign Up
           </button>
-
-          <NotificationContainer />
+          </Link>
         </form>
       </div>
     </div>

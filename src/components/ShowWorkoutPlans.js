@@ -135,6 +135,7 @@ const ShowWorkoutPlans = (props) => {
                               </div>
                             </Link>
                           </span>
+                          <br />
                         </div>
                         <br />
                       </span>
