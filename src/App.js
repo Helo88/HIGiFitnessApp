@@ -49,8 +49,6 @@ function App() {
   const [isLoading, setLoading] = useState(true);
   const [workoutExercises, SetworkoutExercises] = useState([]);
   const [yogaExercises, SetyogaExercises] = useState([]);
-  const [workoutfavplan, Setworkoutfavplan] = useState([]);
-  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     axiosInstance.get(`${workoutplansapi}`).then((res) => {
