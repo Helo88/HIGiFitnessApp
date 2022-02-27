@@ -21,7 +21,7 @@ import TraineeProfile from "./components/TraineeProfile";
 // import ProtectedRoute from "./components/ProtectedRoute";
 // import LoggedInRoute from "./components/LoggedInRoute";
 import Water from "./components/Water";
-// import Check from "./components/check";
+import Check from "./components/check";
 // import TrainerProfile from "./components/TrainerProfile";
 // import EditTrainerProfile from "./components/EditTrainerProfile"
 // import Reminder from './components/Reminder'
@@ -32,6 +32,8 @@ import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "./style/App.css";
 import "./style/planStyle.css";
 import Navbar from "./components/Navbar";
+import WeightReport from "./components/WeightReport"
+import WaterReport from "./components/WaterReport";
 
 function App() {
   const [state, setState] = useState("start");
@@ -142,6 +144,7 @@ function App() {
               <StartYogaPlanExercise yogaExercises={yogaExercises} />
             )}
           ></Route>
+          <Route path={"/check"} exact component={Check} />  
           <Route path={"/healthytips"} exact component={HealthyTips} />
           <Route path={"/trainee"} exact component={TraineeProfile} />
           <Route path={"/login"} exact component={SignIn} />
@@ -150,6 +153,8 @@ function App() {
           <Route path={"/clothing"} exact component={Clothing} />
           {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
+          <Route path={"/we"} exact component={WeightReport} />
+          <Route path={"/water"} exact component={WaterReport} />
         </Switch>
         {/* <Footer /> */}
       </Router>
