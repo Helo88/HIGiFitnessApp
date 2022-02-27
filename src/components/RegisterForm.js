@@ -7,6 +7,10 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import "../style/Reg.css";
 import { axiosInstance } from "../js/network/index";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 
 const UserForm = () => {
   const history = useHistory();
@@ -48,6 +52,13 @@ const UserForm = () => {
     setUserForm({ ...userForm, [prop]: event.target.value });
   };
 
+  const handleSignup = (error) => {
+    if (error.email) {
+      NotificationManager.error(error.email[0]);
+    } else if (error.username) {
+      NotificationManager.error(error.username[0]);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
@@ -77,7 +88,10 @@ const UserForm = () => {
         console.log(res);
         console.log(res.data);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        console.log(error.response.data);
+        handleSignup(error.response.data);
+      });
   };
 
   const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -130,21 +144,7 @@ const UserForm = () => {
         usernameErr:
           e.target.value.length === 0 ? "This Field is required" : null,
       });
-    }
-    //  else if (e.target.name === "initialWeight") {
-    //   setUserForm({
-    //     ...userForm,
-    //     initialWeight: e.target.value,
-    //   });
-    //   setUserFormErrors({
-    //     ...userFormErrors,
-    //     initialWeightErr:
-    //       e.target.value.length === 0
-    //         ? "This Field is required"
-    //         : null,
-    //   });
-    // }
-    else if (e.target.name === "currentWeight") {
+    } else if (e.target.name === "currentWeight") {
       setUserForm({
         ...userForm,
         currentWeight: e.target.value,
@@ -198,6 +198,7 @@ const UserForm = () => {
         opacity: 0.8,
         backgroundRepeat: "no-repeat",
         backgroundSize: "100%",
+        backgroundAttachment: "fixed",
       }}
     >
       <h1 className="h1 pt-5 d-flex justify-content-center">
@@ -216,7 +217,7 @@ const UserForm = () => {
           <div className="mb-3">
             <h2 className="h2 mb-5">Register Now!</h2>
             <label htmlFor="exampleInputName" className="form-label h3">
-              Name
+              User Name
             </label>
             <input
               type="text"
@@ -374,7 +375,6 @@ const UserForm = () => {
             <label htmlFor="exampleInputGender" className="form-label h3">
               Do you have any chronic diseases?
             </label>{" "}
-            <br />
             <input type="radio" id="yes" name="medical" value="yes" />
             <label for="yes"> &nbsp; Yes</label> &nbsp; &nbsp;
             <input type="radio" id="no" name="medical" value="no" />
@@ -382,8 +382,8 @@ const UserForm = () => {
           </div>
           <br />
           <Link to="/login">
-          <button type="submit" className="btn">
-            Register
+          <button type="submit" className="btn" id="btn2">
+            Sign Up
           </button>
           </Link>
         </form>

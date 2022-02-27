@@ -10,51 +10,42 @@ import { axiosInstance } from "../js/network";
 const FavPlans = (props) => {
   const { WorkoutPlans, YogaPlans } = props;
   const [change, setChange] = useState(0);
-  const [calculation, setCalculation] = useState([]);
   const [favYogaPlan, setfavYogaPlan] = useState([]);
   const [favWorkoutPlan, setfavWorkoutPlan] = useState([]);
 
   const handleDelWorkoutPlan = (e) => {
-    localStorage.removeItem("workoutfavplanid");
-    axiosInstance.get("http://localhost:8000/deleteworkoutplan/").then((res)=>{
-      return axiosInstance.get("http://localhost:8000/workoutfavplan/")
-    });
+    localStorage.setItem("workoutPlan","null");
     setChange((c) => c + 1);
+    axiosInstance.get("http://localhost:8000/deleteworkoutplan/");
   };
 
   const handleDelYogaPlan = (e) => {
-    localStorage.removeItem("yogafavplanid");
-    axiosInstance.get("http://localhost:8000/deleteyogaplan/").then((res)=>{
-      return axiosInstance.get("http://localhost:8000/yogafavplan/")
-    });
+    localStorage.setItem("yogaPlan","null");
     setChange((c) => c + 1);
+    axiosInstance.get("http://localhost:8000/deleteyogaplan/");
   };
   useEffect(() => {
-    axiosInstance.get("http://localhost:8000/workoutfavplan/").then((res) => {
-      try {
-        setfavWorkoutPlan(
-          WorkoutPlans.filter(
-            (e) => e.id === Number(JSON.parse(res.data.result)[0].pk)
-            )
-            );
-          } catch {
-            setfavWorkoutPlan(res.data.result);
-          }
-    });
-    axiosInstance.get("http://localhost:8000/yogafavplan/").then((res) => {
-      try {
-        setfavYogaPlan(
-          YogaPlans.filter(
-            (e) => e.id === Number(JSON.parse(res.data.result)[0].pk)
-          )
-        );
-      } catch {
-        setfavYogaPlan(res.data.result);
-      }
-    });
-  },[]);
-  useEffect(()=>{},[change])
- 
+    try {
+      setfavWorkoutPlan(
+        WorkoutPlans.filter(
+          (e) => e.id === Number(localStorage.getItem("workoutPlan"))
+        )
+      );
+    } catch {
+      setfavWorkoutPlan(localStorage.getItem("workoutPlan"));
+    }
+    try {
+      setfavYogaPlan(
+        YogaPlans.filter(
+          (e) => e.id === Number(localStorage.getItem("yogaPlan"))
+        )
+      );
+    } catch {
+      setfavYogaPlan(localStorage.getItem("yogaPlan"));
+    }
+  }, [localStorage.getItem("workoutPlan"), localStorage.getItem("yogaPlan")]);
+  useEffect(() => {}, [change]);
+
   return (
     <main className="bg">
       <br />
@@ -64,7 +55,7 @@ const FavPlans = (props) => {
           Your Favorite <span className="text-info"> Workout </span>&nbsp; Plan
         </h1>
         <div className="col mb-6  d-flex ms-3 ">
-          {typeof favWorkoutPlan === "string" ? (
+          {favWorkoutPlan.length === 0 ? (
             <h3 className="tit">No Avaliable Workout Plans , Add One</h3>
           ) : (
             favWorkoutPlan.map((plan) => (
@@ -136,7 +127,7 @@ const FavPlans = (props) => {
           Your Favorite <span className="text-info"> Yoga </span>&nbsp; Plan
         </h1>
         <div className="col mb-6  d-flex ms-3 ">
-          {typeof favYogaPlan === "string" ? (
+          {favYogaPlan.length === 0 ? (
             <h3 className="tit">No Avaliable Yoga Plans , Add One</h3>
           ) : (
             favYogaPlan.map((plan) => (
