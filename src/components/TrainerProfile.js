@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../style/trainerProfile.css";
-// import avatar2 from "../images/avatar2.png";
+import avatar2 from "../images/avatar2.png";
 import avatar from "../images/av.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
 import { axiosInstance } from "../js/network/index";

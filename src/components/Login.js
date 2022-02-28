@@ -7,8 +7,14 @@ import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
 import img from "../images/wory.jpg"
 import "../style/login.css"
+
+
 const SignIn = () => {
   const history = useHistory();
   const [trainerDetail, setTrainerDetail] = useState({});
@@ -27,10 +33,18 @@ const SignIn = () => {
       [e.target.name]: e.target.value.trim(),
     });
   };
+
+  const handleLogin = () => {
+    setChangeLogin(true);
+  };
+  const handleError=()=>{
+    NotificationManager.error(
+      "Email or Password Is Invalid"
+    );
+  }
   const handleClickShowPassword = () => {
     setUserForm({ ...userForm, showPassword: !userForm.showPassword });
   };
-
   const handleClickShowconPassword = () => {
     setUserForm({ ...userForm, showconPassword: !userForm.showconPassword });
   };
@@ -64,30 +78,6 @@ const SignIn = () => {
         console.log("is_staff ", token["user"]["is_staff"]);
 
         return token;
-        //['token']:token['key'],'id':token['user']['id'
-
-        // axiosInstance.get('http://127.0.0.1:10000/workoutfavplan/', {
-        // 	// headers: headers
-        // 	//   })
-        // 	axiosInstance.put('http://127.0.0.1:8000/addWorkoutPlan/',{'id':8} ,{
-
-        // 	  })
-
-        //   .then((res) => {
-        //      console.log("mystate is ",state)
-        // 	// console.log(res.data)
-        // 	// console.log(res.data.fields)
-
-        //   })
-        //       .catch(err=>{
-        // 		console.log("login error")
-        // 		// history.push("/signup")
-        // 	})
-
-        // }
-        // else {
-        // 	history.push("/clothing")
-        // }
       })
       .then((token) => {
         if (token["user"]["is_staff"]) {
@@ -102,8 +92,8 @@ const SignIn = () => {
             .then((res) => {
               console.log(res);
               setTrainerDetail(() => res.fields);
-
               localStorage.setItem("age", res.fields.age);
+              localStorage.setItem("image", res.fields.image);
               localStorage.setItem("phone", res.fields.phoneNumber);
               localStorage.setItem("address", res.fields.address);
               console.log("my details ", trainerDetail);
@@ -120,9 +110,8 @@ const SignIn = () => {
             .then((data) => data.data.trainee[0])
             .then((res) => {
               console.log(res);
-
               localStorage.setItem("age", res.fields.age);
-              localStorage.setItem("currentWeight:", res.fields.currentWeight);
+              localStorage.setItem("currentWeight", res.fields.currentWeight);
               localStorage.setItem("height", res.fields.height);
               localStorage.setItem("trainerID", res.fields.trainerID);
               localStorage.setItem("workoutPlan", res.fields.workoutPlan);
@@ -134,6 +123,7 @@ const SignIn = () => {
 
       .catch((err) => {
         console.log("login error");
+        handleError();
         // history.push("/signup")
       });
   };
@@ -215,9 +205,10 @@ const SignIn = () => {
                 </form>
                 </div>
               </div>
-              
+
             </div>
             
+              <NotificationContainer />
           </div>
         </div>
       </div>

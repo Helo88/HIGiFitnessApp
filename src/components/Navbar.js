@@ -11,7 +11,6 @@ const Navbar = () => {
   let email = localStorage.getItem("email");
   let is_staff = localStorage.getItem("is_staff");
   const [changelogout, setChangeLogout] = useState(0);
-  const [changelogin, setChangeLogin] = useState(0);
 
   function logoutHandle() {
     axiosInstance.post("http://127.0.0.1:8000/rest-auth/logout/").then(() => {
@@ -20,12 +19,7 @@ const Navbar = () => {
     });
   }
 
-  useEffect(() => {
-    if (localStorage.getItem("email")) {
-      setChangeLogin((c) => c + 1);
-    }
-  }, []);
-  useEffect(() => {}, [changelogout, changelogin]);
+  useEffect(() => {}, [changelogout]);
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
@@ -150,7 +144,13 @@ const Navbar = () => {
               </li>
             </ul>
 
-            {token ? <li className="navbar-item">{email}</li> : <span></span>}
+            {token ? (
+              <Link to={localStorage.getItem("is_staff") === "false"?"/trainee":"trainer"}>
+                <li className="navbar-item">{email}</li>
+              </Link>
+            ) : (
+              <span></span>
+            )}
             <div className="d-grid gap-2 d-md-flex ">
               {token ? (
                 <Link
@@ -162,7 +162,7 @@ const Navbar = () => {
                   <strong>Log out</strong>
                 </Link>
               ) : (
-                <Link id="sign-btn" class="btn  hoverable" to={"/login"}>
+                <Link id="sign-btn" class="btn  hoverable" to={"/signup"}>
                   {" "}
                   <strong>Sign up</strong>
                 </Link>
@@ -174,9 +174,6 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <>
-                  {/* {() => {
-                  loginHandle();
-                }} */}
                   <span></span>
                 </>
               )}
