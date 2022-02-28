@@ -105,4 +105,14 @@
 .bck{
     background-color: #35858B;
     height: 5vh;
+    padding-top: 1%;
+}
+#linee{
+    height: 2px;
+    margin: auto;
+    background-color: #072227;
+}
+
+#uname{
+    color: #072227;
 }

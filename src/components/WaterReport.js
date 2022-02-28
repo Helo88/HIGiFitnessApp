@@ -19,7 +19,7 @@ const [waterRep, setWaterRep] = useState([])
 
 useEffect(() => {
   fetchData();
-    },[waterRep]);
+    },[]);
 
     const fetchData = () => {
     axiosInstance.get('http://127.0.0.1:8000/dailyWater/')
@@ -69,6 +69,7 @@ useEffect(() => {
             display: true,
             text: 'Date',
             color: '#AEFEFF',
+            font: { size: "16" }
           },
           ticks: {
             major: {
@@ -90,6 +91,7 @@ useEffect(() => {
             display: true,
             text: 'Amount of Water',
             color: '#AEFEFF',
+            font: { size: "16" }
           },
           ticks: {
             major: {

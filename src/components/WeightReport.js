@@ -19,7 +19,7 @@ const [weightRep, setWeightRep] = useState([])
 
 useEffect(() => {
   fetchData();
-    },[weightRep]);
+    },[]);
 
     const fetchData = () => {
     axiosInstance.get('http://127.0.0.1:8000/TraineeWeightHistory/')
@@ -58,7 +58,7 @@ useEffect(() => {
           color: "white",
           align: "end",
           anchor: "end",
-          font: { size: "17" }
+          font: { size: "25" }
         }
       },
       scales: {
@@ -68,6 +68,7 @@ useEffect(() => {
             display: true,
             text: 'Date',
             color: '#AEFEFF',
+            font: { size: "20" }
           },
           ticks: {
             major: {
@@ -77,7 +78,7 @@ useEffect(() => {
             font: function() {
                 return {
                   weight: 'normal',
-                  size: '15'
+                  size: '19'
                 };
               
             }
@@ -89,6 +90,7 @@ useEffect(() => {
             display: true,
             text: 'Weight',
             color: '#AEFEFF',
+            font: { size: "20" }
           },
           ticks: {
             major: {

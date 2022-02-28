@@ -22,7 +22,7 @@ import TraineeProfile from "./components/TraineeProfile";
 // import LoggedInRoute from "./components/LoggedInRoute";
 import Water from "./components/Water";
 import Check from "./components/check";
-// import TrainerProfile from "./components/TrainerProfile";
+import TrainerProfile from "./components/TrainerProfile";
 // import EditTrainerProfile from "./components/EditTrainerProfile"
 // import Reminder from './components/Reminder'
 import { axiosInstance } from "./js/network";
@@ -155,6 +155,7 @@ function App() {
             <Route path={"*"} exact component={} /> */}
           <Route path={"/we"} exact component={WeightReport} />
           <Route path={"/water"} exact component={WaterReport} />
+          <Route path={"/tr"} exact component={TrainerProfile} />
         </Switch>
         {/* <Footer /> */}
       </Router>
