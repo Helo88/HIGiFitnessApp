@@ -6,7 +6,12 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import "../style/Reg.css";
-import  {axiosInstance} from "../js/network/index"
+import { axiosInstance } from "../js/network/index";
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+
 const UserForm = () => {
   const history=useHistory()
   const [userForm, setUserForm] = useState({
@@ -49,6 +54,13 @@ const UserForm = () => {
   };
   
 
+  const handleSignup = (error) => {
+    if (error.email) {
+      NotificationManager.error(error.email[0]);
+    } else if (error.username) {
+      NotificationManager.error(error.username[0]);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const data={
@@ -64,21 +76,25 @@ const UserForm = () => {
     console.log(data);
 
     axiosInstance
-			.post(`http://127.0.0.1:8000/users/registration/trainee/`, {
-        username:userForm.username,
-        age:userForm.age,
-        currentWeight:userForm.currentWeight,
-        height:userForm.height,
-        medicalHistory:true,
-        password1:userForm.password,
-        password2:userForm.conpassword,
-        email:userForm.email
-			})
-			.then((res) => {
-				history.push('/login')
-				console.log(res);
-				console.log(res.data);
-			}).catch((error)=>console.log(error.response.data))
+      .post(`http://127.0.0.1:8000/users/registration/trainee/`, {
+        username: userForm.username,
+        age: userForm.age,
+        currentWeight: userForm.currentWeight,
+        height: userForm.height,
+        medicalHistory: true,
+        password1: userForm.password,
+        password2: userForm.conpassword,
+        email: userForm.email,
+      })
+      .then((res) => {
+        history.push("/login");
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+        handleSignup(error.response.data);
+      });
   };
 
   const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
@@ -130,21 +146,7 @@ const UserForm = () => {
         ...userFormErrors,
         usernameErr: e.target.value.length === 0 ? "This Field is required" : null,
       });
-    }
-    //  else if (e.target.name === "initialWeight") {
-    //   setUserForm({
-    //     ...userForm,
-    //     initialWeight: e.target.value,
-    //   });
-    //   setUserFormErrors({
-    //     ...userFormErrors,
-    //     initialWeightErr:
-    //       e.target.value.length === 0
-    //         ? "This Field is required"
-    //         : null,
-    //   });
-    // } 
-    else if (e.target.name === "currentWeight") {
+    } else if (e.target.name === "currentWeight") {
       setUserForm({
         ...userForm,
         currentWeight: e.target.value,
@@ -208,8 +210,9 @@ const UserForm = () => {
       style={{
         backgroundImage: `url("https://www.panattasport.com/resources/home/home-fitness-home.jpg")`,
         opacity: 0.8,
-        backgroundRepeat:"no-repeat",
-        backgroundSize:'100%'
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "100%",
+        backgroundAttachment: "fixed",
       }}
     >
       <h1 className="h1 pt-5 d-flex justify-content-center">
@@ -379,17 +382,18 @@ const UserForm = () => {
           <div className="mb-3">
             <label htmlFor="exampleInputGender" className="form-label h3">
               Do you have any chronic diseases?
-            </label> <br/>
+            </label>{" "}
             <input type="radio" id="yes" name="medical" value="yes" />
             <label for="yes"> &nbsp; Yes</label> &nbsp; &nbsp;
             <input type="radio" id="no" name="medical" value="no"/>
             <label for="no"> &nbsp; No</label>
-            </div>
-            <br/>
-
-          <button type="submit" className="btn" >
-            Register
+          </div>
+          <br />
+          <Link to="/login">
+          <button type="submit" className="btn" id="btn2">
+            Sign Up
           </button>
+          </Link>
         </form>
       </div>
     </div>

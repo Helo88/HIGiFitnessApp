@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../style/trainerProfile.css";
-import avatar from "../images/avatar2.png";
+import avatar2 from "../images/avatar2.png";
+import avatar from "../images/av.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
 import { axiosInstance } from "../js/network/index";
 import { useHistory } from "react-router-dom";
@@ -64,11 +65,42 @@ const TrainerProfile = () => {
             <div class="card">
               <div class="card-body">
                 <div class="d-flex flex-column align-items-center text-center">
-                  <img src="" alt="Admin" class="rounded-circle" width="150" />
+                  <img
+                    src={`http://localhost:8000/media/${localStorage.getItem(
+                      "image"
+                    )}`}
+                    alt="Admin"
+                    class="rounded-circle"
+                    width="150"
+                  />
                 </div>
                 <div class="mt-3 d-flex flex-column align-items-center text-center">
                   <h4>{localStorage.getItem("username")}</h4>
-                  <p class="text-secondary mb-1">Fitness Trainer</p>
+                  <p class="text-secondary mb-2">Fitness Trainer</p>
+                </div>
+                <div className="row mt-3  text-black">
+                  <div className="col-5">Name </div>
+                  <div className="col-5">Status </div>
+                  <div className="col-2 ">Age </div>
+                </div>
+                <div className="row mt-3 ">
+                  <div className="col-5">
+                    {localStorage.getItem("username")}
+                  </div>
+                  <div className="col-5">Active</div>
+                  <div className="col-2">{localStorage.getItem("age")}</div>
+                </div>
+                <div className="row mt-3  text-black">
+                  <div className="col-5">Email </div>
+                  <div className="col-5 ">Address </div>
+                  <div className="col-2 ">Phone </div>
+                </div>
+                <div className="row mt-3 ">
+                  <div className="col-5">{localStorage.getItem("email")}</div>
+                  <div className="col-5">
+                    {localStorage.getItem("address")}{" "}
+                  </div>
+                  <div className="col-2">{localStorage.getItem("phone")} </div>
                 </div>
                 <br /> <br />
                 <button

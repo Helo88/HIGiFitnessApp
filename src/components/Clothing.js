@@ -3,29 +3,25 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
-
-
 import "../style/clothing.css";
 
 export const Clothing = () => {
-  // let [apidata,setdata]=useState([])
-  // useEffect(()=>{
-  //  const url='http://127.0.0.1:8000/yogaexercises/'
-  //   fetch(url).then((data)=>data.json()).then((data)=>{console.log(data);setdata(data)})
-  // },[])
-
+  const handleMap = () => {
+    var googleMapSrc = `http://maps.google.com/maps/search/nearst+gym+clothing+shops`;
+    window.open(googleMapSrc, "_blank");
+  };
 
   return (
     // here do smth like <ul> apidata.map((ele)=><li key=ele.id > ele</li> </ul>)
     <>
       {/***************************** *first section ***********************************/}
+
       <div className="px-2 " id="clothingIntro">
         <div className="container pt-2 mt-5">
           <main id="clothingMain" className="">
             <h1 className="mb-5 text-center text-uppercase fw-bold ">
               First Time Workout Or Yoga ?!
             </h1>
-
             <div className="mx-auto p-1 text-center w-50" id="quote">
               <img
                 style={{ width: "50px", height: "50px" }}
@@ -390,7 +386,17 @@ export const Clothing = () => {
         <h1 className="col-12 col-md-7 mt-5 p-5">
           lets find the nearest shops to you !
         </h1>
-       <div id="inside"className="col-12 mt-5 offset-0 offset-md-7 col-md-4" title="click me"></div>
+        <div
+          id="inside"
+          className="col-12 mt-5 offset-0 offset-md-7 col-md-4"
+          title="click me"
+          onClick={() => {
+            handleMap();
+          }}
+        >
+          {" "}
+          Click Me
+        </div>
       </div>
     </>
   );
