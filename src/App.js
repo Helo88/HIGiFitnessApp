@@ -153,14 +153,8 @@ function App() {
           <Route path={"/signup"} exact component={UserForm} />
           <Route path={"/gymslocations"} exact component={Gym} />
           <Route path={"/clothing"} exact component={Clothing} />
-          {/* <Route path={"/traineeInfo"} exact component={TraineeInfo} YogaPlans={yogaPlans} WorkoutPlans={workoutPlans} /> */}
-          <Route
-            exact
-            path="/traineeInfo"
-            render={() => (
-              <TraineeInfo  />
-            )}
-          ></Route>
+          <Route path={"/traineeInfo"} exact component={TraineeInfo}  />
+         
           {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
           {/* <Route path={"/we"} exact component={WeightReport} />

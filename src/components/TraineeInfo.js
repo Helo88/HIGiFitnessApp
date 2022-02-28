@@ -72,7 +72,8 @@ const Traineeinfo = (props) => {
 
 
       <br />
-    </div>        )).reverse()
+    </div>  
+          )).reverse()
   }
 
     </>
