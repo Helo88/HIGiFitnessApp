@@ -22,7 +22,7 @@ import TraineeProfile from "./components/TraineeProfile";
 // import LoggedInRoute from "./components/LoggedInRoute";
 import Water from "./components/Water";
 import Check from "./components/check";
-// import TrainerProfile from "./components/TrainerProfile";
+import TrainerProfile from "./components/TrainerProfile";
 // import EditTrainerProfile from "./components/EditTrainerProfile"
 // import Reminder from './components/Reminder'
 import { axiosInstance } from "./js/network";
@@ -148,12 +148,19 @@ function App() {
           <Route path={"/check"} exact component={Check} />  
           <Route path={"/healthytips"} exact component={HealthyTips} />
           <Route path={"/trainee"} exact component={TraineeProfile} />
+          <Route path={"/trainer"} exact component={TrainerProfile} />
           <Route path={"/login"} exact component={SignIn} />
           <Route path={"/signup"} exact component={UserForm} />
           <Route path={"/gymslocations"} exact component={Gym} />
           <Route path={"/clothing"} exact component={Clothing} />
-          <Route path={"/traineeInfo"} exact component={TraineeInfo} YogaPlans={yogaPlans} WorkoutPlans={workoutPlans} />
-
+          {/* <Route path={"/traineeInfo"} exact component={TraineeInfo} YogaPlans={yogaPlans} WorkoutPlans={workoutPlans} /> */}
+          <Route
+            exact
+            path="/traineeInfo"
+            render={() => (
+              <TraineeInfo  />
+            )}
+          ></Route>
           {/* <Route  exact component={}/>
             <Route path={"*"} exact component={} /> */}
           {/* <Route path={"/we"} exact component={WeightReport} />

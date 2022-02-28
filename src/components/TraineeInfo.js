@@ -1,86 +1,81 @@
 import React from 'react';
 import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { axiosInstance } from "../js/network/index";
 
 const Traineeinfo = (props) => {
-    const { WorkoutPlans, YogaPlans } = props;
     const [favYogaPlan, setfavYogaPlan] = useState([]);
     const [favWorkoutPlan, setfavWorkoutPlan] = useState([]);
-  
+    const [waterHistory, setWaterHistory] = useState([]);
+    const [weightHistory, setWeightHistory] = useState([]);
+    const [userInfo, setuserInfo] = useState([]);
+    const location = useLocation()
+    let id = location.state
+    console.log(id)
     useEffect(() => {
 
         axiosInstance
-          .get("http://127.0.0.1:8000/traineeInfo/6")
-          .then((res) => {
-            console.log(res.data.workout);
-            console.log("yoga")
-            console.log(res.data.yoga);
-            console.log(res.data.waterHistory);
-            console.log(res.data.weightHistory);
-            try {
-                setfavWorkoutPlan(
-                  WorkoutPlans.filter(
-                    (e) => e.id === Number(JSON.parse(res.data.workout)[0].pk)
-                    )
-                    );
-                  } catch {
-                    setfavWorkoutPlan(res.data.workout);
-                  }
-            })
-            .then((res) => {
-                console.log(res.data.yoga);
-                try {
-                    setfavYogaPlan(
-                      WorkoutPlans.filter(
-                        (e) => e.id === Number(JSON.parse(res.data.yoga)[0].pk)
-                        )
-                        );
-                      } catch {
-                        setfavYogaPlan(res.data.yoga);
-                      }
-                })
-           })
+          .get(`http://127.0.0.1:8000/traineeInfo/${id}`).then((res) => {
+            console.log(res.data.workout)
+            console.log(res.data.yoga)
+            console.log(res.data.water)
+            console.log(res.data.weight)
+            console.log(res.data.userInfo)
+            setWaterHistory(res.data.water)
+            setWeightHistory(res.data.weight)
+            setuserInfo(res.data.userInfo)
+            setfavWorkoutPlan(res.data.workout[0].fields);
+            setfavYogaPlan(res.data.yoga[0].fields);
+            // setWaterHistory(waterHistory.reverse())
+
+          }).then(res=>{
+            console.log(userInfo)
+            console.log(waterHistory)
+            console.log(weightHistory)
+          });
+           },[])
+
+
+           
     return (
-        <div>
-            {favWorkoutPlan.map((plan) => (
-              <div
-                key={plan.id}
-                className="list-group-item  justify-content-between align-items-center"
-              >
-                <span>
-                  <div className="row mt-2 shadow-sm ">
-                    <span className="main2 col text-center mt-3 mb-3 ">
-                        {plan.name}
+      <>
+        <div className='py-2'><span className='h3'>UserName: </span>{userInfo.username}</div>
+        <div className='py-2'><span className='h3'>Email: </span >{userInfo.email}</div>
+        <div className='py-2'><span className='h3'>Age: </span >{userInfo.age}</div>
+        <div className='py-2'><span className='h3'>medical History: </span >{userInfo.medicalHistory==false?"No":"Yes"}</div>
+        <div className='py-2'><span className='h3'>Workout Plan: </span>{favWorkoutPlan.name}</div>
+        <div className='py-2'><span className='h3'>Yoga Plan: </span>{favYogaPlan.name}</div>
+  
+  <h1 className='text-danger text-center h1'>Water Report</h1>      
+  {
+    waterHistory.map((day,index)=>(
+      <div
+      key={day.id}
+      className="px-5" >
+      <span>
+         <span>Day-{index+1} : </span>{day.dailyAmount}
+      </span>
 
-                    </span>
-                    <br />
-                  </div>
-                </span>
+    </div>        )).reverse()
+  }
+  <h1 className='text-danger text-center h1'>Weight Report</h1>      
 
-                <br />
-              </div>
-            ))
-}
-{favYogaPlan.map((plan) => (
-              <div
-                key={plan.id}
-                className="list-group-item  justify-content-between align-items-center"
-              >
-                <span>
-                  <div className="row mt-2 shadow-sm ">
-                    <span className="main2 col text-center mt-3 mb-3 ">
-                        {plan.name}
+  {
+    
+    weightHistory.map((day,index)=>(
+      <div
+      key={day.id}
+      className="px-5" >
+            <span>
+         <span>Day-{index+1} : </span>{day.fields.traineeWeight}
+      </span>
 
-                    </span>
-                    <br />
-                  </div>
-                </span>
 
-                <br />
-              </div>
-            ))
-}
-        </div>
+      <br />
+    </div>        )).reverse()
+  }
+
+    </>
     );
 }
 
