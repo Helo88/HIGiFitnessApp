@@ -169,7 +169,7 @@ const TrainerProfile = () => {
                           <div className="text-center mt-3" key={client.pk}>
                             <Link
                               to={{
-                                pathname: "/",
+                                pathname: "/TraineeInfo",
                                 state: client.pk,
                               }}
                             >
