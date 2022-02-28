@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../style/trainerProfile.css";
+import avatar2 from "../images/avatar2.png";
 import avatar from "../images/av.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
 import { axiosInstance } from "../js/network/index";
@@ -53,9 +54,7 @@ const TrainerProfile = () => {
   };
   const showClients = () => {
     axiosInstance.get("getTrainerClients/").then((data) => {
-      console.log("kmckjdllldlkl", data.data.result);
-      setClients(data.data.result.reverse());
-      console.log(clients);
+      setClients(data.data.result);
     });
   };
   return (
@@ -161,26 +160,32 @@ const TrainerProfile = () => {
                   </form>
                 ) : check ? (
                   <>
+                
                     <h1 className="text-white bck">Clients</h1>
                     <ul class="list-group list-group-flush">
                       {clients.map((client) => {
                         return (
-                          <div className="text-center" key={client.pk}>
+                         
+                          <div className="text-center mt-3" key={client.pk}>
                             <Link
                               to={{
-                                pathname: "/workoutexercises",
+                                pathname: "/",
                                 state: client.pk,
                               }}
                             >
                               <img
                                 className="rounded-circle"
-                                width="50"
+                                width="60"
                                 src={`${avatar}`}
                               />
-                              {client.fields.age}
+                              <br />
+                              <span id="uname">{client.fields.username}</span>
+                              <br/>
                             </Link>
-                            <br />
+                            <br/>
+                            <hr className="col-md-4 d-flex align-content-center" id="linee" />
                           </div>
+                          
                         );
                       })}
                     </ul>
