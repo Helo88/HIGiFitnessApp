@@ -34,9 +34,7 @@ const SignIn = () => {
     });
   };
 
-  const handleLogin = () => {
-    setChangeLogin(true);
-  };
+
   const handleError=()=>{
     NotificationManager.error(
       "Email or Password Is Invalid"

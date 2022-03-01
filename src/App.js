@@ -33,9 +33,10 @@ import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "./style/App.css";
 import "./style/planStyle.css";
 import Navbar from "./components/Navbar";
-// import WeightReport from "./components/WeightReport"
-// import WaterReport from "./components/WaterReport";
+import WeightReport from "./components/WeightReport"
+import WaterReport from "./components/WaterReport";
 import TraineeInfo from "./components/TraineeInfo";
+import Testgettrainers from "./components/TestGetTrainers";
 
 export const LoginContext = createContext();
 function App() {
@@ -164,6 +165,8 @@ function App() {
               <Route path={"/we"} exact component={WeightReport} />
               <Route path={"/water"} exact component={WaterReport} />
               <Route path={"/traineeInfo"} exact component={TraineeInfo}  />
+              <Route path={"/test"} exact component={Testgettrainers}  />
+              
             </Switch>
             {/* <Footer /> */}
           </Router>

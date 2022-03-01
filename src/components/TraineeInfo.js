@@ -12,6 +12,19 @@ const Traineeinfo = (props) => {
     const location = useLocation()
     let id = location.state
     console.log(id)
+    // 
+    useEffect(() => {
+      axiosInstance
+          .get(`http://127.0.0.1:8000/traineeInfoData/${id}`)
+          .then((res)=>{
+            console.log(res.data.userInfo)
+            setuserInfo(res.data.userInfo)
+
+          }).then(()=>{
+            console.log(userInfo)
+
+          })
+    },[])
     useEffect(() => {
 
         axiosInstance
@@ -20,18 +33,28 @@ const Traineeinfo = (props) => {
             console.log(res.data.yoga)
             console.log(res.data.water)
             console.log(res.data.weight)
-            console.log(res.data.userInfo)
             setWaterHistory(res.data.water)
             setWeightHistory(res.data.weight)
-            setuserInfo(res.data.userInfo)
-            setfavWorkoutPlan(res.data.workout[0].fields);
-            setfavYogaPlan(res.data.yoga[0].fields);
-            // setWaterHistory(waterHistory.reverse())
+            if(res.data.workout[0].fields){
+               setfavWorkoutPlan(res.data.workout[0].fields);
+            }
+            else{
+              setfavWorkoutPlan(res.data.workout);
+            }
+            if(res.data.yoga[0].fields){
+              setfavYogaPlan(res.data.yoga[0].fields);
+            }
+           else{
+             setfavYogaPlan(res.data.yoga);
+           }
 
           }).then(res=>{
-            console.log(userInfo)
-            console.log(waterHistory)
-            console.log(weightHistory)
+            console.log(typeof(waterHistory))
+            console.log("type is :"+typeof(favWorkoutPlan))
+            console.log("fav is :"+favWorkoutPlan)
+            console.log("type is :"+typeof(favYogaPlan))
+            console.log("fav is :"+favYogaPlan)
+            
           });
            },[])
 
@@ -39,15 +62,22 @@ const Traineeinfo = (props) => {
            
     return (
       <>
-        <div className='py-2'><span className='h3'>UserName: </span>{userInfo.username}</div>
-        <div className='py-2'><span className='h3'>Email: </span >{userInfo.email}</div>
-        <div className='py-2'><span className='h3'>Age: </span >{userInfo.age}</div>
-        <div className='py-2'><span className='h3'>medical History: </span >{userInfo.medicalHistory==false?"No":"Yes"}</div>
-        <div className='py-2'><span className='h3'>Workout Plan: </span>{favWorkoutPlan.name}</div>
-        <div className='py-2'><span className='h3'>Yoga Plan: </span>{favYogaPlan.name}</div>
-  
+        <div className='p-2'><span className='h3'>UserName: </span>{userInfo.username}</div>
+        <div className='p-2'><span className='h3'>Email: </span >{userInfo.email}</div>
+        <div className='p-2'><span className='h3'>Age: </span >{userInfo.age}</div>
+        <div className='p-2'><span className='h3'>medical History: </span >{userInfo.medicalHistory==false?"No":"Yes"}</div>
+        {typeof(favWorkoutPlan)!="string"?
+        <div className='p-2'><span className='h3'>Workout Plan: </span>{favWorkoutPlan.name}</div>
+        :<div className='p-2'><span className='h3'>Workout Plan: </span> {favWorkoutPlan}</div>
+      }
+      {typeof(favYogaPlan)!="string"?
+        <div className='p-2'><span className='h3'>Yoga Plan: </span>{favYogaPlan.name}</div>
+        :<div className='p-2'><span className='h3'>Yoga Plan: </span> {favYogaPlan}</div>
+
+    }
   <h1 className='text-danger text-center h1'>Water Report</h1>      
   {
+    typeof(waterHistory)!="string"?
     waterHistory.map((day,index)=>(
       <div
       key={day.id}
@@ -57,11 +87,12 @@ const Traineeinfo = (props) => {
       </span>
 
     </div>        )).reverse()
+    :<div className='text-center'> <h3>{waterHistory}</h3></div>
   }
   <h1 className='text-danger text-center h1'>Weight Report</h1>      
 
   {
-    
+    typeof(weightHistory)!="string"?
     weightHistory.map((day,index)=>(
       <div
       key={day.id}
@@ -74,7 +105,8 @@ const Traineeinfo = (props) => {
       <br />
     </div>  
           )).reverse()
-  }
+          :<div className='text-center'> {weightHistory}</div>
+        }
 
     </>
     );
