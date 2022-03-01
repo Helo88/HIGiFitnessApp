@@ -30,12 +30,13 @@ const Testgettrainers = () => {
         className="px-5" >
         <span>
         <button
-                  className="btn col-md-3"
+                  className="btn col-md-3 my-2"
                   id="btnn1"
                   onClick={() => setTrainer(trainer.id)}
         >
+                       <span >trainer-{index+1} : </span>{trainer.username}
+
           </button>
-           <span >trainer-{index+1} : </span>{trainer.username}
         </span>
   
       </div>        ))
