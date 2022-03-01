@@ -1,14 +1,16 @@
 
-  #form {
-    background-color: #35858B;
+  #Trainer_Profile #form {
+    /* background-color: #35858B; */
     border-radius: 20px;
     box-sizing: border-box;
-    height: 70vh;
+    height: fit-content;
     padding: 20px;
-    width: 50vw;
+   
+   
   }
   
-  #title {
+ 
+  #Trainer_Profile #title {
     color: white;
     font-size: 36px;
     font-weight: 600;
@@ -16,20 +18,24 @@
   }
   
   
-  .input-container {
+  
+  #Trainer_Profile .input-container {
     background-color: #072227;
+    border-radius: 5px;
+    padding: 5px;
     height: 50px;
     position: relative;
     width: 100%;
+    
   }
   
- 
-  #submit {
+
+  #submit,#reset,#edit,#changePassword{
     background-color: #072227;
-    border-radius: 12px;
+    border-radius: 5px;
     color: white;
     margin-left: 42%;
-    height: 8%;
+    padding: 5px 20px;
     text-align: center;
    
   }
@@ -39,3 +45,29 @@
     color: #072227;
   }
   
+  #Trainer_Profile .password{
+    border-left: 3px dotted var(--sColor);
+  }
+  
+ 
+  #Trainer_Profile  #Trainer_Profile h2{
+    color: var(--sColor);
+  }
+ 
+  #Trainer_Profile  #trainerPostList > li >Link {
+    color: var(--sColor);
+  }
+  
+  #Trainer_Profile #profileData span{
+    color: var(--sColor);
+  }
+  
+  #Trainer_Profile #profileData  p{
+    padding: 5px 0px;
+  }
+
+#editTrainerForm .container .input-container , #changePasswordForm  .container .input-container{
+display: block;
+margin-bottom: 70px;
+/* border: 3px solid green; */
+  }

@@ -1,5 +1,4 @@
-import Water from "./Water";
-import WeightTracker from "./weightTracker";
+
 import Community from "./Community";
 import TrainerProfile from "./TrainerProfile";
 

@@ -35,6 +35,7 @@ import "./style/planStyle.css";
 import Navbar from "./components/Navbar";
 import WeightReport from "./components/WeightReport"
 import WaterReport from "./components/WaterReport";
+import Posts from "./components/Posts"
 
 export const LoginContext = createContext();
 function App() {
@@ -162,6 +163,8 @@ function App() {
               <Route path={"/clothing"} exact component={Clothing} />
               <Route path={"/we"} exact component={WeightReport} />
               <Route path={"/water"} exact component={WaterReport} />
+              <Route path={"/check"} exact component={Check}/>
+              <Route path={"/posts"} exact component={Posts} />
             </Switch>
             {/* <Footer /> */}
           </Router>

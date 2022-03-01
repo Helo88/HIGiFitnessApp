@@ -1,68 +1,82 @@
-#btnn1{
+
+  #Trainer_Profile #btnn1{
     color: white;
     background-color: #072227;
     margin-left: 1%;
 } 
 
-#btnn1:hover{
+
+#Trainer_Profile #btnn1:hover{
     color: white;
     background-color: #35858B;
    
 }  
-#btnn2{
+
+#Trainer_Profile #btnn2{
     color: white;
     background-color: #072227;
     margin-left: 1%;
 } 
 
-#btnn2:hover{
+
+#Trainer_Profile #btnn2:hover{
     color: white;
     background-color: #35858B;
    
 } 
-#btnn3{
+
+#Trainer_Profile #btnn3{
     color: white;
     background-color: #072227;
     margin-left: 1%;
 } 
 
-#btnn3:hover{
+
+#Trainer_Profile #btnn3:hover{
     color: white;
     background-color: #35858B;
    
 } 
-#btnn4{
+
+#Trainer_Profile #btnn4{
     color: white;
     background-color: #072227;
     margin-left: 1%;
 } 
 
-#btnn4:hover{
+
+#Trainer_Profile #btnn4:hover{
     color: white;
     background-color: #35858B;
    
 } 
-#btnn5{
+
+#Trainer_Profile #btnn5{
     color: white;
     background-color: #072227;
 
 } 
 
-#btnn5:hover{
+
+#Trainer_Profile #btnn5:hover{
     color: white;
     background-color: #35858B;
    
 } 
 
     
-.main-body {
+
+#Trainer_Profile .main-body {
     padding: 15px;
 }
-.card {
+
+#Trainer_Profile .card {
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
 }
 
-.card {
+
+#Trainer_Profile .card {
+    padding: 10px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -70,14 +84,16 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
+    /* border: 7px solid rgba(0,0,0,.125); */
     border-radius: .25rem;
+    
 }
 
-.card-body {
+#Trainer_Profile  .card-body {
     flex: 1 1 auto;
     min-height: 1px;
     padding: 1rem;
+  
 }
 
 .gutters-sm {
@@ -95,9 +111,13 @@
 
 .bg-gray-300 {
     background-color: #e2e8f0;
+    min-height: 100vh;
+    height: fit-content;
+    
 }
 .h-100 {
-    height: 100%!important;
+    min-height: 100vh!important;
+    height: fit-content!important;
 }
 .shadow-none {
     box-shadow: none!important;
@@ -105,7 +125,6 @@
 .bck{
     background-color: #35858B;
     height: 5vh;
-    padding-top: 1%;
 }
 #linee{
     height: 2px;
