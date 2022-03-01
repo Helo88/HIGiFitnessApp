@@ -33,6 +33,9 @@ import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "./style/App.css";
 import "./style/planStyle.css";
 import Navbar from "./components/Navbar";
+import WeightReport from "./components/WeightReport"
+import WaterReport from "./components/WaterReport";
+import Posts from "./components/Posts"
 // import WeightReport from "./components/WeightReport"
 // import WaterReport from "./components/WaterReport";
 import TraineeInfo from "./components/TraineeInfo";
@@ -163,6 +166,8 @@ function App() {
               <Route path={"/clothing"} exact component={Clothing} />
               <Route path={"/we"} exact component={WeightReport} />
               <Route path={"/water"} exact component={WaterReport} />
+              <Route path={"/check"} exact component={Check}/>
+              <Route path={"/posts"} exact component={Posts} />
               <Route path={"/traineeInfo"} exact component={TraineeInfo}  />
             </Switch>
             {/* <Footer /> */}
