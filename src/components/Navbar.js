@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
+import Swal from "sweetalert2/dist/sweetalert2.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "../style/NavCSS.css";
@@ -7,19 +8,39 @@ import mylogo from "../images/logo.jpg";
 import { axiosInstance } from "../js/network/index";
 
 const Navbar = () => {
+  const location = useLocation();
+  const history = useHistory();
   let token = localStorage.getItem("token");
   let email = localStorage.getItem("email");
   let is_staff = localStorage.getItem("is_staff");
-  const [changelogout, setChangeLogout] = useState(0);
 
   function logoutHandle() {
     axiosInstance.post("http://127.0.0.1:8000/rest-auth/logout/").then(() => {
       localStorage.clear();
-      setChangeLogout((c) => c + 1);
+      history.push("/");
     });
   }
 
-  useEffect(() => {}, [changelogout]);
+  useEffect(() => {}, [location]);
+
+  async function setIssue() {
+    const { value: content } = await Swal.fire({
+      input: "textarea",
+      title: "Report an Issue",
+      inputLabel: "Message",
+      confirmButtonColor: "#35858B",
+      confirmButtonText: "Send",
+      inputPlaceholder: "Type your message here...",
+      inputAttributes: {
+        "aria-label": "Type your message here",
+      },
+      showCancelButton: true,
+    });
+    axiosInstance.post("http://127.0.0.1:8000/users/reportIssue/", {
+      content: content,
+    });
+  }
+
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
@@ -64,6 +85,12 @@ const Navbar = () => {
                 </Link>
               </li>
 
+              <li className="nav-item hoverable">
+                <Link className="nav-link" to={"/posts"}>
+                  {" "}
+                  <strong>Community</strong>
+                </Link>
+              </li>
               <li className="nav-item dropdown" id="myDropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -101,13 +128,13 @@ const Navbar = () => {
                     </Link>
                     <ul class="submenu dropdown-menu">
                       <li>
-                        <Link class="dropdown-item" to={""}>
+                        <Link class="dropdown-item" to={"/water"}>
                           {" "}
                           Water Tracker
                         </Link>
                       </li>
                       <li>
-                        <Link class="dropdown-item" to={""}>
+                        <Link class="dropdown-item" to={"/we"}>
                           Weight Tracker
                         </Link>
                       </li>
@@ -119,38 +146,78 @@ const Navbar = () => {
                       </li>
                     </ul>
                   </li>
-                  <hr className="navbar-divider" />
-                  <li>
-                    <Link class="dropdown-item important" to={""}>
+                  {localStorage.getItem("is_staff") === "false" ? (
+                    <Link class="dropdown-item" to="/choosetrainer">
                       {" "}
+                      Choose Trainer{" "}
+                    </Link>
+                  ) : null}
+                  <hr className="navbar-divider" />
+                  <li onClick={() => setIssue()}>
+                    <Link className="dropdown-item">
                       <strong>Report an issue </strong>{" "}
                     </Link>
                   </li>
                 </ul>
               </li>
+              {localStorage.getItem("is_staff") === "false" ? (
+                <li className="nav-item hoverable">
+                  <Link className="nav-link" to={"/favplans"}>
+                    {" "}
+                    <strong>Favourite Plans</strong>
+                  </Link>
+                </li>
+              ) : null}
 
               <li className="nav-item hoverable">
-                <Link className="nav-link" to={"/favplans"}>
-                  {" "}
-                  <strong>Favourite Plans</strong>
-                </Link>
-              </li>
-
-              <li className="nav-item hoverable">
-                <Link className="nav-link" to={""}>
+                <Link className="nav-link" to="/joinus">
                   {" "}
                   <strong>Join Us</strong>
                 </Link>
               </li>
             </ul>
-
             {token ? (
-              <Link to={localStorage.getItem("is_staff") === "false"?"/trainee":"trainer"}>
-                <li className="navbar-item">{email}</li>
-              </Link>
+              <li className="nav-item dropdown" id="myDropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to={""}
+                  data-bs-toggle="dropdown"
+                >
+                  {" "}
+                  <strong>Profile</strong>{" "}
+                </Link>
+                <ul className="dropdown-menu">
+                  <li>
+                    {" "}
+                    <Link
+                      className="dropdown-item"
+                      to={
+                        localStorage.getItem("is_staff") === "false"
+                          ? "/trainee"
+                          : "trainer"
+                      }
+                    >
+                      {" "}
+                      <li className="navbar-item hoverable">{email}</li>
+                    </Link>
+                  </li>
+                  {localStorage.getItem("is_staff") === "false" ? (
+                    <li>
+                      {" "}
+                      <Link className="dropdown-item" to={"/taskmanagar"}>
+                        {" "}
+                        <li className="navbar-item">Your Task Manager</li>
+                      </Link>
+                    </li>
+                  ) : (
+                    <span></span>
+                  )}
+                </ul>
+              </li>
             ) : (
               <span></span>
             )}
+
             <div className="d-grid gap-2 d-md-flex ">
               {token ? (
                 <Link

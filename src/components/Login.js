@@ -7,11 +7,13 @@ import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import img from "../images/wory.jpg"
+// import img from "../images/wory.jpg"
 import "../style/login.css"
 
 
@@ -34,12 +36,11 @@ const SignIn = () => {
     });
   };
 
-  const handleLogin = () => {
-    setChangeLogin(true);
-  };
-  const handleError=()=>{
+
+  const handleError=(err)=>{
+    console.log(err)
     NotificationManager.error(
-      "Email or Password Is Invalid"
+      err
     );
   }
   const handleClickShowPassword = () => {
@@ -56,12 +57,39 @@ const SignIn = () => {
   const handlePasswordChange = (prop) => (event) => {
     setUserForm({ ...userForm, [prop]: event.target.value });
   };
+  async function resetPassword() {
+    const { value: email } = await Swal.fire({
+      title: 'Input email address',
+      input: 'email',
+      inputLabel: 'Your email address',
+      inputPlaceholder: 'Enter your email address'
+    })
+    
+    if (email) {
+      Swal.fire(`Password reset e-mail has been sent`)
+      resetPasswordLink(email)
+    }
+
+  }
+ const resetPasswordLink=(email) => {
+ 
+  axiosInstance.post('rest-auth/password/reset/',{'email':email})
+ .then(()=>console.log("email is sent"))
+
+.catch(()=>console.log("getRequestFailed"))
+}
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userForm);
+    for (let i in userForm){
+     if(userForm[i].length==0) {
+       NotificationManager.error("Fill the Required Fields")
+      return
+     }
+    }
 
     axiosInstance
-      .post(`http://127.0.0.1:8000/users/login/`, {
+      .post(`users/login/`, {
         email: userForm.email,
         password: userForm.password,
       })
@@ -82,18 +110,23 @@ const SignIn = () => {
       .then((token) => {
         if (token["user"]["is_staff"]) {
           axiosInstance
-            .get(`http://127.0.0.1:8000/users/trainerDetail/`, {
+            .get(`users/trainerDetail/`, {
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `Token ${token["key"]}`,
               },
             })
-            .then((data) => data.data.trainer[0])
+            .then((data)=>{console.log(data);return data})
+            .then((data) => {
+              console.log(data.data.age)
+              localStorage.setItem("age", data.data.age);
+             return data.data.trainer[0]
+            })
             .then((res) => {
-              console.log(res);
+              console.log("res n   " + res);
               setTrainerDetail(() => res.fields);
-              localStorage.setItem("age", res.fields.age);
               localStorage.setItem("image", res.fields.image);
+              localStorage.setItem("dateOfBirth", res.fields.dateOfBirth);
               localStorage.setItem("phone", res.fields.phoneNumber);
               localStorage.setItem("address", res.fields.address);
               console.log("my details ", trainerDetail);
@@ -101,16 +134,20 @@ const SignIn = () => {
             .then(history.push("/"));
         } else {
           axiosInstance
-            .get(`http://127.0.0.1:8000/users/traineeDetail/`, {
+            .get(`users/traineeDetail/`, {
               headers: {
                 "Content-Type": "application/json",
                 Authorization: `Token ${token["key"]}`,
               },
             })
-            .then((data) => data.data.trainee[0])
+            .then((data) => {
+              console.log(data.data.age)
+              localStorage.setItem("age", data.data.age);
+             return data.data.trainee[0]
+            })
             .then((res) => {
               console.log(res);
-              localStorage.setItem("age", res.fields.age);
+              localStorage.setItem("dateOfBirth", res.fields.dateOfBirth);
               localStorage.setItem("currentWeight", res.fields.currentWeight);
               localStorage.setItem("height", res.fields.height);
               localStorage.setItem("trainerID", res.fields.trainerID);
@@ -123,7 +160,9 @@ const SignIn = () => {
 
       .catch((err) => {
         console.log("login error");
-        handleError();
+        let errMsg=err.response.data.detail.toString()
+        console.log("err ",errMsg)
+        handleError(errMsg);
         // history.push("/signup")
       });
   };
@@ -133,7 +172,7 @@ const SignIn = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-6 order-md-2 ">
-              <img src={img} alt="Image" className="img-fluid"/>
+              <img src={'/assets/images/login.jpg'} alt="Image" className="img-fluid"/>
             </div>
             <div className="col-md-6 contents">
               <div className="row justify-content-center">
@@ -178,17 +217,18 @@ const SignIn = () => {
             />
                     
                   </div>
-                  {/*                   
-                  <div className="d-flex mb-5 align-items-center">
-                    <label className="control control--checkbox mb-0"><span className="caption">Remember me</span>
-                      <input type="checkbox" checked="checked"/>
-                      <div className="control__indicator"></div>
-                    </label>
-                    <span className="ml-auto"><a href="#" className="forgot-pass">Forgot Password</a></span> 
-                  </div> */}
+                                    
+            
     
-                  <input type="submit" value="Log In" className="btn text-white btn-block login"/>
-    
+          <input type="submit" value="Log In" className="btn text-white btn-block login"/>
+          {/* <div className="d-flex mb-5 align-items-center"> */}
+                    
+            <span
+            style={{cursor:'pointer'}}
+            className="ps-5"
+            onClick={resetPassword}>Forget Password ?</span>                           
+                  {/* </div> */}
+
                   {/* <span className="d-block text-left my-4 text-muted"> or sign in with</span>
                   
                   <div className="social-login">
@@ -207,7 +247,7 @@ const SignIn = () => {
               </div>
 
             </div>
-            
+            {/* <button onClick={resetPassword}>test</button> */}
               <NotificationContainer />
           </div>
         </div>

@@ -10,6 +10,7 @@ import Loader from "./Loader";
 
 const ShowWorkoutPlans = (props) => {
   const { WorkoutPlans } = props;
+  console.log(WorkoutPlans)
   const [change, setChange] = useState(0);
   const [isLoading, setLoading] = useState(true);
 
