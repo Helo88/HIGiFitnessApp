@@ -82,14 +82,21 @@ const UserForm = () => {
       password2:userForm.conpassword
 
     }
-    console.log("medical ",optionNum,selectedDate.getFullYear()+"-"+selectedDate.getMonth()+"-"+selectedDate.getDay());
+  //  console.log("medical ",optionNum,selectedDate.getFullYear()+"-"+selectedDate.getMonth()+"-"+selectedDate.getDay());
     for (let x in data ) {
       if (data[x].length==0){
         console.log(x)
-      setEmptyAlert(true)
-      return
+        setEmptyAlert(true)
+        return;
       }
     }
+    for ( let x in userFormErrors){
+      if (userFormErrors[x]!=null){
+        console.log(userFormErrors[x])
+        NotificationManager.error(userFormErrors[x]);
+        return;
+      }
+ }
     console.log("end")
     axiosInstance
 			.post(`users/registration/trainee/`, {
