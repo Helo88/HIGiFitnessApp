@@ -4,6 +4,12 @@ import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import DateFnsUtils from '@date-io/date-fns'; // choose your
+import {
+  DatePicker,
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from '@material-ui/pickers';
 import Input from "@material-ui/core/Input";
 import DateFnsUtils from "@date-io/date-fns";
 import "../style/Homepage.css";
@@ -29,8 +35,8 @@ const UserForm = () => {
     currentWeight: "",
     height: "",
     email: "",
-    password: "",
-    conpassword: "",
+    password : "",
+    conpassword : "",
     showPassword: false,
     showconPassword: false,
   });
@@ -39,7 +45,7 @@ const UserForm = () => {
     usernameErr: null,
     ageErr: null,
     currentWeightErr: null,
-    heightErr: null,
+    heightErr:null,
     emailErr: null,
     passErr: null,
     confpasswordErr: null,
@@ -60,11 +66,11 @@ const UserForm = () => {
   const handleClickShowconPassword = () => {
     setUserForm({ ...userForm, showconPassword: !userForm.showconPassword });
   };
-
+  
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
+  
   const handlePasswordChange = (prop) => (event) => {
     setUserForm({ ...userForm, [prop]: event.target.value });
   };
@@ -170,8 +176,7 @@ const UserForm = () => {
       });
       setUserFormErrors({
         ...userFormErrors,
-        usernameErr:
-          e.target.value.length === 0 ? "This Field is required" : null,
+        usernameErr: e.target.value.length === 0 ? "This Field is required" : null,
       });
     } else if (e.target.name === "currentWeight") {
       setUserForm({
@@ -187,7 +192,9 @@ const UserForm = () => {
             ? "This Field Must be A Number"
             : null,
       });
-    } else if (e.target.name === "height") {
+    } 
+    
+    else if (e.target.name === "height") {
       setUserForm({
         ...userForm,
         height: e.target.value,
@@ -201,7 +208,9 @@ const UserForm = () => {
             ? "This Field Must be A Number"
             : null,
       });
-    } else if (e.target.name === "age") {
+    }
+
+    else if (e.target.name === "age") {
       setUserForm({
         ...userForm,
         age: e.target.value,
@@ -215,7 +224,9 @@ const UserForm = () => {
             ? "This Field Must be A Number"
             : null,
       });
-    } else if (e.target.name === "conpassword") {
+    }
+
+    else if (e.target.name === "conpassword") {
       setUserForm({
         ...userForm,
         conpassword: e.target.value,

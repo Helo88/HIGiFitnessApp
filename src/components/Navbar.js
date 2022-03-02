@@ -41,6 +41,10 @@ const Navbar = () => {
     });
   }
 
+<<<<<<< HEAD
+=======
+  useEffect(() => {}, [changelogout]);
+>>>>>>> f61a6b36489053d9015194f39003787f80e5360e
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
@@ -218,6 +222,16 @@ const Navbar = () => {
               <span></span>
             )}
 
+<<<<<<< HEAD
+=======
+            {token ? (
+              <Link to={localStorage.getItem("is_staff") === "false"?"/trainee":"trainer"}>
+                <li className="navbar-item">{email}</li>
+              </Link>
+            ) : (
+              <span></span>
+            )}
+>>>>>>> f61a6b36489053d9015194f39003787f80e5360e
             <div className="d-grid gap-2 d-md-flex ">
               {token ? (
                 <Link

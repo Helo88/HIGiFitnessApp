@@ -62,9 +62,7 @@ const FavPlans = (props) => {
     }
   }, [localStorage.getItem("workoutPlan"), localStorage.getItem("yogaPlan")]);
   useEffect(() => {}, [change]);
-  // useEffect(() => {
-
-  // }, []);
+  
   return (
     <main className="bg">
       <br />

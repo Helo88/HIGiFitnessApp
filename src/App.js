@@ -74,7 +74,7 @@ function App() {
       SetworkoutExercises(res.data);
     });
   }, []);
-  useEffect(() => {
+  useEffect((    ) => {
     axiosInstance.get(`${yogaexercisesapi}`).then((res) => {
       SetyogaExercises(res.data);
     });
