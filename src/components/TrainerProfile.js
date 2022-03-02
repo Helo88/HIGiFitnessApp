@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../style/trainerProfile.css";
-import "../style/profile.css";
+import "../style/profile.css"
 import mylogo from "../images/logo.jpg";
 import avatar2 from "../images/avatar2.png";
 import avatar from "../images/av.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
 import { axiosInstance } from "../js/network/index";
 import { useHistory } from "react-router-dom";
-//import Cookies from 'js-cookie';
-import avatar from "../images/avatar2.png";
+// import Cookies from 'js-cookie';
+import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import {
   NotificationContainer,
@@ -31,8 +31,7 @@ import { Link } from "react-router-dom";
 import { type } from "@testing-library/user-event/dist/type";
 
 const TrainerProfile = () => {
-  // axios.defaults.xsrfCookieName = 'csrftoken'
-  // axios.defaults.xsrfHeaderName = 'X-CSRFToken'
+  console.log("locaa ",localStorage.getItem("age"))
   const [show, setShow] = useState("addpost");
   const [emptyEditAlert, setEmptyEditAlert] = useState(false);
   const [emptyAlert, setEmptyAlert] = useState(false);
@@ -44,12 +43,12 @@ const TrainerProfile = () => {
   const passwordRegex =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/;
   const [clients, setClients] = useState([]);
   const [editForm, setEditForm] = useState({
-    age: localStorage.getItem("age"),
+    // age: localStorage.getItem("age"),
     address: localStorage.getItem("address"),
     phoneNumber: localStorage.getItem("phone"),
   });
   const [editFormErrors, setEditFormErrors] = useState({
-    ageErr: "",
+    // ageErr: "",
     addressErr: "",
     phoneErr: "",
   });
@@ -68,7 +67,7 @@ const handlePasswordChange = (e) => {
   if (e.target.name === "old_password") {
     setChangePasswordForm({
       ...changePasswordForm,
-      old_password: e.target.value,
+      old_password: e.target.value.trim(),
     });
   
     setChangePasswordFormErrors({
@@ -85,7 +84,7 @@ const handlePasswordChange = (e) => {
   }else if (e.target.name === "new_password1") {
     setChangePasswordForm({
       ...changePasswordForm,
-      new_password1: e.target.value,
+      new_password1: e.target.value.trim(),
     });
   
     setChangePasswordFormErrors({
@@ -102,7 +101,7 @@ const handlePasswordChange = (e) => {
   }else if (e.target.name === "new_password2") {
     setChangePasswordForm({
       ...changePasswordForm,
-      new_password2: e.target.value,
+      new_password2: e.target.value.trim(),
     });
     setChangePasswordFormErrors({
       ...changePasswordFormErrors,
@@ -209,53 +208,37 @@ else {
   // edit trainer profile
   const handleEditFormSubmit = (e) => {
     e.preventDefault();
-    console.log(editForm.age.length,editForm.phoneNumber.length,editForm.address.length);
+    console.log(editForm.phoneNumber.length,editForm.address.length);
     if (
-      editForm.age.length === 0 &&
+      
       editForm.phoneNumber.length == 0 &&
       editForm.address.length === 0
     ) 
     {
-      console.log("empty form");
+      NotificationManager.error(
+        "Form is empty"
+      )
       setEmptyEditAlert(true)
     }
-    else if (editForm.age.length === 0) { setEmptyEditAlert(true)}
+    
     else if (editForm.phoneNumber.length === 0) { setEmptyEditAlert(true)}
     else if (editForm.address.length === 0) { setEmptyEditAlert(true)}
     else {
       setEmptyEditAlert(false);
       axiosInstance
-        .put("http://127.0.0.1:8000/users/editTrainerProfile/", editForm, {})
+        .put("users/editTrainerProfile/", editForm, {})
         .then(() => {
           console.log("Profile updated ");
           // bring the newest record
           getTrainerData();
           // show profile view
           setShow("profile");
+          //show success alert
+          NotificationManager.success("Profile data is updated successfully")
         })
         .catch(console.log("try again"));
     }
   };
-  // reset password
-  const resetPassword=() => {
-    NotificationManager.success(
-      "clicked"    )
-   axiosInstance.post('rest-auth/password/reset/',{email:localStorage.getItem('email')})
-
-//    .then(()=>{console.log("link is sent successfully")
-//    axiosInstance.post('accounts/password/reset/',{email:localStorage.getItem('email')
-//   },
-//  { headers: {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json',
-//     'X-CSRFToken': Cookies.get('csrftoken')
-//   }},
-//   )
-   .then()
-  //  .catch((err)=>console.log(err.data,'----',Cookies.get('csrftoken')))
-  // })
-  .catch(()=>console.log("getRequestFailed"))
-}
 const getClient=()=>{
   axiosInstance.post('getTraineeDetailsForTrainerViewSet/',{id:37})
   .then((data)=>console.log(data))
@@ -275,22 +258,27 @@ if (
   changePasswordForm.new_password2.length === 0
 )
  {
-  console.log("empty form");
+  NotificationManager.error(
+    "Form is empty"
+  )
   setEmptyAlert(true);
-  console.log("empty",emptyAlert)
+  
 }
 else if (changePasswordForm.old_password.length === 0 ){
-  NotificationManager.error(
-    "err"
-  )
   setEmptyAlert(true);
   console.log("empty form");}
 else if(changePasswordForm.new_password1.length=== 0 ){setEmptyAlert(true);}
 else if(changePasswordForm.new_password2.length === 0 ){setEmptyAlert(true);}
+else if (changePasswordForm.new_password1!==changePasswordForm.new_password2){
+  NotificationManager.warning(
+    "the 2 passwords aren't identical"
+  )
+}
 else {
 axiosInstance.post('rest-auth/password/change/',changePasswordForm)
-.then((data)=>{ NotificationManager.success(
-  "New password has been saved"
+.then((data)=>{ 
+  NotificationManager.success(
+  "New Password is saved successfully"
 )
 
 setChangeView(false)
@@ -299,13 +287,17 @@ setChangeView(false)
 
 try {
     console.log((err.response.data.old_password.toString()))
+    NotificationManager.error(
+      "This old password isn't valid "
+    )
     }
   catch(err){
     console.log("something went wrong")
+    NotificationManager.error(
+      "something went wrong"
+    )
   }
-NotificationManager.error(
-  err.response.data
-)
+
 
 }) }
 
@@ -314,13 +306,17 @@ NotificationManager.error(
 const showClients = () => {
   axiosInstance.get("getTrainerClients/").then((data) => {
     setClients(data.data.result);
-
   });
 };
 const resetStates=()=>{
   setEmptyEditAlert(false)
   setEmptyAlert(false)
   setChangeView(false)
+  setEditForm({
+    age: TrainerProfile.age,
+    address: TrainerProfile.address,
+    phoneNumber: TrainerProfile.address.phone,
+  })
   setEditFormErrors({
     ageErr: "",
     addressErr: "",
@@ -332,26 +328,87 @@ const resetStates=()=>{
     password2Err: "",
   })
 }
+
+
+  async function editPost(pk) {
+    const { value: text } = await Swal.fire({
+      input: 'textarea',
+      inputLabel: 'Edit Post',
+      inputPlaceholder: 'Type your Post here...',
+      inputAttributes: {
+        'aria-label': 'Type your message here'
+      },
+      showCancelButton: true
+    })
+    
+    if (text) {
+      Swal.fire("post is updated successfully")
+      axiosInstance.put(`/posts/${pk}/`,{'text':text})
+      .then(()=>{
+        Swal.fire('Post is updated successfully', '', 'success')
+        showPosts ()
+      })
+      .catch(
+        (err)=>{console.log(err)
+        NotificationManager.error("something went wrong")})
+    }
+
+  }
+async function deletePost(pk){
+  Swal.fire({
+    title: 'Are You Sure You want to delete this post?',
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Yes',
+    denyButtonText: 'No',
+    customClass: {
+      actions: 'my-actions',
+      cancelButton: 'order-1 right-gap',
+      confirmButton: 'order-2',
+      denyButton: 'order-3',
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+    
+      axiosInstance.delete(`/posts/${pk}/`)
+      .then(()=>{
+         Swal.fire('Post is deleted successfully', '', 'success')
+        // NotificationManager.success("updated")
+        showPosts ()
+      })
+      .catch(
+        (err)=>{console.log(err)
+        NotificationManager.error("something went wrong")})
+    }
+    
+     else if (result.isDenied) {
+      Swal.fire('ok!', '', 'info')
+    }
+  })
+  
+  
+}
+
   return (
     <>
-      <div class="container" id="Trainer_Profile">
-        <div class="main-body">
-          <div class="row mt-6">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column align-items-center text-center">
+      <div className="container" id="Trainer_Profile">
+        <div className="main-body">
+          <div className="row mt-6">
+            <div className="card">
+              <div className="card-body">
+                <div className="d-flex flex-column align-items-center text-center">
                   <img 
                     src={`http://localhost:8000/media/${localStorage.getItem(
                       "image"
                     )}`}
                     alt="Admin"
-                    class="rounded-circle"
+                    className="rounded-circle"
                     width="150"
                   /> 
                 </div>
-                <div class="mt-3 d-flex flex-column align-items-center text-center">
+                <div className="mt-3 d-flex flex-column align-items-center text-center">
                   <h4>{localStorage.getItem("username")}</h4>
-                  <p class="text-secondary mb-1">Fitness Trainer</p>
+                  <p className="text-secondary mb-1">Fitness Trainer</p>
                 </div>
                 <br /> <br />
                 <button
@@ -401,7 +458,7 @@ const resetStates=()=>{
                 </button>
               </div>
 
-              <div class="row mt-6">
+              <div className="row mt-6">
                 <>
                   {show == "addpost" ? (
                     <form onSubmit={handleSubmit}>
@@ -423,28 +480,31 @@ const resetStates=()=>{
                     <>
                       <h1 className="text-white bck">My Posts</h1>
                       <ul
-                        class="list-group list-group-flush p-2"
+                        className="list-group list-group-flush p-2"
                         id="trainerPostList"
                       >
-                        <p> Numbers of posts: {myPosts.length}</p>
+                        <p> Numbers of posts: <span id='numP'>{myPosts.length}</span></p>
                         {myPosts.map((post) => {
                           return (
                             // why it doesn't work ?
                             <li
-                              className="list-group-item w-100 p-2 d-flex d-flex justify-content-md-center text-danger border border-3"
+                              className="list-group-item w-100 p-2 d-flex d-flex"
+                               id="postContent"
                               key={post.pk}
                             >
-                              <p>
+                              <p className="" id="cut_text">
                                 {" "}
-                                <Link to={`/comm/${post.pk}`}>
+                                <Link id="link" to={`/comm/${post.pk}`}>
                                   {post.fields.text}
                                 </Link>
                               </p>
-                              <p>
+                             <i title="edit post" onClick={()=>editPost(post.pk)} className="bi bi-pencil"></i>
+                             <i title="delete post" onClick={()=>deletePost(post.pk)}  className="bi bi-x-lg text-danger"></i>
+                              <small>
                                 {new Date(post.fields.createdAt).toLocaleString(
                                   "en-US"
                                 )}{" "}
-                              </p>
+                              </small>
                             </li>
                           );
                         })}
@@ -462,11 +522,11 @@ const resetStates=()=>{
                         {/* //<p className="text-success">Form is submitted successfully</p> */}
                         <form
                           id="editTrainerForm"
-                          className="border border-5"
+                          className=""
                           onSubmit={handleEditFormSubmit}
                          >
                           <div id="form" className="container">
-                            <div class="input-container mt-6">
+                            {/* <div className="input-container mt-6">
                               <label for="age" className="text-white">
                                 Age
                               </label>
@@ -484,8 +544,8 @@ const resetStates=()=>{
                                   {editFormErrors.ageErr}
                                 </small>
                               </div>
-                            </div>
-                            <div class="input-container mt-6">
+                            </div> */}
+                            <div className="input-container mt-6">
                               <label for="phone" className="text-white">
                                 Phone Number
                               </label>
@@ -504,7 +564,7 @@ const resetStates=()=>{
                                 </small>
                               </div>
                             </div>
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="address" className="text-white">
                                 Address
                               </label>
@@ -555,11 +615,12 @@ const resetStates=()=>{
                         {/* change password form */}
                         
                         <form
+                        className="border border-2"
                           id="changePasswordForm"
                           onSubmit={handleChangePasswordSubmit}
                         >
                           <div id="form" className="container ">
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="age" className="text-white">
                                 Enter old Password
                               </label>
@@ -578,7 +639,7 @@ const resetStates=()=>{
                                 </small>
                               </div>
                             </div>
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="num" className="text-white">
                                 Enter New password
                               </label>
@@ -597,7 +658,7 @@ const resetStates=()=>{
                                 </small>
                               </div>
                             </div>
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="address" className="text-white">
                                 Confirm New Password
                               </label>
@@ -636,19 +697,19 @@ const resetStates=()=>{
                     </div>
                   ) : show == "profile" ? (
                     <div className="col-12 col-md-12" id="profileData">
-                      <div class="mt-3 d-flex flex-column align-items-center text-center">
+                      <div className="mt-3 d-flex flex-column align-items-center text-center">
                 </div>
                 <div className="row mt-3  text-black">
                   <div className="col-5">Name </div>
                   <div className="col-5">Status </div>
-                  <div className="col-2 ">Age </div>
+                  <div className="col-2 ">Date of Birth </div>
                 </div>
                 <div className="row mt-3 ">
                   <div className="col-5">
                     {localStorage.getItem("username")}
                   </div>
                   <div className="col-5">Active</div>
-                  <div className="col-2">{trainerData.age}</div>
+                  <div className="col-2">{localStorage.getItem("dateOfBirth")}</div>
                 </div>
                 <div className="row mt-3  text-black">
                   <div className="col-5">Email </div>
@@ -674,7 +735,7 @@ const resetStates=()=>{
                     <>
                 
                     <h1 className="text-white bck">Clients</h1>
-                    <ul class="list-group list-group-flush">
+                    <ul className="list-group list-group-flush">
                       {clients.map((client) => {
                         return (
                          

@@ -10,6 +10,7 @@ import Loader from "./Loader";
 
 const ShowWorkoutPlans = (props) => {
   const { WorkoutPlans } = props;
+  console.log(WorkoutPlans)
   const [change, setChange] = useState(0);
   const [isLoading, setLoading] = useState(true);
 
@@ -86,9 +87,9 @@ const ShowWorkoutPlans = (props) => {
                                   Number(
                                     localStorage.getItem("workoutPlan")
                                   ) ? (
-                                    <i class="bi bi-star-fill"></i>
+                                    <i className="bi bi-star-fill"></i>
                                   ) : (
-                                    <i class="bi bi-star"></i>
+                                    <i className="bi bi-star"></i>
                                   )}
                                 </button>
 

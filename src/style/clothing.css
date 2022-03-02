@@ -260,7 +260,6 @@ color: var(--sColor);
 #map{
     padding: 20px;
     margin-top: 60px;
-    border: 2px solid teal;;
     height: 500px;
     width: 100%;
     background-color: var(--fColor);

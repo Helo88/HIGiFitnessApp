@@ -14,17 +14,34 @@ const FavPlans = (props) => {
   const [favWorkoutPlan, setfavWorkoutPlan] = useState([]);
 
   const handleDelWorkoutPlan = (e) => {
-    localStorage.setItem("workoutPlan","null");
+    localStorage.setItem("workoutPlan", "null");
     setChange((c) => c + 1);
     axiosInstance.get("http://localhost:8000/deleteworkoutplan/");
   };
 
   const handleDelYogaPlan = (e) => {
-    localStorage.setItem("yogaPlan","null");
+    localStorage.setItem("yogaPlan", "null");
     setChange((c) => c + 1);
     axiosInstance.get("http://localhost:8000/deleteyogaplan/");
   };
   useEffect(() => {
+    axiosInstance
+      .get("http://localhost:8000/updateTraineeFavPlansStatus/")
+      .then((res) => {
+        console.log(res);
+        if (res.data.result === true) {
+          NotificationManager.info("Your trainer has changed your plans");
+        }
+      })
+      .then(() => {
+        axiosInstance.put(
+          "http://localhost:8000/updateTraineeFavPlansStatus/",
+          {
+            id: parseInt(localStorage.getItem("id")),
+            editedstatus: false,
+          }
+        );
+      });
     try {
       setfavWorkoutPlan(
         WorkoutPlans.filter(
@@ -45,7 +62,7 @@ const FavPlans = (props) => {
     }
   }, [localStorage.getItem("workoutPlan"), localStorage.getItem("yogaPlan")]);
   useEffect(() => {}, [change]);
-
+  
   return (
     <main className="bg">
       <br />
@@ -70,9 +87,8 @@ const FavPlans = (props) => {
                         className="btn shadow-lg"
                         onClick={(e) => handleDelWorkoutPlan(e)}
                       >
-                        <i class="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill"></i>
                       </button>
-                      <NotificationContainer />
                       {plan.name}
                       <br />
                       <Link
@@ -142,9 +158,8 @@ const FavPlans = (props) => {
                         className="btn shadow-lg"
                         onClick={(e) => handleDelYogaPlan(e)}
                       >
-                        <i class="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill"></i>
                       </button>
-                      <NotificationContainer />
                       {plan.name}
                       <br />
                       <Link to={{ pathname: "/yogaexercises", state: plan.id }}>
@@ -190,6 +205,7 @@ const FavPlans = (props) => {
           )}
         </div>
       </div>
+      <NotificationContainer />
     </main>
   );
 };

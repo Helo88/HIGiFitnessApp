@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CssBaseline, makeStyles } from "@material-ui/core";
 import { Activity, HeartHalf } from "react-bootstrap-icons";
 import myimg from "../images/photo-1516207925197-a1eebfc9684b.jpeg";
@@ -35,14 +35,14 @@ export default function Homepage() {
     name: "",
     email: "",
     content: "",
-   })
- const [joinFormErrors, setJoinFormErrors] = useState({
-    emailErr : null,
-    nameErr:null,
-    contentErr:null
- })
-//  join form states
- const handleChange = (e) => {
+  });
+  const [joinFormErrors, setJoinFormErrors] = useState({
+    emailErr: null,
+    nameErr: null,
+    contentErr: null,
+  });
+  //  join form states
+  const handleChange = (e) => {
     if (e.target.name === "email") {
       setJoinForm({
         ...joinForm,
@@ -58,8 +58,7 @@ export default function Homepage() {
             ? "Email is Not Correct"
             : null,
       });
-     }
-     else if (e.target.name === "name") {
+    } else if (e.target.name === "name") {
       setJoinForm({
         ...joinForm,
         name: e.target.value,
@@ -67,13 +66,9 @@ export default function Homepage() {
 
       setJoinFormErrors({
         ...joinFormErrors,
-        nameErr:
-          e.target.value.length === 0
-            ? "This Field is required"
-            : null,
+        nameErr: e.target.value.length === 0 ? "This Field is required" : null,
       });
-     }
-     else if (e.target.name === "content") {
+    } else if (e.target.name === "content") {
       setJoinForm({
         ...joinForm,
         content: e.target.value,
@@ -82,38 +77,39 @@ export default function Homepage() {
       setJoinFormErrors({
         ...joinFormErrors,
         contentErr:
-          e.target.value.length === 0
-            ? "This Field is required"
-            : null,
+          e.target.value.length === 0 ? "This Field is required" : null,
       });
-     }
-     else {
-
-     }
+    } else {
     }
+  };
   //  join form submit
   const handleSubmit = (e) => {
-      e.preventDefault();
-      // check for empty fields if any is empty won't call the api
-      for (let x in joinForm ) {
-        if (joinForm[x].length==0){
-          console.log(x)
-          // notification fill the required fields 
-          NotificationManager.error("Fill The empty Fields")
-          return;
-        }
+    e.preventDefault();
+    // check for empty fields if any is empty won't call the api
+    for (let x in joinForm) {
+      if (joinForm[x].length == 0) {
+        console.log(x);
+        // notification fill the required fields
+        NotificationManager.error("Fill The empty Fields");
+        return;
       }
-       axiosInstance.post("http://127.0.0.1:8000/users/joinUs",
-       {name:joinForm.name,email:joinForm.email,content:joinForm.content})
-       .then(()=>{
-      //  notification msg sent 
-      NotificationManager.Success("Your Msg is sent Successfully")
-       })
-       .catch(()=>{
-         //  notification  something went wrong
-         NotificationManager.error("something went wrong")
-       })
-    };
+    }
+    axiosInstance
+      .post("http://127.0.0.1:8000/users/joinUs/", {
+        name: joinForm.name,
+        email: joinForm.email,
+        content: joinForm.content,
+      })
+      .then(() => {
+        //  notification msg sent
+        NotificationManager.success("Your Message is sent Successfully");
+      })
+      .catch((error) => {
+        console.log(error)
+        //  notification  something went wrong
+        NotificationManager.error("Something went wrong");
+      });
+  };
   return (
     <>
       <div className={classnamees.root}>
@@ -139,14 +135,14 @@ export default function Homepage() {
         </div>
       </div>
       <section id="about">
-        <div class=" container">
-          <div class="row ">
+        <div className=" container">
+          <div className="row ">
             <div>
               <h1 className="title">
                 Welcome to H<span>I</span>G<span>E</span>
               </h1>
             </div>
-            <div class="us1 col-lg-6 col-md-12 col-sm-12">
+            <div className="us1 col-lg-6 col-md-12 col-sm-12">
               <h3>Why Choose Us ?!</h3>
               <br></br>
               <p>
@@ -168,7 +164,7 @@ export default function Homepage() {
                 </button>
               </Link>
             </div>
-            <div class="us2 card col-lg-6 col-md-12 col-sm-12">
+            <div className="us2 card col-lg-6 col-md-12 col-sm-12">
               <img src={`${aboutus}`} alt="about us"></img>
             </div>
           </div>
@@ -176,8 +172,8 @@ export default function Homepage() {
       </section>
 
       <section id="services">
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             <div>
               <h1 className="title">
                 SERVICE WE <span>PROVIDE</span>
@@ -187,65 +183,65 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+        <div className="container">
+          <div className="row">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${workout}`} alt="workout img"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Workout Plans</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${yoga}`} alt="yoga img"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Yoga Plans</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${coaching}`} alt="coaching img"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Coaching</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${water}`} alt="water tracker"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Water Tracker</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${weight}`} alt="weight tracker"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Weight Tracker</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${community}`} alt="community img"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>
                   Small Community <br></br>For Us
                 </h3>
@@ -256,78 +252,82 @@ export default function Homepage() {
       </section>
 
       <section id="team">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row">
-            <div class="item col-lg-12 col-md-12 col-sm-12">
+        <div className="overlay"></div>
+        <div className="container">
+          <div className="row">
+            <div className="item col-lg-12 col-md-12 col-sm-12">
               <h2 className="te">Best Creative Coaching Team In The World</h2>
               <button className="btn" id="btn2">
                 Join Our Team
               </button>
-              <span class="first"></span>
+              <span className="first"></span>
               <span></span>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="contact">
-        <div class=" container-fluid">
-          <div class="row n1 landing">
-            <div class="item col-lg-3">
+      <section id="contact"  name='contact'>
+        <div className=" container-fluid">
+          <div className="row n1 landing">
+            <div className="item col-lg-3">
               <h4>ABOUT US</h4>
               <hr></hr>
               <p>We Will Help You To Make Your Own Gym At Home</p>
             </div>
-            <div class="item  col-lg-3 ">
+            <div className="item  col-lg-3 ">
               <h1>
                 H<span>i</span>G<span>E</span>
               </h1>
               <h3>
                 @copyright 2022{" "}
                 <span>
-                  <i class="fas fa-heart"></i>
+                  <i className="fas fa-heart"></i>
                 </span>{" "}
                 HiGE
               </h3>
             </div>
-            <div class="item col-lg-3">
+            <div className="item col-lg-3">
               <h4>CONTACT US</h4>
               <hr></hr>
-              <form onSubmit={(e,name) => handleSubmit(e,name)}>
-                <div class="form-group">
+              <form onSubmit={(e, name) => handleSubmit(e, name)}>
+                <div className="form-group">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="username"
                     name="name"
                     placeholder="enter your name"
                     value={joinForm.name}
                     onChange={(e) => handleChange(e)}
                   ></input>
-                       <div>
-                        <small className="text-danger">{joinFormErrors.nameErr}</small>
-                       </div>
+                  <div>
+                    <small className="text-danger">
+                      {joinFormErrors.nameErr}
+                    </small>
+                  </div>
                 </div>
                 <br></br>
-                <div class="form-group">
+                <div className="form-group">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="email"
                     name="email"
                     placeholder="name@example.com"
                     value={joinForm.email}
                     onChange={(e) => handleChange(e)}
                   ></input>
-                       <div>
-                        <small className="text-danger">{joinFormErrors.emailErr}</small>
-                       </div>
+                  <div>
+                    <small className="text-danger">
+                      {joinFormErrors.emailErr}
+                    </small>
+                  </div>
                 </div>
                 <br></br>
-                <div class="form-group">
+                <div className="form-group">
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="content"
                     rows="3"
                     name="content"
@@ -335,11 +335,13 @@ export default function Homepage() {
                     value={joinForm.content}
                     onChange={(e) => handleChange(e)}
                   ></textarea>
-                     <div>
-                        <small className="text-danger">{joinFormErrors.contentErr}</small>
-                       </div>
+                  <div>
+                    <small className="text-danger">
+                      {joinFormErrors.contentErr}
+                    </small>
+                  </div>
                 </div>
-                <button type="submit" class="btn" id="btn2">
+                <button type="submit" className="btn" id="btn2">
                   Send
                 </button>
               </form>

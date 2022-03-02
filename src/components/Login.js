@@ -116,12 +116,17 @@ const SignIn = () => {
                 Authorization: `Token ${token["key"]}`,
               },
             })
-            .then((data) => data.data.trainer[0])
+            .then((data)=>{console.log(data);return data})
+            .then((data) => {
+              console.log(data.data.age)
+              localStorage.setItem("age", data.data.age);
+             return data.data.trainer[0]
+            })
             .then((res) => {
-              console.log(res);
+              console.log("res n   " + res);
               setTrainerDetail(() => res.fields);
-              localStorage.setItem("age", res.fields.age);
               localStorage.setItem("image", res.fields.image);
+              localStorage.setItem("dateOfBirth", res.fields.dateOfBirth);
               localStorage.setItem("phone", res.fields.phoneNumber);
               localStorage.setItem("address", res.fields.address);
               localStorage.setItem("address", res.fields.image);
@@ -136,7 +141,11 @@ const SignIn = () => {
                 Authorization: `Token ${token["key"]}`,
               },
             })
-            .then((data) => data.data.trainee[0])
+            .then((data) => {
+              console.log(data.data.age)
+              localStorage.setItem("age", data.data.age);
+             return data.data.trainee[0]
+            })
             .then((res) => {
               console.log(res);
               localStorage.setItem("dateOfBirth", res.fields.dateOfBirth);
