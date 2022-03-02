@@ -24,7 +24,7 @@ const ChooseYogaPlan = (props) => {
         Choose Yoga<span className="text-info">out</span>&nbsp;Plans
       </h1>
 
-      <ul class="list-group list-group-flush">
+      <ul className="list-group list-group-flush">
         {YogaPlans.map((plan) => {
           return (
             <div className="text-center mt-3" key={plan.id}>

@@ -135,14 +135,14 @@ export default function Homepage() {
         </div>
       </div>
       <section id="about">
-        <div class=" container">
-          <div class="row ">
+        <div className=" container">
+          <div className="row ">
             <div>
               <h1 className="title">
                 Welcome to H<span>I</span>G<span>E</span>
               </h1>
             </div>
-            <div class="us1 col-lg-6 col-md-12 col-sm-12">
+            <div className="us1 col-lg-6 col-md-12 col-sm-12">
               <h3>Why Choose Us ?!</h3>
               <br></br>
               <p>
@@ -164,7 +164,7 @@ export default function Homepage() {
                 </button>
               </Link>
             </div>
-            <div class="us2 card col-lg-6 col-md-12 col-sm-12">
+            <div className="us2 card col-lg-6 col-md-12 col-sm-12">
               <img src={`${aboutus}`} alt="about us"></img>
             </div>
           </div>
@@ -172,8 +172,8 @@ export default function Homepage() {
       </section>
 
       <section id="services">
-        <div class="container">
-          <div class="row">
+        <div className="container">
+          <div className="row">
             <div>
               <h1 className="title">
                 SERVICE WE <span>PROVIDE</span>
@@ -183,65 +183,65 @@ export default function Homepage() {
             </div>
           </div>
         </div>
-        <div class="container">
-          <div class="row">
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+        <div className="container">
+          <div className="row">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${workout}`} alt="workout img"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Workout Plans</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${yoga}`} alt="yoga img"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Yoga Plans</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${coaching}`} alt="coaching img"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Coaching</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${water}`} alt="water tracker"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Water Tracker</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${weight}`} alt="weight tracker"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>Weight Tracker</h3>
               </div>
             </div>
-            <div class="item col-lg-4 col-md-6 col-sm-12">
-              <div class="img-holder">
+            <div className="item col-lg-4 col-md-6 col-sm-12">
+              <div className="img-holder">
                 <img src={`${community}`} alt="community img"></img>
               </div>
               <span></span>
               <span></span>
-              <div class="img-content">
+              <div className="img-content">
                 <h3>
                   Small Community <br></br>For Us
                 </h3>
@@ -252,15 +252,15 @@ export default function Homepage() {
       </section>
 
       <section id="team">
-        <div class="overlay"></div>
-        <div class="container">
-          <div class="row">
-            <div class="item col-lg-12 col-md-12 col-sm-12">
+        <div className="overlay"></div>
+        <div className="container">
+          <div className="row">
+            <div className="item col-lg-12 col-md-12 col-sm-12">
               <h2 className="te">Best Creative Coaching Team In The World</h2>
               <button className="btn" id="btn2">
                 Join Our Team
               </button>
-              <span class="first"></span>
+              <span className="first"></span>
               <span></span>
             </div>
           </div>
@@ -268,33 +268,33 @@ export default function Homepage() {
       </section>
 
       <section id="contact"  name='contact'>
-        <div class=" container-fluid">
-          <div class="row n1 landing">
-            <div class="item col-lg-3">
+        <div className=" container-fluid">
+          <div className="row n1 landing">
+            <div className="item col-lg-3">
               <h4>ABOUT US</h4>
               <hr></hr>
               <p>We Will Help You To Make Your Own Gym At Home</p>
             </div>
-            <div class="item  col-lg-3 ">
+            <div className="item  col-lg-3 ">
               <h1>
                 H<span>i</span>G<span>E</span>
               </h1>
               <h3>
                 @copyright 2022{" "}
                 <span>
-                  <i class="fas fa-heart"></i>
+                  <i className="fas fa-heart"></i>
                 </span>{" "}
                 HiGE
               </h3>
             </div>
-            <div class="item col-lg-3">
+            <div className="item col-lg-3">
               <h4>CONTACT US</h4>
               <hr></hr>
               <form onSubmit={(e, name) => handleSubmit(e, name)}>
-                <div class="form-group">
+                <div className="form-group">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="username"
                     name="name"
                     placeholder="enter your name"
@@ -308,10 +308,10 @@ export default function Homepage() {
                   </div>
                 </div>
                 <br></br>
-                <div class="form-group">
+                <div className="form-group">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="email"
                     name="email"
                     placeholder="name@example.com"
@@ -325,9 +325,9 @@ export default function Homepage() {
                   </div>
                 </div>
                 <br></br>
-                <div class="form-group">
+                <div className="form-group">
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="content"
                     rows="3"
                     name="content"
@@ -341,7 +341,7 @@ export default function Homepage() {
                     </small>
                   </div>
                 </div>
-                <button type="submit" class="btn" id="btn2">
+                <button type="submit" className="btn" id="btn2">
                   Send
                 </button>
               </form>

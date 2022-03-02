@@ -87,7 +87,7 @@ const FavPlans = (props) => {
                         className="btn shadow-lg"
                         onClick={(e) => handleDelWorkoutPlan(e)}
                       >
-                        <i class="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill"></i>
                       </button>
                       {plan.name}
                       <br />
@@ -158,7 +158,7 @@ const FavPlans = (props) => {
                         className="btn shadow-lg"
                         onClick={(e) => handleDelYogaPlan(e)}
                       >
-                        <i class="bi bi-star-fill"></i>
+                        <i className="bi bi-star-fill"></i>
                       </button>
                       {plan.name}
                       <br />

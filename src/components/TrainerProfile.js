@@ -9,7 +9,6 @@ import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
 import { axiosInstance } from "../js/network/index";
 import { useHistory } from "react-router-dom";
 // import Cookies from 'js-cookie';
-import avatar from "../images/av.jpg";
 import Swal from "sweetalert2/dist/sweetalert2.js";
 
 import {
@@ -392,24 +391,24 @@ async function deletePost(pk){
 
   return (
     <>
-      <div class="container" id="Trainer_Profile">
-        <div class="main-body">
-          <div class="row mt-6">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column align-items-center text-center">
+      <div className="container" id="Trainer_Profile">
+        <div className="main-body">
+          <div className="row mt-6">
+            <div className="card">
+              <div className="card-body">
+                <div className="d-flex flex-column align-items-center text-center">
                   <img 
                     src={`http://localhost:8000/media/${localStorage.getItem(
                       "image"
                     )}`}
                     alt="Admin"
-                    class="rounded-circle"
+                    className="rounded-circle"
                     width="150"
                   /> 
                 </div>
-                <div class="mt-3 d-flex flex-column align-items-center text-center">
+                <div className="mt-3 d-flex flex-column align-items-center text-center">
                   <h4>{localStorage.getItem("username")}</h4>
-                  <p class="text-secondary mb-1">Fitness Trainer</p>
+                  <p className="text-secondary mb-1">Fitness Trainer</p>
                 </div>
                 <br /> <br />
                 <button
@@ -459,7 +458,7 @@ async function deletePost(pk){
                 </button>
               </div>
 
-              <div class="row mt-6">
+              <div className="row mt-6">
                 <>
                   {show == "addpost" ? (
                     <form onSubmit={handleSubmit}>
@@ -481,7 +480,7 @@ async function deletePost(pk){
                     <>
                       <h1 className="text-white bck">My Posts</h1>
                       <ul
-                        class="list-group list-group-flush p-2"
+                        className="list-group list-group-flush p-2"
                         id="trainerPostList"
                       >
                         <p> Numbers of posts: <span id='numP'>{myPosts.length}</span></p>
@@ -527,7 +526,7 @@ async function deletePost(pk){
                           onSubmit={handleEditFormSubmit}
                          >
                           <div id="form" className="container">
-                            {/* <div class="input-container mt-6">
+                            {/* <div className="input-container mt-6">
                               <label for="age" className="text-white">
                                 Age
                               </label>
@@ -546,7 +545,7 @@ async function deletePost(pk){
                                 </small>
                               </div>
                             </div> */}
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="phone" className="text-white">
                                 Phone Number
                               </label>
@@ -565,7 +564,7 @@ async function deletePost(pk){
                                 </small>
                               </div>
                             </div>
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="address" className="text-white">
                                 Address
                               </label>
@@ -621,7 +620,7 @@ async function deletePost(pk){
                           onSubmit={handleChangePasswordSubmit}
                         >
                           <div id="form" className="container ">
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="age" className="text-white">
                                 Enter old Password
                               </label>
@@ -640,7 +639,7 @@ async function deletePost(pk){
                                 </small>
                               </div>
                             </div>
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="num" className="text-white">
                                 Enter New password
                               </label>
@@ -659,7 +658,7 @@ async function deletePost(pk){
                                 </small>
                               </div>
                             </div>
-                            <div class="input-container mt-6">
+                            <div className="input-container mt-6">
                               <label for="address" className="text-white">
                                 Confirm New Password
                               </label>
@@ -698,7 +697,7 @@ async function deletePost(pk){
                     </div>
                   ) : show == "profile" ? (
                     <div className="col-12 col-md-12" id="profileData">
-                      <div class="mt-3 d-flex flex-column align-items-center text-center">
+                      <div className="mt-3 d-flex flex-column align-items-center text-center">
                 </div>
                 <div className="row mt-3  text-black">
                   <div className="col-5">Name </div>
@@ -736,7 +735,7 @@ async function deletePost(pk){
                     <>
                 
                     <h1 className="text-white bck">Clients</h1>
-                    <ul class="list-group list-group-flush">
+                    <ul className="list-group list-group-flush">
                       {clients.map((client) => {
                         return (
                          

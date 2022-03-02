@@ -41,16 +41,12 @@ const Navbar = () => {
     });
   }
 
-<<<<<<< HEAD
-=======
-  useEffect(() => {}, [changelogout]);
->>>>>>> f61a6b36489053d9015194f39003787f80e5360e
   return (
     <>
       <nav id="navbar" className="navbar navbar-expand-lg ">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item" to={""}>
+            <Link className="navbar-item" to="/">
               <img src={`${mylogo}`} id="logo" />
             </Link>
           </div>
@@ -70,7 +66,7 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0 navbar-start">
               <li className="nav-item hoverable">
-                <Link className="nav-link" aria-current="page" to={""}>
+                <Link className="nav-link" aria-current="page" to="/">
                   <strong>Home</strong>
                 </Link>
               </li>
@@ -98,7 +94,7 @@ const Navbar = () => {
               <li className="nav-item dropdown" id="myDropdown">
                 <Link
                   className="nav-link dropdown-toggle"
-                  to={""}
+                  to="/"
                   data-bs-toggle="dropdown"
                 >
                   {" "}
@@ -107,7 +103,7 @@ const Navbar = () => {
                 <ul className="dropdown-menu">
                   <li>
                     {" "}
-                    <Link className="dropdown-item" to={""}>
+                    <Link className="dropdown-item" to="/">
                       {" "}
                       Plans{" "}
                     </Link>
@@ -126,39 +122,39 @@ const Navbar = () => {
                   </li>
                   <li>
                     {" "}
-                    <Link class="dropdown-item" to={""}>
+                    <Link className="dropdown-item" to="/">
                       {" "}
                       Healthy Life{" "}
                     </Link>
-                    <ul class="submenu dropdown-menu">
+                    <ul className="submenu dropdown-menu">
                       <li>
-                        <Link class="dropdown-item" to={"/water"}>
+                        <Link className="dropdown-item" to={"/water"}>
                           {" "}
                           Water Tracker
                         </Link>
                       </li>
                       <li>
-                        <Link class="dropdown-item" to={"/we"}>
+                        <Link className="dropdown-item" to={"/we"}>
                           Weight Tracker
                         </Link>
                       </li>
                       <hr className="navbar-divider" />
                       <li>
-                        <Link class="dropdown-item" to={"/healthytips"}>
+                        <Link className="dropdown-item" to={"/healthytips"}>
                           <strong>Healthy Tips</strong>
                         </Link>
                       </li>
                     </ul>
                   </li>
                   {localStorage.getItem("is_staff") === "false" ? (
-                    <Link class="dropdown-item" to="/choosetrainer">
+                    <Link className="dropdown-item" to="/choosetrainer">
                       {" "}
                       Choose Trainer{" "}
                     </Link>
                   ) : null}
                   <hr className="navbar-divider" />
                   <li onClick={() => setIssue()}>
-                    <Link className="dropdown-item">
+                    <Link className="dropdown-item" to="/">
                       <strong>Report an issue </strong>{" "}
                     </Link>
                   </li>
@@ -184,7 +180,7 @@ const Navbar = () => {
               <li className="nav-item dropdown" id="myDropdown">
                 <Link
                   className="nav-link dropdown-toggle"
-                  to={""}
+                  to="/"
                   data-bs-toggle="dropdown"
                 >
                   {" "}
@@ -222,28 +218,18 @@ const Navbar = () => {
               <span></span>
             )}
 
-<<<<<<< HEAD
-=======
-            {token ? (
-              <Link to={localStorage.getItem("is_staff") === "false"?"/trainee":"trainer"}>
-                <li className="navbar-item">{email}</li>
-              </Link>
-            ) : (
-              <span></span>
-            )}
->>>>>>> f61a6b36489053d9015194f39003787f80e5360e
             <div className="d-grid gap-2 d-md-flex ">
               {token ? (
                 <Link
                   className="btn btn-light hoverable"
-                  to={""}
+                  to="/"
                   onClick={logoutHandle}
                 >
                   {" "}
                   <strong>Log out</strong>
                 </Link>
               ) : (
-                <Link id="sign-btn" class="btn  hoverable" to={"/signup"}>
+                <Link id="sign-btn" className="btn  hoverable" to={"/signup"}>
                   {" "}
                   <strong>Sign up</strong>
                 </Link>

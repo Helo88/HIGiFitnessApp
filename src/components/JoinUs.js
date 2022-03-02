@@ -93,16 +93,16 @@ const JoinUs = () => {
       </h1>
 
       <section id="contact" name="contact">
-        <div class=" container-fluid">
-          <div class="row n1 landing">
-            <div class="item col-lg-3">
+        <div className=" container-fluid">
+          <div className="row n1 landing">
+            <div className="item col-lg-3">
               <h4>CONTACT US</h4>
               <hr></hr>
               <form onSubmit={(e, name) => handleSubmit(e, name)}>
-                <div class="form-group">
+                <div className="form-group">
                   <input
                     type="text"
-                    class="form-control"
+                    className="form-control"
                     id="username"
                     name="name"
                     placeholder="enter your name"
@@ -116,10 +116,10 @@ const JoinUs = () => {
                   </div>
                 </div>
                 <br></br>
-                <div class="form-group">
+                <div className="form-group">
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="email"
                     name="email"
                     placeholder="name@example.com"
@@ -133,9 +133,9 @@ const JoinUs = () => {
                   </div>
                 </div>
                 <br></br>
-                <div class="form-group">
+                <div className="form-group">
                   <textarea
-                    class="form-control"
+                    className="form-control"
                     id="content"
                     rows="3"
                     name="content"
@@ -149,7 +149,7 @@ const JoinUs = () => {
                     </small>
                   </div>
                 </div>
-                <button type="submit" class="btn" id="btn2">
+                <button type="submit" className="btn" id="btn2">
                   Send
                 </button>
               </form>

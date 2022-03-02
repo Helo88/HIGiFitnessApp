@@ -34,9 +34,9 @@ const Gym = () => {
         </div>
 
         <div className="container columns pt-2 mt-5 ma lis">
-          <div class="card column list">
-            <div class="card-body">
-              <p class="card-text listtext">
+          <div className="card column list">
+            <div className="card-body">
+              <p className="card-text listtext">
                 <i className="bi bi-lightbulb pe-3 "></i>
                 Waste Of Money<br></br>
                 <i className="bi bi-lightbulb pe-3 "></i>
@@ -50,7 +50,7 @@ const Gym = () => {
               </p>
             </div>
           </div>
-          <div class="card column ulbg"></div>
+          <div className="card column ulbg"></div>
         </div>
         <div className="container columns pt-2 mt-5 ma lis">
           <div id="map" className="row">

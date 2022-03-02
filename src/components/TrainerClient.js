@@ -168,7 +168,7 @@ const TrainerClient = (props) => {
                               favYogaPlan: favYogaPlan,
                             }}
                           >
-                            <button type="button" class="btn btn-light">
+                            <button type="button" className="btn btn-light">
                               Edit Plan
                             </button>
                           </Link>
@@ -181,7 +181,7 @@ const TrainerClient = (props) => {
                               favWorkoutPlan: favWorkoutPlan,
                             }}
                           >
-                            <button type="button" class="btn btn-light">
+                            <button type="button" className="btn btn-light">
                               Edit Plan
                             </button>
                           </Link>
@@ -192,7 +192,7 @@ const TrainerClient = (props) => {
                         <div className="col">
                           <button
                             type="button"
-                            class="btn btn-light"
+                            className="btn btn-light"
                             onClick={() => acceptPlan()}
                           >
                             Accept Plan
@@ -201,7 +201,7 @@ const TrainerClient = (props) => {
                         <div className="col">
                           <button
                             type="button"
-                            class="btn btn-light"
+                            className="btn btn-light"
                             onClick={() => acceptPlan()}
                           >
                             Accept Plan

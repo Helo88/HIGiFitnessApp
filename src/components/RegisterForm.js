@@ -11,18 +11,13 @@ import {
   KeyboardDatePicker
 } from '@material-ui/pickers';
 import Input from "@material-ui/core/Input";
-import DateFnsUtils from "@date-io/date-fns";
 import "../style/Homepage.css";
 import { axiosInstance } from "../js/network/index";
 import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import {
-  DatePicker,
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+
 
 const UserForm = () => {
   const history = useHistory();
