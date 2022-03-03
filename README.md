@@ -3,15 +3,22 @@
 ## Table of Contents
 
 1. Description
-2. Instructions
-3. Running
+2. General Functionality
+3. App Architecture
+4. Tools
+5. Instructions
+6. Running
 
 ## Description
 
-- the graduation project for ITI .
-- build a web app that let a female users to exercise at home and help them have a healthy life by follow their progress in exercise , weight loss amount, water amount either by a real trainer or not.
+- The graduation project for ITI .
+- Build a web app that let a female users to exercise at home and help them have a healthy life by follow their progress in exercise , weight loss amount, water amount either by a real trainer or not.
+- Registered user as trainee can choose plans for workout and yoga ,these plans are categorized according to difficulty level ( beginner , intermediate , hard) and if user inputs she has medical history,the app will suggest choosing beginner level plans or following up with private trainer .
+- Our App provides Community Section for our registered users to allow trainers to share healthy tips and awarness aganist healthy lifestyle mistakes.
 
-### the app has 2 types of users :
+## General Functionality
+
+### The App has 2 types of users :
 
 1.  trainer (male , female)
 
@@ -27,10 +34,7 @@
 - trainee has weight tracker to track her weight losing or gaining progress
 - trainee has access to community part to see trainer posts and make comments
 
-# Instructions
-
-- `git clone` (https://github.com/Helo88/HIGiFitnessApp.git)
-- `cd` into your folder and run `npm install` to install all project dependencies.
+3. any visitor to the app will only see home page, healthytips , gym , clothing parts
 
 ## App Architecture:
 
@@ -90,9 +94,41 @@
 2. images folder
 3. style folder
 4. redux folder **_ use redux management tool for handle Reminder component_**
-4. js folder **_ handler interceptor Function for login token _**
+5. js folder **_ handler interceptor Function for login token _**
 
-# Running
+## Tools
+
+1. CSS FrameWorks:
+
+- Bootstrap
+- Bulma
+
+2. Packages:
+
+- axios
+- react-router-dom@5.0.0
+- react-icons
+- react-notifications
+- react-bootstrap-icons
+- sweetalert2
+- @material-ui
+- @date-io
+- chart.js / react-chartjs-2
+- @mui/material
+- @fortawesome
+- moment
+- react-datepicker
+- sfcookies
+- react-slick
+- react-bootstrap-validation
+- chartjs-plugin-datalabels
+
+## Instructions
+
+- `git clone` (https://github.com/Helo88/HIGiFitnessApp.git)
+- `cd` into your folder and run `npm install` to install all project dependencies.
+
+## Running
 
 - start server with `npm start` / `npm run start` to launch.
 - open `http://localhost:3000/` in the browser.
