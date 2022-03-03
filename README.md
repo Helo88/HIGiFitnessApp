@@ -89,6 +89,7 @@
 
 2. images folder
 3. style folder
+4. redux folder **_ use redux management tool for handle Reminder component_**
 4. js folder **_ handler interceptor Function for login token _**
 
 # Running
