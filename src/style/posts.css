@@ -1,0 +1,26 @@
+
+#bd1{
+    background-color: #072227;
+  
+}
+.containercolor {
+    background-color: #072227;
+}
+#opp{
+    /* opacity: 0.7; */
+    /* background-color: #4FBDBA; */
+    background-image: linear-gradient(to bottom right,white, #4FBDBA);
+   
+}
+#content{
+    font-size: small;
+    color: #35858B;
+}
+#content::first-letter {
+    font-size: 150%;
+    color: #072227;
+  }
+
+#dt{
+    display: inline-block;
+}

@@ -62,6 +62,12 @@
     background-color: #072227;
 }
 
+#logo{
+    min-width: 70px;
+    min-height: 40px;
+
+}
+  
 
 a.nav-link {
     color: white;

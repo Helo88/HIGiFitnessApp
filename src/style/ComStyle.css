@@ -1,6 +1,7 @@
 #body {
     min-height: 100vh;
-    background-color: #072227;
+    background-color:var(--fColor);
+    margin-top: -10px;
 }
 #tit{
     color:#072227;
@@ -32,4 +33,43 @@
     .gedf-card {
         margin-bottom: 2.77rem;
     }
+}
+#postText{
+    position: relative;
+}
+#postText i,#commentForm i{
+    position: absolute;
+    top:0px;
+    right: 0px;
+    font-size: 20px;
+    color: red;
+}
+#postText span{
+    color: var(--sColor);
+}
+#commentForm input{
+    width: 95%;
+    margin-left: 20px;
+}
+#commentForm button{
+    background-color: var(--sColor);
+    border-radius: 5px;
+    color: white;
+    margin-left: 42%;
+    padding: 5px 20px;
+    text-align: center;
+}
+#commentBody {
+    width: 100%;
+    color: var(--sColor);
+}
+#commentBody + sub{
+    margin-bottom: 10px;
+    text-align: right;
+   
+    font-size: 10px;
+}
+#report{
+    font-size: 20px;
+    color: red;
 }

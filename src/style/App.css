@@ -20,8 +20,44 @@ ul {
   list-style: none
 }
 
-#title {
-  font-size: 2.3em !important;
-  color: white !important;
-  padding-bottom: 1.3em;
+.slick-prev {
+  left: -3%;
+}
+
+.slick-next {
+  left: 100%;
+}
+
+.slick-prev, .slick-next {
+  background-color: white !important;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #35858B !important;
+
+}
+.slick-prev, .slick-next {
+  background-color: white !important;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #35858B !important;
+}
+.message {
+  background-color: transparent !important;
+}
+#btn2 {
+    color: white;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+#btn2:hover{
+  background-color:#AEFEFF ;
+  color:#072227;
+}
+.mb-5 #btn2{
+  margin-bottom: 2.5em;
+}
+.lis{
+  margin: 0 auto !important;
 }

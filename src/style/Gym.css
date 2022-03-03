@@ -43,7 +43,80 @@ video {
     height: auto;
 }
 
-.leaflet-container {
+#gymbg {
+    position: relative;
+    background-size: contain;
+    margin-top: 3.5em;
+}
+
+.ma {
+    margin-bottom: 1.5em;
+}
+
+.gymIntro {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../../public/assets/images/photo-1571731956672-f2b94d7dd0cb.jpeg");
     width: 100%;
-    height: 100vh;
+    border: 1px solid var(--fColor);
+    background-position: top;
+    height: 35em;
+}
+
+#quotegym {
+    margin-top: 7em;
+    height: -moz-fit-content;
+    height: fit-content;
+    font-size: 1.7em;
+    background: linear-gradient(to right, white, var(--tColor));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+#GymMain h1 {
+    letter-spacing: 4px;
+    background: linear-gradient(to right, white, #35858B, #AEFEFF, white);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 34px;
+    margin-top: 3.5em;
+    margin-bottom: 3.5em !important;
+
+}
+
+.px-2 {
+    background-color: #072227;
+}
+
+.ulbg {
+    background-image: url("../../public/assets/images/istockphoto-1042882744-170667a.jpg") !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: top !important;
+}
+
+.list {
+    background-color: #35858B !important;
+    color: white !important;
+}
+
+.listtext i {
+    color: #072227;
+}
+
+.listtext {
+    line-height: 2.3em;
+}
+
+.column {
+    margin-top: 5.5em;
+    height: 15em;
+}
+
+#gymtitle {
+    font-size: 2.3em !important;
+    color: white !important;
+    padding-bottom: 1.3em;
 }
