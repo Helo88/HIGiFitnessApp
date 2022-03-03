@@ -3,13 +3,13 @@ import axios from "axios";
 import "../style/trainerProfile.css";
 import "../style/profile.css";
 import mylogo from "../images/logo.jpg";
-import avatar2 from "../images/avatar2.png";
-import avatar from "../images/av.jpg";
+import avatar from "../images/avatar2.png";
+//import avatar from "../images/av.jpg";
 import { ChatDotsFill, ClockFill } from "react-bootstrap-icons";
 import { axiosInstance } from "../js/network/index";
 import { useHistory } from "react-router-dom";
 //import Cookies from 'js-cookie';
-import avatar from "../images/avatar2.png";
+//import avatar from "../images/avatar2.png";
 
 import {
   NotificationContainer,

@@ -29,7 +29,8 @@ useEffect(() => {
         .catch((err) => console.log(err));
       }
    
-      
+      if(typeof(waterRep)!="string"){  
+    
    var data = {   
       labels: waterRep.map(tr => tr.created_at),
       datasets: [{
@@ -111,19 +112,24 @@ useEffect(() => {
       
     }
     
-
+  }
+  else{
+    var data=waterRep
+  }
     return (
       <body id="bkg">
       <strong><h1 className='col text-center mt-3 mb-3' 
       id='title'>Weekly Water Report</h1></strong>
         <div className='container-fluid me-5 ms-5'>
-          
+        {typeof(waterRep)!="string"?  
          <Bar 
          data={data}
          width={"1%"}
          options={options}
          
-         />
+         />:
+         <div>{waterRep}</div>
+        }
         </div>
         </body>
     );

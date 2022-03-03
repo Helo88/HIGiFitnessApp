@@ -39,6 +39,7 @@ import Posts from "./components/Posts"
 // import WeightReport from "./components/WeightReport"
 // import WaterReport from "./components/WaterReport";
 import TraineeInfo from "./components/TraineeInfo";
+import ResetPassword from "./components/ResetPassword";
 
 export const LoginContext = createContext();
 function App() {
@@ -169,6 +170,7 @@ function App() {
               <Route path={"/check"} exact component={Check}/>
               <Route path={"/posts"} exact component={Posts} />
               <Route path={"/traineeInfo"} exact component={TraineeInfo}  />
+              <Route path={"/rest-auth/password/reset/confirm/:uid/:token"}exact component={ResetPassword}/>
             </Switch>
             {/* <Footer /> */}
           </Router>
