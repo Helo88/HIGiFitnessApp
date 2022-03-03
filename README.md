@@ -8,6 +8,7 @@
 4. Tools
 5. Instructions
 6. Running
+7. Future Work
 
 ## Description
 
@@ -25,7 +26,9 @@
 - trainer just need to login as he/she already contact the app admin to join the trainers team
 - trainer has the ability to follow up his/her chosen trainees by checking their weekly reports
 - trainer can edit or accept trainee chosen favourite plan due to her report
-- trainer can be a part of the small community that give the ability to add posts to be seen by trainees and see comments on every post
+- trainer can report an issue
+- trainer can be a part of the small community that give the ability to add , update or remove posts to be seen by trainees and see comments on every post
+- trainer can edit profile data ( address , phone number ) and change his/her password
 
 2.  trainee (female):
 
@@ -33,6 +36,7 @@
 - trainee has water tracker to track her water drinking progress
 - trainee has weight tracker to track her weight losing or gaining progress
 - trainee has access to community part to see trainer posts and make comments
+- trainee can report an issue
 
 3. any visitor to the app will only see home page, healthytips , gym , clothing parts
 
@@ -132,3 +136,8 @@
 
 - start server with `npm start` / `npm run start` to launch.
 - open `http://localhost:3000/` in the browser.
+
+## Future Work
+
+- add google maps feature
+- Add Free,Paid Plans and Billing Methods
