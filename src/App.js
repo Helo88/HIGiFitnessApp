@@ -18,14 +18,14 @@ import StartWorkoutPlanExercise from "./components/StartWorkoutPlanExercise";
 import StartYogaPlanExercise from "./components/StartYogaPlanExercise";
 import TraineeProfile from "./components/TraineeProfile";
 import Loader from "./components/Loader";
-// import Comm from "./components/Community";
-// import ProtectedRoute from "./components/ProtectedRoute";
-// import LoggedInRoute from "./components/LoggedInRoute";
+import ResetPassword from "./components/ResetPassword";
+import ForAllRoute from "./components/ForAllRoute";
+import LoggedInRoute from "./components/LoggedInRoute";
 import Water from "./components/Water";
-import Check from "./components/check";
+import TrainerRoute from './components/TrainerRoute'
 import TrainerProfile from "./components/TrainerProfile";
-// import EditTrainerProfile from "./components/EditTrainerProfile"
-// import Reminder from './components/Reminder'
+import TrainerClient from "./components/TrainerClient";
+import Reminder from "./components/Reminder";
 import { axiosInstance } from "./js/network";
 import { Clothing } from "./components/Clothing";
 import "../node_modules/slick-carousel/slick/slick.css";
@@ -33,13 +33,15 @@ import "../node_modules/slick-carousel/slick/slick-theme.css";
 import "./style/App.css";
 import "./style/planStyle.css";
 import Navbar from "./components/Navbar";
-import WeightReport from "./components/WeightReport"
+import WeightReport from "./components/WeightReport";
 import WaterReport from "./components/WaterReport";
-import Posts from "./components/Posts"
-// import WeightReport from "./components/WeightReport"
-// import WaterReport from "./components/WaterReport";
-import TraineeInfo from "./components/TraineeInfo";
-import ResetPassword from "./components/ResetPassword";
+import ChooseWorkoutPlan from "./components/ChooseWorkoutPlan";
+import ChooseYogaPlan from "./components/ChooseYogaPlans";
+import Posts from "./components/Posts";
+import ChooseTrainer from "./components/ChooseTrainer";
+import JoinUs from "./components/JoinUs";
+import Community from "./components/Community";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 export const LoginContext = createContext();
 function App() {
@@ -80,7 +82,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, 3000);
   });
   return (
     <>
@@ -94,83 +96,96 @@ function App() {
             <WeightTracker />
             <Switch>
               <Route path={"/"} exact component={Homepage} />
-              <Route
+              <ForAllRoute
                 exact
                 path="/workoutplans"
-                render={() => <ShowWorkoutPlans WorkoutPlans={workoutPlans} />}
-              ></Route>
-              <Route
+                component={() => <ShowWorkoutPlans WorkoutPlans={workoutPlans} />}
+              ></ForAllRoute>
+              <ForAllRoute
                 exact
                 path="/yogaplans"
-                render={() => <ShowYogaPlans YogaPlans={yogaPlans} />}
-              ></Route>
-              <Route
+                component={() => <ShowYogaPlans YogaPlans={yogaPlans} />}
+              ></ForAllRoute>
+              <LoggedInRoute
                 exact
                 path="/favplans"
-                render={() => (
+                component={() => (
                   <FavPlans YogaPlans={yogaPlans} WorkoutPlans={workoutPlans} />
                 )}
-              ></Route>
-              <Route
+              ></LoggedInRoute>
+              <ForAllRoute
                 exact
                 path="/workoutexercises"
-                render={() => <WorkoutExercises WorkoutPlans={workoutPlans} />}
-              ></Route>
-              <Route
+                component={() => <WorkoutExercises WorkoutPlans={workoutPlans} />}
+              ></ForAllRoute>
+              <ForAllRoute
                 exact
                 path="/yogaexercises"
-                render={() => <YogaExercises YogaPlans={yogaPlans} />}
-              ></Route>
-              <Route
+                component={() => <YogaExercises YogaPlans={yogaPlans} />}
+              ></ForAllRoute>
+              <ForAllRoute
                 exact
                 path="/workoutexercises/details"
-                render={() => (
+                component={() => (
                   <WorkoutPlanDetails workoutExercises={workoutExercises} />
                 )}
-              ></Route>
-              <Route
+              ></ForAllRoute>
+              <ForAllRoute
                 exact
                 path="/yogaexercises/details"
-                render={() => <YogaPlanDetails yogaExercises={yogaExercises} />}
-              ></Route>
-              <Route
+                component={() => <YogaPlanDetails yogaExercises={yogaExercises} />}
+              ></ForAllRoute>
+              <LoggedInRoute
                 exact
                 path="/workoutexercises/start"
-                render={() => (
+                component={() => (
                   <StartWorkoutPlanExercise
                     workoutExercises={workoutExercises}
                   />
                 )}
-              ></Route>
-              <Route
+              ></LoggedInRoute>
+              <LoggedInRoute
                 exact
                 path="/yogaexercises/start"
-                render={() => (
+                component={() => (
                   <StartYogaPlanExercise yogaExercises={yogaExercises} />
                 )}
-              ></Route>
-              <Route
+              ></LoggedInRoute>
+              <LoggedInRoute
                 exact
                 path="/trainee"
-                render={() => (
+                component={() => (
                   <TraineeProfile
                     YogaPlans={yogaPlans}
                     WorkoutPlans={workoutPlans}
                   />
                 )}
-              ></Route>
-              <Route path={"/trainer"} exact component={TrainerProfile} />
+              ></LoggedInRoute>
+              <TrainerRoute
+                exact
+                path="/chooseworkoutplan"
+                component={() => <ChooseWorkoutPlan WorkoutPlans={workoutPlans} />}
+              ></TrainerRoute>
+              <TrainerRoute
+                exact
+                path="/chooseyogaplan"
+                component={() => <ChooseYogaPlan YogaPlans={yogaPlans} />}
+              ></TrainerRoute>
+              <LoggedInRoute path={"/taskmanagar"} exact component={Reminder} />
               <Route path={"/healthytips"} exact component={HealthyTips} />
-              <Route path={"/login"} exact component={SignIn} />
-              <Route path={"/signup"} exact component={UserForm} />
+              <TrainerRoute path={"/TraineeInfo"} exact component={TrainerClient} />
+              <LoggedInRoute path={"/choosetrainer"} exact component={ChooseTrainer} />
+              <Route path={"/joinus"} exact component={JoinUs} />
+              <TrainerRoute path={"/trainer"} exact component={TrainerProfile} />
+              <ProtectedRoute path={"/login"} exact component={SignIn} />
+              <ProtectedRoute path={"/signup"} exact component={UserForm} />
               <Route path={"/gymslocations"} exact component={Gym} />
               <Route path={"/clothing"} exact component={Clothing} />
-              <Route path={"/we"} exact component={WeightReport} />
-              <Route path={"/water"} exact component={WaterReport} />
-              <Route path={"/check"} exact component={Check}/>
-              <Route path={"/posts"} exact component={Posts} />
-              <Route path={"/traineeInfo"} exact component={TraineeInfo}  />
-              <Route path={"/rest-auth/password/reset/confirm/:uid/:token"}exact component={ResetPassword}/>
+              <LoggedInRoute path={"/we"} exact component={WeightReport} />
+              <LoggedInRoute path={"/water"} exact component={WaterReport} />
+              <ForAllRoute path={"/posts"} exact component={Posts} />
+              <ForAllRoute path={"/comm/:id"} exact component={Community} />
+              <ForAllRoute path={"/rest-auth/password/reset/confirm/:uid/:token"}exact component={ResetPassword}/>
             </Switch>
             {/* <Footer /> */}
           </Router>

@@ -1,0 +1,461 @@
+h1 {
+    color: #072227;
+}
+
+h2 {
+    color: #072227;
+}
+
+#btn2 {
+    background-color: #35858B;
+    width: 50%;
+    margin: 0 auto;
+}
+
+btn2:hover {
+    background-color: #AEFEFF;
+    color: #072227;
+}
+
+
+
+.des {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    min-height: 100vh;
+
+}
+
+.des1 {
+    color: #072227;
+    /* margin-left: 40%;
+    */
+}
+
+.des2 {
+    color: white;
+    /* margin-left: 15%; */
+}
+
+.des3 {
+    color: #072227;
+    /* margin-left: 20%; */
+
+}
+
+.des4 {
+    color: white;
+    /* margin-left: 8%; */
+
+}
+
+.des5 {
+    color: #AEFEFF;
+    /* margin-left: 67%; */
+}
+
+.ic {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    min-height: 100vh;
+    /* color: #AEFEFF; */
+    color: #4FBDBA;
+    font-size: 150px;
+}
+
+
+
+/* about */
+#about .container .row {
+    margin-top: 15vh;
+}
+
+#about .title {
+    text-align: center;
+    font-size: 3.5em;
+    padding-bottom: 5.5vh;
+}
+
+#about .title span {
+    color: #4FBDBA;
+}
+
+#about .container .row p {
+    line-height: 3.5em;
+}
+
+#about .container .row .us2 {
+    border: none;
+}
+
+#about .container .row .us2 img {
+    position: relative;
+}
+
+#about .container .row .us2 i {
+    position: absolute;
+    font-size: 3.5em;
+    left: 0%;
+    top: 0;
+    color: var(--main-color);
+}
+
+#about .container .row .us2:hover i {
+    transform: translate(300%, -300%);
+    transition: transform ease-in-out .4s;
+}
+
+#about .container .row .us2 img:hover {
+    filter: drop-shadow(5px 5px 17px black);
+    transition: ease-in-out .3s;
+}
+
+/* about */
+
+
+/* services */
+#services .container .row {
+    margin-top: 15vh;
+}
+
+#services .title {
+    text-align: center;
+    font-size: 3.5em;
+    padding-bottom: 5.5vh;
+}
+
+#services .container .row h3 {
+    font-size: 1.5em;
+}
+
+#services {
+    text-align: center;
+}
+
+#services .title span {
+    color: #4FBDBA;
+}
+
+#services .container .row .item {
+    padding: 0;
+    position: relative;
+}
+
+#services .container .row .item .img-holder {
+    height: 100%;
+    transition: .3s ease-in-out transform, .3s ease-in-out filter;
+    overflow: hidden;
+}
+
+#services .container .item::after,
+#services .container .item::before {
+    content: "";
+    background-color: white;
+    z-index: 1;
+}
+
+#services .container .item .img-holder img {
+    height: 100%;
+    width: 100%;
+    transition: .3s ease-in-out transform, .3s ease-in-out filter;
+}
+
+#services .container .item:hover img {
+    transform: scale(1.2);
+    filter: grayscale(100%) blur(3px);
+}
+
+#services .container .item::after,
+#services .container .item::before,
+#services .container .item span {
+    width: 100%;
+    position: absolute;
+    height: .2em;
+    transition: .4s transform ease-in-out;
+    left: 0;
+    transform: scaleX(0);
+    background-color: white;
+}
+
+#services .container .item::before {
+    top: 5%;
+}
+
+#services .container .item::after {
+    bottom: 5%;
+}
+
+#services .container .item span {
+    height: 100%;
+    width: .2em;
+    top: 0;
+    transform: scaleY(0);
+    background-color: white;
+}
+
+#services .container .item span:first-of-type {
+    left: 5%;
+}
+
+#services .container .item span:last-of-type {
+    left: 95%;
+}
+
+#services .container .item:hover span {
+    transform: scaleY(1);
+}
+
+#services .container .item:hover span {
+    transform: scaleY(1);
+}
+
+#services .container .item:hover::after,
+#services .container .item:hover::before {
+    transform: scaleX(1);
+}
+
+#services .container .item li {
+    height: 100%;
+    width: 2em;
+    top: 0;
+}
+
+#services .container .options {
+    display: flex;
+    justify-content: center;
+}
+
+#services .container .options li a {
+    color: black;
+    padding: .2em 1em;
+    font-size: 1.3em
+}
+
+#services .container .options li {
+    padding: .3em;
+}
+
+#services .container .options .active {
+    background-color: var(--main-color);
+    border-radius: 10%;
+}
+
+#services .container .options .active {
+    color: white;
+}
+
+#services .container .row .item .img-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    top: 0;
+    left: 0;
+    text-align: center;
+    color: #4FBDBA;
+    font-size: 1.5em;
+}
+
+#services .item .img-content ul {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    overflow: hidden
+}
+
+#services .container .row .item .img-content h3 {
+    transition: .4s transform ease-in-out, .4s ease-in-out opacity;
+    transform: translateY(-70%);
+    opacity: 0;
+}
+
+#services .container .row .item .img-content ul li {
+    margin: .3em;
+    background-color: var(--main-color);
+    transition: transform ease-in-out .4s;
+    transform: translateY(100%);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+#services .container .row .item .img-content ul li a {
+    color: white;
+    align-self: center;
+    padding: .2em;
+}
+
+#services .container .row .item:hover .img-content h3 {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#services .container .row .item:hover .img-content ul li {
+    transform: translateY(-13%);
+}
+
+/* services */
+
+/* team */
+#team {
+    background-image: url("../images/istockphoto-500284607-170667a.jpg");
+    background-attachment: fixed;
+    background-position: top;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    height: 70vh;
+    position: relative;
+    box-sizing: border-box;
+    margin-top: 15vh;
+}
+
+#team .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+    cursor: pointer;
+}
+
+#team .row .item {
+    z-index: 1;
+    padding-top: 35vh;
+}
+
+#team .row .te {
+    font-size: 2.5em;
+    color: white;
+}
+
+/* team */
+
+/* contact */
+#contact{
+    margin-top: 15vh;
+}
+#contact {
+    background-color: #072227;
+    color: white;
+    filter: drop-shadow(5px 5px 15px black);
+    text-align: center;
+    position: relative;
+}
+
+#contact .row:not(:first-child) {
+    margin-top: 0;
+}
+
+#contact hr {
+    color: white;
+    height: .3em;
+}
+
+#contact .container-fluid .n1 .item {
+    margin: 0 auto;
+    line-height: 2.5em;
+    padding-top: 7vh;
+}
+
+#contact .container-fluid .n1 .item,
+#contact .container-fluid .n2 .item,
+#contact .container-fluid .n3 .item {
+    filter: drop-shadow(5px 5px 15px black);
+}
+
+#contact .container-fluid .n3 .item {
+    margin: 0 auto;
+}
+
+#contact .container-fluid .n2 .item h1 {
+    font-size: 4em;
+}
+
+#contact .container-fluid .n2 .input-group {
+    width: 50%;
+}
+
+#contact .container-fluid .n3 h3 {
+    font-size: 1.5em;
+}
+
+#contact .container-fluid .n3 ul li {
+    display: inline-block;
+}
+
+/* contact */
+
+
+/* circles animation */
+#contact .landing::before {
+    content: '';
+    background: linear-gradient( #35858B  0%, white 0%, #4FBDBA 100%) !important;
+    position: absolute;
+    z-index: -5;
+    width: 20vh;
+    height: 20vh;
+    top: 35vh;
+    left: 3vw;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+
+#contact .landing::before {
+    top: 35%;
+    left: 13%;
+}
+
+#contact .landing::after {
+    content: '';
+    background: linear-gradient( #35858B  0%, white 0%, #4FBDBA 100%) !important;
+    position: absolute;
+    top: 35vh;
+    right: 3vw;
+    z-index: -5;
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    opacity: 0;
+    transition: ease 0.5s all;
+}
+#contact .item h1{
+    color:#AEFEFF !important;
+    font-size: 3.5em;
+}
+#contact .landing::after {
+    top: 35%;
+    right: 5%;
+}
+
+#contact .landing::before {
+    opacity: 1;
+    animation: rotate 4s linear 0s infinite forwards;
+}
+
+#contact .landing::after {
+    opacity: 1;
+    animation: rotate 5s linear 0s infinite forwards reverse;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg) translate(-1em) rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg) translate(-1em) rotate(-360deg);
+    }
+}
+
+/* circles animation */

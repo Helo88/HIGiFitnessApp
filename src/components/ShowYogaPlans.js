@@ -77,9 +77,9 @@ const ShowYogaPlans = (props) => {
                             {" "}
                             {plan.id ===
                             Number(localStorage.getItem("yogaPlan")) ? (
-                              <i class="bi bi-star-fill"></i>
+                              <i className="bi bi-star-fill"></i>
                             ) : (
-                              <i class="bi bi-star"></i>
+                              <i className="bi bi-star"></i>
                             )}
                           </button>
                           <NotificationContainer />

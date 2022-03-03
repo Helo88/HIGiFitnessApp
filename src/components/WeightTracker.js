@@ -6,6 +6,7 @@ import "sweetalert2/dist/sweetalert2.all.min.js";
 import "sweetalert2/dist/sweetalert2.min.js";
 import "sweetalert2/dist/sweetalert2.min.css";
 import Swal from "sweetalert2/dist/sweetalert2.js";
+import { useLocation } from "react-router-dom";
 
 const WeightTracker = () => {
   const [weightList, setWeightList] = useState({
@@ -85,7 +86,7 @@ const WeightTracker = () => {
         const d = new Date();
         let dbCounter = parseInt(weightList.numOfLogin);
 
-        if (d.getDay() === 0 && dbCounter === 1) {
+        if (d.getDay() === 1 && dbCounter === 1) {
           setCurrentWeight();
         } else {
           setWeightList(() => {
@@ -100,7 +101,6 @@ const WeightTracker = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
   return <></>;
 };
 export default WeightTracker;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
-function LoggedRoute({ component: Component, ...restOfProps }) {
+function LoggedInRoute({ component: Component, ...restOfProps }) {
   const logged = localStorage.getItem("token");
   const isStaff = localStorage.getItem("is_staff");
 
@@ -19,4 +19,4 @@ function LoggedRoute({ component: Component, ...restOfProps }) {
   );
 }
 
-export default LoggedRoute;
+export default LoggedInRoute;

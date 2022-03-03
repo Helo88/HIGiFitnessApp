@@ -1,73 +1,83 @@
+#Trainer_Profile #form {
+  /* background-color: #35858B; */
+  border-radius: 20px;
+  box-sizing: border-box;
+  height: fit-content;
+  padding: 20px;
+}
 
-  #Trainer_Profile #form {
-    /* background-color: #35858B; */
-    border-radius: 20px;
-    box-sizing: border-box;
-    height: fit-content;
-    padding: 20px;
-   
-   
-  }
-  
- 
-  #Trainer_Profile #title {
-    color: white;
-    font-size: 36px;
-    font-weight: 600;
-    margin-top: 30px;
-  }
-  
-  
-  
-  #Trainer_Profile .input-container {
-    background-color: #072227;
-    border-radius: 5px;
-    padding: 5px;
-    height: 50px;
-    position: relative;
-    width: 100%;
-    
-  }
-  
+#Trainer_Profile #title {
+  color: white;
+  font-size: 36px;
+  font-weight: 600;
+  margin-top: 30px;
+}
 
-  #submit,#reset,#edit,#changePassword{
-    background-color: #072227;
-    border-radius: 5px;
-    color: white;
-    margin-left: 42%;
-    padding: 5px 20px;
-    text-align: center;
-   
-  }
-  
-  #submit:hover {
-    background-color: #AEFEFF;
-    color: #072227;
-  }
-  
-  #Trainer_Profile .password{
-    border-left: 3px dotted var(--sColor);
-  }
-  
- 
-  #Trainer_Profile  #Trainer_Profile h2{
-    color: var(--sColor);
-  }
- 
-  #Trainer_Profile  #trainerPostList > li >Link {
-    color: var(--sColor);
-  }
-  
-  #Trainer_Profile #profileData span{
-    color: var(--sColor);
-  }
-  
-  #Trainer_Profile #profileData  p{
-    padding: 5px 0px;
-  }
+#Trainer_Profile .input-container {
+  background-color: #072227;
+  border-radius: 5px;
+  padding: 5px;
+  height: 50px;
+  position: relative;
+  width: 100%;
+}
 
-#editTrainerForm .container .input-container , #changePasswordForm  .container .input-container{
-display: block;
-margin-bottom: 70px;
-/* border: 3px solid green; */
-  }
+#submit,
+#reset,
+#edit,
+#changePassword {
+  background-color: #072227;
+  border-radius: 5px;
+  color: white;
+  margin-left: 42%;
+  padding: 5px 20px;
+  text-align: center;
+}
+
+#submit:hover {
+  background-color: #aefeff;
+  color: #072227;
+}
+
+#Trainer_Profile .password {
+  border-left: 3px dotted var(--sColor);
+}
+
+#Trainer_Profile #Trainer_Profile h2 {
+  color: var(--sColor);
+}
+
+#Trainer_Profile #trainerPostList > li > Link {
+  color: var(--sColor);
+}
+
+#Trainer_Profile #profileData span {
+  color: var(--sColor);
+}
+
+#Trainer_Profile #profileData p {
+  padding: 5px 0px;
+}
+
+#editTrainerForm .container .input-container,
+#changePasswordForm .container .input-container:not(:last-of-type) {
+  display: block;
+  margin-bottom: 75px;
+  /* border: 3px solid green; */
+}
+#cut_text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 70%;
+  /* height: 2em;  */
+  white-space: nowrap;
+}
+#cut_text #link {
+  color: var(--sColor);
+}
+#postContent {
+  justify-content: space-between;
+}
+#numP {
+  color: var(--tColor);
+}

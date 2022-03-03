@@ -7,10 +7,11 @@ import { axiosInstance } from "../js/network/index";
 
 const Water = () => {
   const [count, setCount] = useState({ currentAmount: 0 });
-  const [totalAmount, setAmount] = useState(0);
+  const [counter, setCounter] = useState(false);
   var d = new Date();
   let date = d.getHours() + ":" + d.getMinutes();
   const waterAmount = 3000;
+
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: "btn btn-success",
@@ -18,48 +19,32 @@ const Water = () => {
     },
     buttonsStyling: false,
   });
-
-  useEffect(() => {
-    // const interval = setInterval(() => {
-    if (date === "0:0") {
-      axiosInstance.put(`http://127.0.0.1:8000/water/`, { count: 0 }, {});
-    }
+  function getData(){
     axiosInstance
       .get("http://127.0.0.1:8000/water/", {})
-
       .then((res) => {
         console.log(res);
         return res.data;
       })
       .then((data) => {
-        Swal.fire({
-          title: `Your current amount of water ${data.result} Mliter from daily amount 3000 Mliter`,
-          showClass: {
-            popup: "animate_animated animate_fadeInDown",
-          },
-          hideClass: {
-            popup: "animate_animated animate_fadeOutUp",
-          },
-        });
-
-        return data;
-      })
-      .then((data) => {
         setCount({ currentAmount: data.result });
         console.log(count.currentAmount);
         if (
-          date === "0:6" ||
-          date === "21:21" ||
-          date === "21:48" ||
           date === "9:0" ||
           date === "12:0" ||
           date === "15:0" ||
           date === "18:0" ||
           date === "21:0" ||
-          date === "6:0"
+          date === "24:0" ||
+          date === "4:17" ||
+          date === "16:28" ||
+          date === "1:41"
         ) {
           console.log("nnnnnnnnnnnnnnnnnnnnnnn");
-          if (data.result < 3000) {
+          if (data.result < 3000 && counter == false) {
+            setCounter(true);
+            
+            console.log("counter : " + counter);
             swalWithBootstrapButtons
               .fire({
                 title: "Did you drink water ?",
@@ -76,9 +61,20 @@ const Water = () => {
 
                   axiosInstance.put(
                     `http://127.0.0.1:8000/water/`,
-                    { count: data.result + 500 },
+                    { count: count.currentAmount + 500 },
                     {}
                   );
+                  Swal.fire({
+                    title: `Your current amount of water ${count.currentAmount + 500
+                      } Mliter from daily amount 3000 Mliter`,
+                    showClass: {
+                      popup: "animate__animated animate__fadeInDown",
+                    },
+                    hideClass: {
+                      popup: "animate__animated animate__fadeOutUp",
+                    },
+                  });
+
                 } else if (result.dismiss === Swal.DismissReason.cancel) {
                   swalWithBootstrapButtons.fire(
                     "Cancelled",
@@ -88,29 +84,48 @@ const Water = () => {
                 }
               });
           } else {
-            Swal.fire({
-              title: "Good Job , Keep in going, You have reached the goal",
-              showClass: {
-                popup: "animate_animated animate_fadeInDown",
-              },
-              hideClass: {
-                popup: "animate_animated animate_fadeOutUp",
-              },
-            });
+            if (counter == false) {
+              setCounter(true);
+              Swal.fire({
+                title: "Good Job , Keep in going, You have reached the goal",
+                showClass: {
+                  popup: "animate__animated animate__fadeInDown",
+                },
+                hideClass: {
+                  popup: "animate__animated animate__fadeOutUp",
+                },
+              });
+            }
           }
-
-          console.log("true");
         } else {
-          console.log("false");
-          console.log(date);
-          console.log(count);
+          setCounter(false);
+          console.log("counter : " + counter);
         }
+
       });
+  }
+  useEffect(() => {
+    console.log(counter);
+    if (
+      date === "9:0" ||
+      date === "12:0" ||
+      date === "15:0" ||
+      date === "18:0" ||
+      date === "21:0" ||
+      date === "24:0" ||
+      date === "16:28" ||
+      date === "1:39" ||
+      date === "4:17" &&
+      counter===false
+    ){
+      getData()
+    }
+    else{
+      setCounter(false);
+    }
 
-    //     }, 60000);
 
-    //  return () => clearInterval(interval);
-  }, [d.getMinutes()]);
+  }, [d]);
   return <div>{/* {count} */}</div>;
 };
 

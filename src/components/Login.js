@@ -126,8 +126,10 @@ const SignIn = () => {
               console.log("res n   " + res);
               setTrainerDetail(() => res.fields);
               localStorage.setItem("image", res.fields.image);
+              localStorage.setItem("dateOfBirth", res.fields.dateOfBirth);
               localStorage.setItem("phone", res.fields.phoneNumber);
               localStorage.setItem("address", res.fields.address);
+              localStorage.setItem("address", res.fields.image);
               console.log("my details ", trainerDetail);
             })
             .then(history.push("/"));

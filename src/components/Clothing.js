@@ -78,16 +78,12 @@ export const Clothing = () => {
               </ul>
             </div>
           </main>
-          {/* Quote */}
-          {/* Advices */}
-          {/* sections */}
-          {/* find  */}
         </div>
       </div>
       <div className="wave"></div>
 
       {/* ***********************************second sec********************************************** */}
-      <div className="px-2 " id="clothingDetails">
+      <div  id="clothingDetails">
         <div className="container">
           <h2 className="text-center mb-5">What do you need to start ?</h2>.
           <div className="row">
@@ -384,7 +380,7 @@ export const Clothing = () => {
       {/* **********************************trird section****************************************** */}
       <div id="map" className="row">
         <h1 className="col-12 col-md-7 mt-5 p-5">
-          lets find the nearest shops to you !
+          Let's Find The Nearest Shops To You !
         </h1>
         <div
           id="inside"
