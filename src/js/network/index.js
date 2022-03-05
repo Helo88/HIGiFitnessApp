@@ -5,7 +5,8 @@ export const axiosInstance = axios.create({
 });
 
 // Add a request interceptor
-
+const token=localStorage.getItem('token')
+console.log("inter ",token)
 axiosInstance.interceptors.request.use(
   function (config) {
     console.log("Interceptor request", config);

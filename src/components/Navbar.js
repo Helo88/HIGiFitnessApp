@@ -47,7 +47,7 @@ const Navbar = () => {
         <div className="container">
           <div className="navbar-brand">
             <Link className="navbar-item" to="/">
-              <img src={`${mylogo}`} id="logo" />
+              <img src={`${mylogo}`} id="logo" className="img-radius" />
             </Link>
           </div>
 
