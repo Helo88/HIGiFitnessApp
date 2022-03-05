@@ -20,6 +20,7 @@ const ChooseYogaPlan = (props) => {
   };
   return (
     <>
+     <div style={{paddingTop:"5em", backgroundColor:"#f9f9fa"}}>
       <h1 className="f h1 d-flex justify-content-center mt-5">
         Choose Yoga<span className="text-info">out</span>&nbsp;Plans
       </h1>
@@ -27,7 +28,7 @@ const ChooseYogaPlan = (props) => {
       <ul className="list-group list-group-flush">
         {YogaPlans.map((plan) => {
           return (
-            <div className="text-center mt-3" key={plan.id}>
+            <div className="text-center mt-3" id="cur" key={plan.id}>
               <span id="uname" onClick={() => editPlan(plan.id)}>
                 {plan.name}
               </span>
@@ -39,6 +40,7 @@ const ChooseYogaPlan = (props) => {
           );
         })}
       </ul>
+      </div>
     </>
   );
 };

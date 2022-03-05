@@ -8,7 +8,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Input from "@material-ui/core/Input";
 import Swal from "sweetalert2/dist/sweetalert2.js";
-
+import { WeightContext } from "../App";
 import {
   NotificationContainer,
   NotificationManager,
@@ -18,6 +18,7 @@ import "../style/login.css"
 
 
 const SignIn = () => {
+  const { weight, setWeight } = useContext(WeightContext);
   const history = useHistory();
   const [trainerDetail, setTrainerDetail] = useState({});
 
@@ -104,6 +105,7 @@ const SignIn = () => {
         localStorage.setItem("username", token["user"]["username"]);
         console.log("token ", `Token ${token["key"]}`);
         console.log("is_staff ", token["user"]["is_staff"]);
+        setWeight(true);
 
         return token;
       })
@@ -123,13 +125,12 @@ const SignIn = () => {
              return data.data.trainer[0]
             })
             .then((res) => {
-              console.log("res n   " + res);
+
               setTrainerDetail(() => res.fields);
-              localStorage.setItem("image", res.fields.image);
               localStorage.setItem("dateOfBirth", res.fields.dateOfBirth);
+              localStorage.setItem("image", res.fields.image);
               localStorage.setItem("phone", res.fields.phoneNumber);
               localStorage.setItem("address", res.fields.address);
-              localStorage.setItem("address", res.fields.image);
               console.log("my details ", trainerDetail);
             })
             .then(history.push("/"));
@@ -154,18 +155,22 @@ const SignIn = () => {
               localStorage.setItem("trainerID", res.fields.trainerID);
               localStorage.setItem("workoutPlan", res.fields.workoutPlan);
               localStorage.setItem("yogaPlan", res.fields.yogaPlan);
+              localStorage.setItem("pk", res.pk);
+              localStorage.setItem("medical", res.fields.medicalHistory);
             })
             .then(history.push("/"));
         }
       })
 
       .catch((err) => {
-        console.log("login error");
         let errMsg=err.response.data.detail.toString()
         console.log("err ",errMsg)
         handleError(errMsg);
         // history.push("/signup")
-      });
+      })
+      .catch(()=>{
+        handleError("the email isn't registered ")
+      })
   };
 
     return (

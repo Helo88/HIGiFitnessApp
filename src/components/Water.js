@@ -38,9 +38,8 @@ const Water = () => {
           date === "24:0" ||
           date === "4:17" ||
           date === "16:28" ||
-          date === "1:41"
+          date === "16:43"
         ) {
-          console.log("nnnnnnnnnnnnnnnnnnnnnnn");
           if (data.result < 3000 && counter == false) {
             setCounter(true);
             
@@ -115,7 +114,7 @@ const Water = () => {
       date === "24:0" ||
       date === "16:28" ||
       date === "1:39" ||
-      date === "4:17" &&
+      date === "16:43" &&
       counter===false
     ){
       getData()
@@ -125,7 +124,7 @@ const Water = () => {
     }
 
 
-  }, [d]);
+  }, []);
   return <div>{/* {count} */}</div>;
 };
 

@@ -4,6 +4,7 @@
 #clothingIntro{
     background-color: var(--fColor);
     width: 100%;
+    min-height: 100vh;
     border: 1px solid var(--fColor);;
 }
 #clothingMain h1{
@@ -13,7 +14,6 @@
     -webkit-background-clip: text;
     color:transparent;
     font-size: 34px;
-    margin-top: 1.5em;
 }
 #quote{
     margin-top: 40px;
@@ -50,7 +50,7 @@
     position: absolute;
     transform: translate(-50%,-50%);
     top:50%;
-    left: 120%;
+    left: 100%;
     font-size: 25px;
     background: #1C484A;
     color: var(--foColor);
@@ -97,8 +97,8 @@
  
 /* *****************************************Clothing Details **************************************************** */
 #clothingDetails{
-letter-spacing: 4px;    
-;
+letter-spacing: 2px; 
+padding: 2px;
 
 }
 
@@ -128,7 +128,7 @@ letter-spacing: 4px;
 /*  */
 
 
-.image-flip:hover .backside,
+ .image-flip:hover .backside,
 .image-flip.hover .backside {
     -webkit-transform: rotateY(0deg);
     -moz-transform: rotateY(0deg);
@@ -198,12 +198,26 @@ letter-spacing: 4px;
     -ms-transform-style: preserve-3d;
     transition: 1s;
     transform-style: preserve-3d;
+    overflow: hidden;
 }
 
-.frontside .card,
-.backside .card {
+.slide {
+    
+    transform: scale(1)!important;
+    height: 500px !important;
+    transition: transform 300ms;
+    opacity:1 !important;
+}
+#clothingDetails .frontside .card,
+#clothingDetails .backside .card {
     min-height: 312px;
-    overflow: hidden;
+
+    max-height: 500px !important;
+    /* transform: scale(0)!important; */
+    transform: scale(1)!important;
+    transition: none!important;
+    padding: 0px !important;
+    box-shadow: none !important;
 }
 
 .backside .card a {
@@ -211,15 +225,28 @@ letter-spacing: 4px;
     color: #007b5e !important;
 }
 
-.frontside .card .card-title,
-.backside .card .card-title {
+#clothingDetails .frontside .card .card-title,
+#clothingDetails .backside .card .card-title {
     color: #007b5e !important;
 }
+#clothingDetails .backside .card .card-body{
 
-.frontside .card .card-body img {
-    width: 120px;
+  max-height: 500px !important;
+  padding: 0px;
+  /* margin-left: -50px; */
+}
+#clothingDetails .frontside .card .card-body img {
+    display: block;
+    margin: 0px auto;
+    width: 100%;
     height: 120px;
     border-radius: 50%;
+    object-fit: contain;
+}
+#clothingDetails .backside .carousel-item {
+    width: 100%;
+    /* border: 4px solid blue; */
+    max-height: 500px !important;
 }
 
 
@@ -230,24 +257,31 @@ letter-spacing: 4px;
     }
     
 }
-/* ************************************************************************************** */
-.carousel-inner{
-    overflow: visible;
-    height: 100%;
+ /* ************************************************************************************** */
+ #clothingDetails .backside .carousel-inner{
+    overflow: hidden;
+    width:100%;
+    height: 500px !important;
+    max-height: 500px !important;
+    /* margin-left: -63px;
+    margin-top: -40px; */
 }
-.carousel-item >img{
+
+#clothingDetails .backside .carousel-item >img{
     display: block;
+    width: 200px;
     height: 250px;
+    /* border:2px solid orange; */
 }
 .caption {
     
 position: absolute;
-bottom:-150px;
+bottom:-200px;
 word-spacing: 0px;
 background-color: white;
 width:100% ;
-height: fit-content;
-padding: 5px 5px;
+height: 180px;
+padding: 0px 5px;
 font-size: 10px;
 color: var(--sColor);
 
@@ -259,9 +293,11 @@ color: var(--sColor);
 /***************************************************************************************/
 #map{
     padding: 20px;
-    margin-top: 60px;
+    margin-top: 100px;
+    border: 2px solid teal;;
+    box-shadow: 2px 2px 7px 2px var(--tColor);
     height: 500px;
-    width: 100%;
+    width: 110%;
     background-color: var(--fColor);
     position: relative;
 }
@@ -312,7 +348,4 @@ color: var(--sColor);
     -webkit-background-clip: text;
     color:transparent;
     font-size: 50px;
-}
-#inside:hover{
-cursor: pointer;
 }

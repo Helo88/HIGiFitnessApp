@@ -25,7 +25,7 @@ const Gym = () => {
 
               <p>
                 <i className="bi bi-quote px-1"></i>
-                Great Idea , Here Some Reasons Why You Shouldnot
+                <span id="quotegym2">Great Idea , Here Some Reasons Why You Shouldnot</span>
                 <i className="bi bi-quote px-1"></i>
               </p>
               <hr className="w-25 mx-auto mb-1"></hr>
@@ -70,6 +70,7 @@ const Gym = () => {
         </div>
         <div className="container pt-2 mt-5 ma">
           <main id="clothingMain">
+            <br/>
             <h1 className="mb-5 text-center  ">
               Here to Find Your Nearst Gyms If You Like To Subscribe To one ,
               But You Can Build Your Own Home Gym , Just By One Click...

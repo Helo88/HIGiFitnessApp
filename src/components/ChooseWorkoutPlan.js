@@ -5,6 +5,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import "../style/Homepage.css"
 
 const ChooseWorkoutPlan = (props) => {
   const { WorkoutPlans } = props;
@@ -20,8 +21,10 @@ const ChooseWorkoutPlan = (props) => {
     });
 
   };
+  
   return (
     <>
+    <div style={{paddingTop:"5em", backgroundColor:"#f9f9fa"}}>
       <h1 className="f h1 d-flex justify-content-center mt-5">
         Choose Work<span className="text-info">out</span>&nbsp;Plans
       </h1>
@@ -29,7 +32,7 @@ const ChooseWorkoutPlan = (props) => {
       <ul className="list-group list-group-flush">
         {WorkoutPlans.map((plan) => {
           return (
-            <div className="text-center mt-3" key={plan.id}>
+            <div className="text-center mt-3" id="cur" key={plan.id}>
               <span id="uname" onClick={() => editPlan(plan.id)}>
                 {plan.name}
               </span>
@@ -41,6 +44,7 @@ const ChooseWorkoutPlan = (props) => {
           );
         })}
       </ul>
+      </div>
     </>
   );
 };

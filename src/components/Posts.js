@@ -14,7 +14,11 @@ const Posts = () => {
   }, []);
 
   return (
-    <div id="bd1" className="mt-3 containercolor">
+    <div id="bd1" className="mt-3 containercolor" style={{paddingTop:"7em"}}>
+      <h1 className="mb-5 text-center text-uppercase fw-bold " id="com">
+              Our Healthy Community
+            </h1>
+            <br/>
       {posts.map((p) => {
         return (
           <div className="container">

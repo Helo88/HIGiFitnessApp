@@ -1,3 +1,4 @@
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { createContext, useEffect, useState } from "react";
 
@@ -30,7 +31,6 @@ import { axiosInstance } from "./js/network";
 import { Clothing } from "./components/Clothing";
 import "../node_modules/slick-carousel/slick/slick.css";
 import "../node_modules/slick-carousel/slick/slick-theme.css";
-import "./style/App.css";
 import "./style/planStyle.css";
 import Navbar from "./components/Navbar";
 import WeightReport from "./components/WeightReport";
@@ -42,10 +42,14 @@ import ChooseTrainer from "./components/ChooseTrainer";
 import JoinUs from "./components/JoinUs";
 import Community from "./components/Community";
 import ProtectedRoute from "./components/ProtectedRoute";
+import "./style/App.css";
+export const WeightContext = createContext();
 
 export const LoginContext = createContext();
 function App() {
+  
   const [state, setState] = useState("start");
+  const [weight, setWeight] = useState(null);
   const workoutplansapi = "http://localhost:8000/workoutplans/";
   const yogaplansapi = "http://localhost:8000/yogaplans/";
   const workoutexercisesapi = "http://localhost:8000/workoutexersices/";
@@ -85,6 +89,7 @@ function App() {
     }, 3000);
   });
   return (
+    <WeightContext.Provider value={{weight,setWeight}}>
     <>
       {isLoading === true ? (
         <Loader />
@@ -92,8 +97,10 @@ function App() {
         <>
           <Router>
             <Navbar />
-            <Water />
+            {weight===true?
             <WeightTracker />
+            :null}
+            <Water />
             <Switch>
               <Route path={"/"} exact component={Homepage} />
               <ForAllRoute
@@ -185,13 +192,14 @@ function App() {
               <LoggedInRoute path={"/water"} exact component={WaterReport} />
               <ForAllRoute path={"/posts"} exact component={Posts} />
               <ForAllRoute path={"/comm/:id"} exact component={Community} />
-              <ForAllRoute path={"/rest-auth/password/reset/confirm/:uid/:token"}exact component={ResetPassword}/>
+              <Route path={"/rest-auth/password/reset/confirm/:uid/:token"}exact component={ResetPassword}/>
             </Switch>
             {/* <Footer /> */}
           </Router>
         </>
       )}
     </>
+    </WeightContext.Provider>
   );
 }
 

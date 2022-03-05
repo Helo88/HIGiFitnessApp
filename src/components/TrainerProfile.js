@@ -249,58 +249,59 @@ const changePassword=()=>{
 }
 // submit Change Password Form 
 const  handleChangePasswordSubmit =(e)=>{
-e.preventDefault();
-console.log(changePasswordForm.old_password.length,changePasswordForm.new_password1,changePasswordForm.new_password2);
-if (
-  changePasswordForm.old_password.length === 0 &&
-  changePasswordForm.new_password1.length===0 &&
-  changePasswordForm.new_password2.length === 0
-)
- {
-  NotificationManager.error(
-    "Form is empty"
+  e.preventDefault();
+  console.log(changePasswordForm.old_password.length,changePasswordForm.new_password1,changePasswordForm.new_password2);
+  if (
+    changePasswordForm.old_password.length === 0 &&
+    changePasswordForm.new_password1.length===0 &&
+    changePasswordForm.new_password2.length === 0
   )
-  setEmptyAlert(true);
-  
-}
-else if (changePasswordForm.old_password.length === 0 ){
-  setEmptyAlert(true);
-  console.log("empty form");}
-else if(changePasswordForm.new_password1.length=== 0 ){setEmptyAlert(true);}
-else if(changePasswordForm.new_password2.length === 0 ){setEmptyAlert(true);}
-else if (changePasswordForm.new_password1!==changePasswordForm.new_password2){
-  NotificationManager.warning(
-    "the 2 passwords aren't identical"
-  )
-}
-else {
-axiosInstance.post('rest-auth/password/change/',changePasswordForm)
-.then((data)=>{ 
-  NotificationManager.success(
-  "New Password is saved successfully"
-)
-
-setChangeView(false)
-})
-.catch((err)=> {
-
-try {
-    console.log((err.response.data.old_password.toString()))
+   {
     NotificationManager.error(
-      "This old password isn't valid "
+      "Form is empty"
     )
-    }
-  catch(err){
-    console.log("something went wrong")
-    NotificationManager.error(
-      "something went wrong"
+    setEmptyAlert(true);
+    
+  }
+  else if (changePasswordForm.old_password.length === 0 ){
+    setEmptyAlert(true);
+    console.log("empty form");}
+  else if(changePasswordForm.new_password1.length=== 0 ){setEmptyAlert(true);}
+  else if(changePasswordForm.new_password2.length === 0 ){setEmptyAlert(true);}
+  else if (changePasswordForm.new_password1!==changePasswordForm.new_password2){
+    NotificationManager.warning(
+      "the 2 passwords aren't identical"
     )
   }
-
-
-}) }
-
-}
+  else {
+  axiosInstance.post('rest-auth/password/change/',changePasswordForm)
+  .then((data)=>{ 
+    NotificationManager.success(
+    "New Password is saved successfully"
+  )
+  
+  setChangeView(false)
+  setEmptyAlert(false)
+  })
+  .catch((err)=> {
+  
+  try {
+      console.log((err.response.data.old_password.toString()))
+      NotificationManager.error(
+        "This old password isn't valid "
+      )
+      }
+    catch(err){
+      console.log("something went wrong")
+      NotificationManager.error(
+        "something went wrong"
+      )
+    }
+  
+  
+  }) }
+  
+  }
 // get user Clients 
 const showClients = () => {
   axiosInstance.get("getTrainerClients/").then((data) => {
@@ -390,10 +391,11 @@ async function deletePost(pk){
 
   return (
     <>
+    <div className="padding">
       <div className="container" id="Trainer_Profile">
         <div className="main-body">
           <div className="row mt-6">
-            <div className="card">
+            <div className="bg-light">
               <div className="card-body">
                 <div className="d-flex flex-column align-items-center text-center">
                   <img 
@@ -565,7 +567,7 @@ async function deletePost(pk){
                             </div>
                             <div className="input-container mt-6">
                               <label for="address" className="text-white">
-                                Address
+                                Description
                               </label>
                               <input
                                 id="address"
@@ -712,7 +714,7 @@ async function deletePost(pk){
                 </div>
                 <div className="row mt-3  text-black">
                   <div className="col-5">Email </div>
-                  <div className="col-5 ">Address </div>
+                  <div className="col-5 ">Description </div>
                   <div className="col-2 ">Phone </div>
                 </div>
                 <div className="row mt-3 ">
@@ -732,8 +734,7 @@ async function deletePost(pk){
                     </div>
                   ) : (
                     <>
-                
-                    <h1 className="text-white bck">Clients</h1>
+                    <h1 className="text-white bck" >Clients</h1>
                     <ul className="list-group list-group-flush">
                       {clients.map((client) => {
                         return (
@@ -772,6 +773,7 @@ async function deletePost(pk){
           <NotificationContainer />
         </div>
          
+      </div>
       </div>
     </>
   );

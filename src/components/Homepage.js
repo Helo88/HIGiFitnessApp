@@ -12,6 +12,8 @@ import water from "../images/istockphoto-1299849671-170667a.jpg";
 import community from "../images/istockphoto-1309560647-170667a.jpg";
 import coaching from "../images/photo-1612957803626-1bf65224ff68.jpeg";
 import { axiosInstance } from "../js/network/index";
+import { useHistory } from "react-router-dom";
+
 import {
   NotificationContainer,
   NotificationManager,
@@ -29,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Homepage() {
+  const history = useHistory();
   const classnamees = useStyles();
   const emailReg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
   const [joinForm, setJoinForm] = useState({
@@ -41,6 +44,8 @@ export default function Homepage() {
     nameErr: null,
     contentErr: null,
   });
+  let token = localStorage.getItem("token");
+  let is_staff = localStorage.getItem("is_staff");
   //  join form states
   const handleChange = (e) => {
     if (e.target.name === "email") {
@@ -105,10 +110,43 @@ export default function Homepage() {
         NotificationManager.success("Your Message is sent Successfully");
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         //  notification  something went wrong
         NotificationManager.error("Something went wrong");
       });
+  };
+  const traineenotify = () => {
+    NotificationManager.info("Your are already with us as a trainee");
+  };
+  const handleWorkout = () => {
+    history.push("/workoutplans");
+  };
+  const handleYoga = () => {
+    history.push("/yogaplans");
+  };
+  const handleCoaching = () => {
+    if (is_staff === "true") {
+      NotificationManager.info("this service is just for trainee");
+    } else {
+      history.push("/choosetrainer");
+    }
+  };
+  const handleWater = () => {
+    if (is_staff === "true") {
+      NotificationManager.info("this service is just for trainee");
+    } else {
+      history.push("/water");
+    }
+  };
+  const handleWeight = () => {
+    if (is_staff === "true") {
+      NotificationManager.info("this service is just for trainee");
+    } else {
+      history.push("/we");
+    }
+  };
+  const handlCommunity = () => {
+    history.push("/posts");
   };
   return (
     <>
@@ -126,12 +164,7 @@ export default function Homepage() {
               <span className="des5">CAPABLE OF </span>
             </strong>
           </h1>
-          <div className="col me-5">
-            <strong className="ic">
-              <Activity /> &nbsp;
-              <HeartHalf />
-            </strong>
-          </div>
+          <div className="col me-4"></div>
         </div>
       </div>
       <section id="about">
@@ -140,6 +173,9 @@ export default function Homepage() {
             <div>
               <h1 className="title">
                 Welcome to H<span>I</span>G<span>E</span>
+                <span>
+                  <Activity /> &nbsp;
+                </span>
               </h1>
             </div>
             <div className="us1 col-lg-6 col-md-12 col-sm-12">
@@ -148,12 +184,11 @@ export default function Homepage() {
               <p>
                 We Will Help You To Make Your Own Gym At Home,How?! <br></br>
                 we follow up your progress during the week by tracking every
-                thing you do starting from your weight to your water amount{" "}
-                <br></br>
+                thing you do to have a Balance Healthy Life <br></br>
               </p>
               <p>
-                we freely to choose between trainers to have their observation
-                on you, and if you didnot we will follow you up ,so you can be
+                You freely to choose between trainers to have their observation
+                on you, and if you did not we will follow you up ,so you can be
                 at the gym <br></br>, and at your home in the same time ...{" "}
                 <br></br>
               </p>
@@ -176,6 +211,9 @@ export default function Homepage() {
           <div className="row">
             <div>
               <h1 className="title">
+                <span>
+                  <HeartHalf />
+                </span>
                 SERVICE WE <span>PROVIDE</span>
               </h1>
               <br></br>
@@ -185,7 +223,10 @@ export default function Homepage() {
         </div>
         <div className="container">
           <div className="row">
-            <div className="item col-lg-4 col-md-6 col-sm-12">
+            <div
+              className="item col-lg-4 col-md-6 col-sm-12"
+              onClick={() => handleWorkout()}
+            >
               <div className="img-holder">
                 <img src={`${workout}`} alt="workout img"></img>
               </div>
@@ -195,7 +236,10 @@ export default function Homepage() {
                 <h3>Workout Plans</h3>
               </div>
             </div>
-            <div className="item col-lg-4 col-md-6 col-sm-12">
+            <div
+              className="item col-lg-4 col-md-6 col-sm-12"
+              onClick={() => handleYoga()}
+            >
               <div className="img-holder">
                 <img src={`${yoga}`} alt="yoga img"></img>
               </div>
@@ -205,7 +249,10 @@ export default function Homepage() {
                 <h3>Yoga Plans</h3>
               </div>
             </div>
-            <div className="item col-lg-4 col-md-6 col-sm-12">
+            <div
+              className="item col-lg-4 col-md-6 col-sm-12"
+              onClick={() => handleCoaching()}
+            >
               <div className="img-holder">
                 <img src={`${coaching}`} alt="coaching img"></img>
               </div>
@@ -215,7 +262,10 @@ export default function Homepage() {
                 <h3>Coaching</h3>
               </div>
             </div>
-            <div className="item col-lg-4 col-md-6 col-sm-12">
+            <div
+              className="item col-lg-4 col-md-6 col-sm-12"
+              onClick={() => handleWater()}
+            >
               <div className="img-holder">
                 <img src={`${water}`} alt="water tracker"></img>
               </div>
@@ -225,7 +275,10 @@ export default function Homepage() {
                 <h3>Water Tracker</h3>
               </div>
             </div>
-            <div className="item col-lg-4 col-md-6 col-sm-12">
+            <div
+              className="item col-lg-4 col-md-6 col-sm-12"
+              onClick={() => handleWeight()}
+            >
               <div className="img-holder">
                 <img src={`${weight}`} alt="weight tracker"></img>
               </div>
@@ -235,7 +288,10 @@ export default function Homepage() {
                 <h3>Weight Tracker</h3>
               </div>
             </div>
-            <div className="item col-lg-4 col-md-6 col-sm-12">
+            <div
+              className="item col-lg-4 col-md-6 col-sm-12"
+              onClick={() => handlCommunity()}
+            >
               <div className="img-holder">
                 <img src={`${community}`} alt="community img"></img>
               </div>
@@ -257,9 +313,30 @@ export default function Homepage() {
           <div className="row">
             <div className="item col-lg-12 col-md-12 col-sm-12">
               <h2 className="te">Best Creative Coaching Team In The World</h2>
-              <button className="btn" id="btn2">
-                Join Our Team
-              </button>
+              {token && is_staff === "true" ? (
+                <Link to="/trainer">
+                  <button className="btn" id="btn2">
+                    Join Our Team
+                  </button>
+                </Link>
+              ) : token && is_staff === "false" ? (
+                <Link to="/">
+                  <button
+                    className="btn"
+                    id="btn2"
+                    onClick={() => traineenotify()}
+                  >
+                    Join Our Team
+                  </button>
+                </Link>
+              ) : (
+                <Link to="/joinus">
+                  <button className="btn" id="btn2">
+                    Join Our Team
+                  </button>
+                </Link>
+              )}
+
               <span className="first"></span>
               <span></span>
             </div>
@@ -267,15 +344,20 @@ export default function Homepage() {
         </div>
       </section>
 
-      <section id="contact"  name='contact'>
+      <section id="contact" name="contact">
         <div className=" container-fluid">
-          <div className="row n1 landing">
+          <div className="row n1">
             <div className="item col-lg-3">
               <h4>ABOUT US</h4>
               <hr></hr>
               <p>We Will Help You To Make Your Own Gym At Home</p>
+              <p>
+                We Will Help You Low Energy Stress , Anxiety, and choose your
+                favourite Workout or Yoga Routines
+              </p>
+              <p>So You Can Have A Balance Healthy Life</p>
             </div>
-            <div className="item  col-lg-3 ">
+            <div className="item col-lg-3 landing footerlogo">
               <h1>
                 H<span>i</span>G<span>E</span>
               </h1>
@@ -297,7 +379,7 @@ export default function Homepage() {
                     className="form-control"
                     id="username"
                     name="name"
-                    placeholder="enter your name"
+                    placeholder="Enter your name"
                     value={joinForm.name}
                     onChange={(e) => handleChange(e)}
                   ></input>
@@ -331,7 +413,7 @@ export default function Homepage() {
                     id="content"
                     rows="3"
                     name="content"
-                    placeholder="enter your message"
+                    placeholder="Enter your message"
                     value={joinForm.content}
                     onChange={(e) => handleChange(e)}
                   ></textarea>
@@ -348,9 +430,9 @@ export default function Homepage() {
             </div>
           </div>
           {/* ***************************************** */}
-          <NotificationContainer />
         </div>
       </section>
+      <NotificationContainer />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../js/network/index";
+import "../style/Homepage.css"
 import {
   NotificationContainer,
   NotificationManager,
@@ -105,7 +106,7 @@ const JoinUs = () => {
                     className="form-control"
                     id="username"
                     name="name"
-                    placeholder="enter your name"
+                    placeholder="Enter your name"
                     value={joinForm.name}
                     onChange={(e) => handleChange(e)}
                   ></input>
@@ -139,7 +140,7 @@ const JoinUs = () => {
                     id="content"
                     rows="3"
                     name="content"
-                    placeholder="enter your message"
+                    placeholder="Enter your message"
                     value={joinForm.content}
                     onChange={(e) => handleChange(e)}
                   ></textarea>
@@ -149,7 +150,7 @@ const JoinUs = () => {
                     </small>
                   </div>
                 </div>
-                <button type="submit" className="btn" id="btn2">
+                <button type="submit" className="btn" id="btn2" style={{width:"10vw"}}>
                   Send
                 </button>
               </form>

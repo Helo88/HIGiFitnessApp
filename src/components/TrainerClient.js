@@ -72,11 +72,11 @@ const TrainerClient = (props) => {
   };
   return (
     <>
-      <div className="container-fliud">
+      <div className="container-fliud" style={{paddingTop:"5em"}}>
         <div className="padding">
           <div className="row d-flex justify-content-center">
             <div className="col-md-12">
-              <div className="card user-card-full">
+              <div className="bg-white user-card-full">
                 <div className="row m-l-0 m-r-0">
                   <div className="col-sm-4 bg-c-lite-green user-profile">
                     <div className="card-block text-white">
@@ -160,7 +160,7 @@ const TrainerClient = (props) => {
                       <br />
                       <br />
                       <div className="row">
-                        <div className="col">
+                        <div className="col-md-6">
                           <Link
                             to={{
                               pathname: "/chooseworkoutplan",
@@ -168,12 +168,12 @@ const TrainerClient = (props) => {
                               favYogaPlan: favYogaPlan,
                             }}
                           >
-                            <button type="button" className="btn btn-light">
+                            <button type="button" className="btn btn-light btns1">
                               Edit Plan
                             </button>
                           </Link>
                         </div>
-                        <div className="col">
+                        <div className="col-md-6">
                           <Link
                             to={{
                               pathname: "/chooseyogaplan",
@@ -181,7 +181,7 @@ const TrainerClient = (props) => {
                               favWorkoutPlan: favWorkoutPlan,
                             }}
                           >
-                            <button type="button" className="btn btn-light">
+                            <button type="button" className="btn btn-light btns1">
                               Edit Plan
                             </button>
                           </Link>
@@ -192,7 +192,7 @@ const TrainerClient = (props) => {
                         <div className="col">
                           <button
                             type="button"
-                            className="btn btn-light"
+                            className="btn btn-light btns1"
                             onClick={() => acceptPlan()}
                           >
                             Accept Plan
@@ -201,7 +201,7 @@ const TrainerClient = (props) => {
                         <div className="col">
                           <button
                             type="button"
-                            className="btn btn-light"
+                            className="btn btn-light btns1"
                             onClick={() => acceptPlan()}
                           >
                             Accept Plan

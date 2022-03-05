@@ -60,6 +60,9 @@
 
 #navbar {
     background-color: #072227;
+    position: fixed;
+    width: 100%;
+    top: 0;
 }
 
 #logo{
@@ -67,7 +70,6 @@
     min-height: 40px;
 
 }
-  
 
 a.nav-link {
     color: white;

@@ -9,7 +9,8 @@
 #opp{
     /* opacity: 0.7; */
     /* background-color: #4FBDBA; */
-    background-image: linear-gradient(to bottom right,white, #4FBDBA);
+    /* background-image: linear-gradient(to right,white 70%, #4FBDBA 30%); */
+    background: linear-gradient(360deg,#AEFEFF,white);
    
 }
 #content{
@@ -23,4 +24,13 @@
 
 #dt{
     display: inline-block;
+}
+
+h1#com{
+    letter-spacing: 4px;
+    background: linear-gradient(to right , var(--foColor), white,var(--tColor));
+    background-clip: text;
+    -webkit-background-clip: text;
+    color:transparent;
+    font-size: 34px;
 }

@@ -1,5 +1,8 @@
+#bodyy{
+    background-color: #f9f9fa;
+}
 .App_reminder {
-    width: 50%;
+    width: 65%;
     border-radius: 17px;
     padding: 10px;
     background: #153466;
@@ -13,7 +16,7 @@
     margin: auto;
 }
 
-.closeIcon {
+#closeIcon {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -47,11 +50,26 @@ input, button {
     cursor: pointer;
 }
 
-.form-control {
-    margin: 1.5em 0;
+#rem{
+    margin: auto;
+    width: 50vw;
+}
+#rem2{
+    margin: auto;
+    width: 50vw;
 }
 
-.btn-danger {
-    width: 50%;
+#btnAdd {
+    background-color: #35858B;
+    color: white;
+    width: 30%;
+    margin: 0 auto;
+}
+#btnAdd:hover{
+    background-color: #4FBDBA;
+}
+
+#btnRem {
+    width: 30%;
     margin: 0 auto;
 }

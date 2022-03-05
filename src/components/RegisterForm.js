@@ -24,6 +24,7 @@ const UserForm = () => {
   const [opt, setOpt] = useState("false");
   const [optionNum, setOptionNum] = useState(false);
   const [emptyAlert, setEmptyAlert] = useState(false);
+  const  [labelerr,setLabDateError] =useState("")
   const [userForm, setUserForm] = useState({
     username: "",
     age: "",
@@ -95,8 +96,17 @@ const UserForm = () => {
       if (data[x].length == 0) {
         console.log(x);
         setEmptyAlert(true);
+        NotificationManager.error("Please fill the required fields")
         return;
       }
+    }
+    if(labelerr.length!=0){
+      NotificationManager.error(labelerr)
+      return;
+    }
+    if(selectedDate === 'Invalid Date'){
+      NotificationManager.error("Invalid Date")
+      return;
     }
     console.log("end");
     axiosInstance
@@ -110,17 +120,21 @@ const UserForm = () => {
         password2: userForm.conpassword,
         email: userForm.email,
       })
-      .then(() => {
-        NotificationManager.success("Verification mail is sent to your mail");
-      })
+      
       .then(() => {
         // // console.log(res);
         // console.log(res.data);
         history.push("/login");
       })
-      .catch((error) => {
-        console.log(error.response.data);
-        handleSignup(error.response.data);
+      .catch((error)=>
+      {
+        try{
+            console.log(error.response.data);
+            handleSignup(error.response.data);
+        }
+        catch {
+          NotificationManager.error("Registration Failed ,Check input fields")
+        }
       })
   };
 
@@ -251,6 +265,7 @@ const UserForm = () => {
           backgroundSize: "100%",
           backgroundPosition: "top",
           backgroundAttachment: "fixed",
+          paddingTop:"7em",
         }}
       >
         <h1 className="h1 pt-5 d-flex justify-content-center">
@@ -266,19 +281,19 @@ const UserForm = () => {
             style={{ minWidth: "450px", maxWidth: "500px" }}
             onSubmit={(e) => handleSubmit(e)}
           >
-            <div className="mb-3">
+            <div className="">
               <h2 className="h2 mb-5">Register Now!</h2>
               {emptyAlert ? (
                 <p className="text-danger">Fill The required Fields</p>
               ) : (
                 <p></p>
               )}
-              <label htmlFor="exampleInputName" className="form-label h3">
+              <label htmlFor="exampleInputName" className="form-label hh">
                 User Name
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control hh2"
                 placeholder="Please Enter your username"
                 name="username"
                 value={userForm.username}
@@ -289,9 +304,9 @@ const UserForm = () => {
                 <small className="text-danger">{userFormErrors.nameErr}</small>
               </div>
             </div>
-
-            <div className="mb-3">
-              <label htmlFor="exampleInputName" className="form-label h3">
+            <br/>
+            <div className="">
+              <label htmlFor="exampleInputName" className="form-label hh">
                 Date of Birth
               </label>
               <div>
@@ -300,7 +315,10 @@ const UserForm = () => {
                     format="MM/dd/yyyy"
                     value={selectedDate}
                     onChange={handleDateChange}
+                    disableFuture={true}
+                    helperText={null}
                     className="form-control"
+                    onError={(err) => {setLabDateError(err); console.log(labelerr.length,selectedDate)} }
                     style={{
                       border: "2px solid white",
                       backgroundColor: "white",
@@ -310,22 +328,25 @@ const UserForm = () => {
                 </MuiPickersUtilsProvider>
               </div>
               <div>
-                <small className="text-danger">{userFormErrors.ageErr}</small>
+              <small className="text-danger">
+                {labelerr}
+              </small>
               </div>
             </div>
-
-            <div className="mb-3">
-              <label htmlFor="exampleInputName" className="form-label h3">
+            <br/>
+            <div className="">
+              <label htmlFor="exampleInputName" className="form-label hh">
                 Weight
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control hh2"
                 placeholder="eg: 70KG"
                 name="currentWeight"
                 value={userForm.currentWeight}
                 onChange={(e) => handleChange(e)}
                 id="exampleInputName"
+                
               />
               <div>
                 <small className="text-danger">
@@ -333,14 +354,14 @@ const UserForm = () => {
                 </small>
               </div>
             </div>
-
-            <div className="mb-3">
-              <label htmlFor="exampleInputName" className="form-label h3">
+            <br/>
+            <div className="">
+              <label htmlFor="exampleInputName" className="form-label hh">
                 Height
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control hh2"
                 placeholder="eg: 180cm"
                 name="height"
                 value={userForm.height}
@@ -354,13 +375,14 @@ const UserForm = () => {
               </div>
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label h3">
+            <br/>
+            <div className="">
+              <label htmlFor="exampleInputEmail1" className="form-label hh">
                 Email Address
               </label>
               <input
                 type="text"
-                className="form-control"
+                className="form-control hh2"
                 placeholder="Please Enter your email"
                 name="email"
                 value={userForm.email}
@@ -374,8 +396,9 @@ const UserForm = () => {
               </div>
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="exampleInputPassword" className="form-label h3">
+            <br/>
+            <div className="">
+              <label htmlFor="exampleInputPassword" className="form-label hh">
                 Password
               </label>
               <Input
@@ -383,7 +406,7 @@ const UserForm = () => {
                 onChange={handlePasswordChange("password")}
                 value={userForm.password}
                 name="password"
-                className="form-control"
+                className="form-control hh2"
                 placeholder="password"
                 onChange={(e) => handleChange(e)}
                 id="exampleInputPassword"
@@ -405,11 +428,11 @@ const UserForm = () => {
               <small className="text-danger">{userFormErrors.passErr}</small>{" "}
               <br />
             </div>
-
-            <div className="mb-3">
+            <br/>
+            <div className="">
               <label
                 htmlFor="exampleInputconPassword"
-                className="form-label h3"
+                className="form-label hh"
               >
                 Confirm Password
               </label>
@@ -418,7 +441,7 @@ const UserForm = () => {
                 onChange={handlePasswordChange("conpassword")}
                 value={userForm.conpassword}
                 name="conpassword"
-                className="form-control"
+                className="form-control hh2"
                 placeholder="Confirm password"
                 onChange={(e) => handleChange(e)}
                 id="exampleInputconPassword"
@@ -442,11 +465,11 @@ const UserForm = () => {
               </small>
               <br />
             </div>
-
-            <div className="mb-3">
-              <label htmlFor="exampleInputGender" className="form-label h3">
+            <br/>
+            <div className="">
+              <label htmlFor="exampleInputGender" className="form-label hh">
                 Do you have any chronic diseases?
-              </label>{" "}
+              </label>
               <br />
               <input
                 type="radio"
@@ -475,14 +498,16 @@ const UserForm = () => {
             </div>
             <br />
 
-            <button type="submit" className="btn">
+            <button type="submit" className="btn" id="btn2">
               Register
             </button>
           </form>
-          <NotificationContainer />
+          
         </div>
       </div>
+      <NotificationContainer />
     </>
+
   );
 };
 
