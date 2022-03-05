@@ -9,8 +9,13 @@ import Swal from "sweetalert2/dist/sweetalert2.js";
 const Community = () => {
   const history = useHistory();
   let { id } = useParams();
-  console.log("post id ",id)
+  // console.log("post id ",id)
   const[post,setPost]=useState({})
+  const [userPk,setUserPk]=useState(parseInt(localStorage.getItem('pk')))
+  const [postOwner,setPostOwner]=useState(" ")
+  const [postOwnerPk,setPostOwnerPk]=useState(" ")
+  const [reportedComment,setReportedComment]=useState(0)
+  // console.log('this pk ',userPk)
   const[comment,setComment]=useState({})
   const[commentView,setCommentView]=useState(true)
   const [myPosts,setPosts]=useState([])
@@ -40,7 +45,7 @@ const Community = () => {
       return data
     // .then((res)=>setTrainerDetail(res))
     // .then(()=>console.log("details ",trainerDetail))
-  }).then((data)=>{setPostComments(()=>data.data.result);console.log(postComments)})
+  }).then((data)=>{setPostComments(()=>(data.data.result).reverse());console.log(postComments)})
   .catch((err)=>console.log(err))
     
   
@@ -54,16 +59,20 @@ const Community = () => {
       
     })
     .then((data)=>{
-      console.log("post data")
-      console.log(data.data)
-      setPost(()=>data.data)
-    // .then((res)=>setTrainerDetail(res))
-    // .then(()=>console.log("details ",trainerDetail))
+      // console.log("post data")
+      console.log(((data.data.result)[0]).fields.owner)
+      setPostOwner(data.data.username)
+       setPostOwnerPk(((data.data.result)[0]).fields.owner)
+      setPost(()=> ((data.data.result)[0]).fields)
    
-  }).then(
+  })
+  .then(()=>{
     getComments()
-  )
-   .catch(()=>console.log("false assginment"))
+   
+  })
+   .catch(()=>{}
+ 
+   )
   }
 getPost()
 },[])
@@ -86,6 +95,8 @@ async function handleReportComment(pk){
     
       axiosInstance.post(`reportComment/`,{'id':pk})
       .then((res)=>{
+        setReportedComment(pk)
+        // console.log("reported comment : ",pk)
          Swal.fire('Comment is reported successfully', '', 'success')
          if(parseInt(res.data.numOfReports)>=5){
           getComments()
@@ -138,16 +149,78 @@ async function handleReportPost (pk){
   })
 
 }
+async function editComment(pk) {
+  const { value: text } = await Swal.fire({
+    input: 'textarea',
+    inputLabel: 'Edit Comment',
+    inputPlaceholder: 'Type your Comment here...',
+    inputAttributes: {
+      'aria-label': 'Type your message here'
+    },
+    showCancelButton: true
+  })
+  
+  if (text) {
+    Swal.fire("comment is updated successfully")
+    axiosInstance.put(`/comments/${pk}/`,{'content':text})
+    .then(()=>{
+      Swal.fire('Comment is updated successfully', '', 'success')
+      getComments()
+      
+    })
+    .catch(
+      (err)=>{
+        // console.log(err)
+        Swal.fire('Something went wrong!', '', 'danger')
+    })
+  }
 
+}
+async function deleteComment(pk){
+  Swal.fire({
+    title: 'Are You Sure You want to delete this comment?',
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: 'Yes',
+    denyButtonText: 'No',
+    customClass: {
+      actions: 'my-actions',
+      cancelButton: 'order-1 right-gap',
+      confirmButton: 'order-2',
+      denyButton: 'order-3',
+    }
+  }).then((result) => {
+    if (result.isConfirmed) {
+    
+      axiosInstance.delete(`/comments/${pk}/`)
+      .then(()=>{
+         Swal.fire('Comment is deleted successfully', '', 'success')
+         getComments()
+        // NotificationManager.success("updated")
+        
+      })
+      .catch(
+        (err)=>{console.log(err)
+          Swal.fire('Something went wrong!', '', 'danger')
+      })
+    }
+    
+     else if (result.isDenied) {
+      Swal.fire('ok!', '', 'info')
+    }
+  })
+  
+  
+}
   return (
     <>
  
 
       <div className="container-fluid gedf-wrapper pt-0" id="body">
-        <div className="row">
-          <div className="col-md-3"></div>
-          <div className="col-12 col-md-8 gedf-main">
-            <div className="card gedf-card">
+        <div className="row" style={{paddingTop:"9em"}}>
+          <div className="col-md-2"></div>
+          <div className="col-6 col-md-8 gedf-main">
+            <div className="bg-white gedf-card">
               <div className="card-body">
                 <div className="tab-content" id="myTabContent">
                   <div
@@ -158,19 +231,23 @@ async function handleReportPost (pk){
                   >
                     <div className="form-group" id="postText">
                       <label className="sr-only" for="message">
-                      Trainer <span className=""> {post.username} </span> suggests :
+                      Trainer <span className=""> {postOwner} </span> suggests :
                       </label>
+                     {
+                      postOwnerPk===userPk ?<></>:
                       <i  onClick={()=>{handleReportPost(id)}}
-                      title="report post" className="bi bi-x"></i>
-                      <textarea
+                       title="report post" className="bi bi-x"></i>
+                     }
+                      
+                       <textarea
                         className="form-control mt-3"
                         id="message"
                         rows="6"
-                       value={post.username?(post.result[0].fields.text):null}
+                       value={post.text}
                        disabled
-                      ></textarea> 
-                     <ClockFill/>  <sub className="px-3">{post.username?(new Date(post.result[0].fields.createdAt).toLocaleString('en-US')):null}</sub>
-                     
+                      ></textarea>  
+                     <ClockFill/>  <sub className="px-3">{}</sub>
+                     <sub>{new Date(post.createdAt).toLocaleString('en-US')}</sub>
                      
                     </div>
                   </div>
@@ -181,7 +258,7 @@ async function handleReportPost (pk){
             </div>
 
             {/* loop to show posts */}
-            <div className="card gedf-card">
+            <div className="bg-white gedf-card">
               <div className="card-header">
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="d-flex justify-content-between align-items-center">
@@ -202,21 +279,44 @@ async function handleReportPost (pk){
               <div className="card-body">
                  <ul className="list-group">
                 {postComments.map((comment)=>
+             
                 <>
-                <li className="list-group-item"id="commentBody" key={comment.pk}> {comment.fields.content}
+            
+                <li className="list-group-item"
+                style={{display : comment.pk === reportedComment ? 'none' :' ' }}
+                id="commentBody"
+                
+                key={comment.pk}> 
+               
+                {comment.fields.content}
+               
                 </li>
-                 <sub>{new Date(comment.fields.createdAt).toLocaleString('en-US')}
-                 <i onClick={()=>{handleReportComment(comment.pk)}} 
-                 id="report"title="report comment" className="bi bi-x"></i> </sub>
+                 <sub
+                 style={{display : comment.pk === reportedComment ? 'none' :' ' }}
+                 >{new Date(comment.fields.createdAt).toLocaleString('en-US')}
+               { comment.fields.owner === userPk ?
+               <>
+               
+               <i title="edit comment" onClick={()=>editComment(comment.pk)} className="bi bi-pencil p-1"></i>
+               <i title="delete comment" onClick={()=>deleteComment(comment.pk)}  className="bi bi-x-lg text-danger p-1"></i>
+               </> 
+               
+               :
+                <i onClick={()=>{handleReportComment(comment.pk)}} 
+                 id="report"title="report comment" className="bi bi-x"></i>} </sub>
                  </>
+                
+
                  )}
+
+              
                 </ul>
               </div>
               <div className="card-footer">
                 <span href="#" className="card-link" id="com">
                   <ChatDotsFill className="" /> 
                 </span>
-              { localStorage.getItem('is_staff')=='false'?
+              
                 <form className="w-100" id="commentForm"
                 onSubmit={handleSubmit}>
                   <input  
@@ -227,10 +327,10 @@ async function handleReportPost (pk){
                     onChange={(e) => handleChange(e)}
                   />
                   
-                  <button className="my-2" type="submit"> add </button>
-                </form>:
-                <></>
-}
+                  <button className="btn mt-1" id="my-2" type="submit"> add </button>
+                </form>
+            
+
               </div>
               
             </div>

@@ -1,9 +1,9 @@
-body {
-    background-color: #f9f9fa
-}
+
 
 .padding {
+    background-color: #f9f9fa;
     padding: 3rem !important
+   
 }
 
 .user-card-full {
@@ -167,4 +167,8 @@ button.btn.btn-light:hover {
 
 .img-radius {
     border-radius: 50%;
+}
+
+.btns1{
+    margin-left:10px;
 }

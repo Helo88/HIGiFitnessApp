@@ -107,7 +107,7 @@ const WaterReport = () => {
     var data = waterRep;
   }
   return (
-    <body id="bkg">
+    <body id="bkg" style={{paddingTop:"5em"}}>
       <strong>
         <h1 className="col text-center mt-3 mb-3" id="title">
           Weekly Water Report

@@ -1,3 +1,10 @@
+
+.swal2-styled.swal2-confirm{
+  background-color: #35858B !important;
+  border-color: #35858B !important;
+ }
+
+
 :root {
   --fColor: #072227;
   --sColor: #35858B;

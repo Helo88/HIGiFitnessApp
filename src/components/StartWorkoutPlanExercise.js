@@ -117,6 +117,7 @@ const StartWorkoutPlanExercise = (props) => {
     return (
       <div
         key={exercise.id}
+        
       >
         <div className="slideWrapper">
           <span className="main2 col text-center mt-3 mb-3 ">
@@ -141,7 +142,8 @@ const StartWorkoutPlanExercise = (props) => {
 
   return (
     <>
-      <div className="text-info h3">
+    <div id="all">
+      <div className="text-info h3" style={{paddingTop:"5em"}}>
         <h3>Let's Go , Just Follow My Steps....</h3>
       </div>
       <Slider ref={(slider) => (slider1.current = slider)} {...settings}>
@@ -154,6 +156,7 @@ const StartWorkoutPlanExercise = (props) => {
         <button className="btn shadow-lg btns" onClick={() => pause()}>
           Pause
         </button>
+      </div>
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { axiosInstance } from '../js/network/index';
-import {Chart as ChartJS, BarElement, CategoryScale, LinearScale} from 'chart.js'
+import { Chart as ChartJS, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import { Bar } from 'react-chartjs-2';
 import "chartjs-plugin-datalabels";
 import "../style/Reports.css"
@@ -15,21 +15,25 @@ ChartJS.register(
 )
 
 const WeightReport = () => {
-const [weightRep, setWeightRep] = useState([])
+  const [weightRep, setWeightRep] = useState([])
 
-useEffect(() => {
-  fetchData();
-    },[]);
+  useEffect(() => {
+    fetchData();
+  });
 
-    const fetchData = () => {
+  const fetchData = () => {
     axiosInstance.get('http://127.0.0.1:8000/TraineeWeightHistory/')
-        .then((res) => {
-                setWeightRep(res.data.result)
-        })
-        .catch((err) => console.log(err));
-      }
-   
-    var data = {   
+      .then((res) => {
+        console.log(res)
+        return res;
+      }).then((res) => {
+        setWeightRep(res.data.result)
+        console.log(weightRep)
+      }).catch((err) => console.log(err));
+  }
+
+  if (typeof weightRep != "string") {
+    var data = {
       labels: weightRep.map(tr => tr.fields.created_at),
       datasets: [{
         label: "Date",
@@ -38,13 +42,13 @@ useEffect(() => {
         backgroundColor: [
           '#35858B',
           '#AEFEFF'
-       
-      ],
-      hoverBackgroundColor: "#4FBDBA",
-      borderColor: [
+
+        ],
+        hoverBackgroundColor: "#4FBDBA",
+        borderColor: [
           '#4FBDBA',
-      ],
-      borderWidth: 1
+        ],
+        borderWidth: 1
       }]
     }
 
@@ -75,12 +79,12 @@ useEffect(() => {
               enabled: true
             },
             color: () => '#FFFFFF',
-            font: function() {
-                return {
-                  weight: 'normal',
-                  size: '19'
-                };
-              
+            font: function () {
+              return {
+                weight: 'normal',
+                size: '19'
+              };
+
             }
           }
         },
@@ -97,36 +101,36 @@ useEffect(() => {
               enabled: true
             },
             color: () => '#FFFFFF',
-            font: function() {
-                return {
-                  weight: 'normal',
-                  size: '15'
-                };
-              
+            font: function () {
+              return {
+                weight: 'normal',
+                size: '15'
+              };
+
             }
           }
         }
       }
-      
+
     }
 
-    
-
-    return (
-      <body id="bkg">
-      <strong><h1 className='col text-center mt-3 mb-3' 
-      id='title'>Monthly Weight Report</h1></strong>
-        <div className='container-fluid me-5 ms-5'>
-          
-         <Bar 
-         data={data}
-         width={"1%"}
-         options={options}
-         
-         />
-        </div>
-        </body>
-    );
-    }
+  }
+  else {
+    var data = weightRep
+  }
+  return (
+    <body id="bkg" style={{paddingTop:"5em"}}>
+      <strong><h1 className='col text-center mt-5 mb-3'
+        id='title'>Monthly Weight Report</h1></strong>
+      <div className="container-fluid me-5 ms-5">
+        {typeof weightRep != "string" ? (
+          <Bar data={data} width={"1%"} options={options} />
+        ) : (
+          <div>{weightRep}</div>
+        )}
+      </div>
+    </body>
+  );
+}
 
 export default WeightReport;

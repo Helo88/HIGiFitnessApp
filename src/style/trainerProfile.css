@@ -1,4 +1,8 @@
 
+  .padding{
+    background-color: #f9f9fa;
+
+  }
   #Trainer_Profile #btnn1{
     color: white;
     background-color: #072227;
@@ -125,6 +129,7 @@
 .bck{
     background-color: #35858B;
     height: 5vh;
+    padding-top: 0.5%;
 }
 #linee{
     height: 2px;

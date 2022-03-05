@@ -86,18 +86,9 @@ const WeightTracker = () => {
         const d = new Date();
         let dbCounter = parseInt(weightList.numOfLogin);
 
-        if (d.getDay() === 1 && dbCounter === 1) {
+        if (d.getDay() === 5 && dbCounter === 1) {
           setCurrentWeight();
-        } else {
-          setWeightList(() => {
-            weightList.numOfLogin += 1;
-          });
-
-          axiosInstance.put("http://127.0.0.1:8000/TraineeCurrentWeight/", {
-            currentWeight: parseFloat(weightList.currentWeight),
-            currentCounter: parseInt(weightList.numOfLogin),
-          });
-        }
+        } 
       })
       .catch((err) => console.log(err));
   }, []);

@@ -64,13 +64,16 @@ const FavPlans = (props) => {
   useEffect(() => {}, [change]);
   
   return (
-    <main className="bg">
+    <main className="bg margnav" style={{paddingTop:"5em"}}>
       <br />
       <br />
       <div className="container containercolor padd">
         <h1 className="p h1 d-flex justify-content-center mt-5">
           Your Favorite <span className="text-info"> Workout </span>&nbsp; Plan
         </h1>
+        <br/>
+        <div className="row">
+        <div className="col"></div>
         <div className="col mb-6  d-flex ms-3 ">
           {favWorkoutPlan.length === 0 ? (
             <h3 className="tit">No Avaliable Workout Plans , Add One</h3>
@@ -135,6 +138,8 @@ const FavPlans = (props) => {
               </div>
             ))
           )}
+          </div>
+          <div className="col"></div>
         </div>
       </div>
 
@@ -142,6 +147,9 @@ const FavPlans = (props) => {
         <h1 className="p h1 d-flex justify-content-center mt-5">
           Your Favorite <span className="text-info"> Yoga </span>&nbsp; Plan
         </h1>
+        <br/>
+         <div className="row">
+          <div className="col"></div>
         <div className="col mb-6  d-flex ms-3 ">
           {favYogaPlan.length === 0 ? (
             <h3 className="tit">No Avaliable Yoga Plans , Add One</h3>
@@ -203,9 +211,12 @@ const FavPlans = (props) => {
               </div>
             ))
           )}
+           </div>
+          <div className="col"></div>
         </div>
       </div>
       <NotificationContainer />
+      <br/><br/>
     </main>
   );
 };

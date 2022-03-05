@@ -8,6 +8,19 @@ import { axiosInstance } from "../js/network/index";
 const TraineeProfile = (props) => {
   const { WorkoutPlans, YogaPlans } = props;
   const avatar = [avatar1, avatar2, avatar3, avatar4];
+  const [trainerName, setTrainerName] = useState();
+  useEffect(()=>{
+  axiosInstance
+    .get("getTrainerName/")
+    .then((res) => {
+      setTrainerName(res.data.result);
+      console.log(res.data)
+      return res;
+    }).then((res)=>{
+      console.log(trainerName)
+    })
+  },[])
+
   useEffect(() => {}, [
     localStorage.getItem("workoutPlan"),
     localStorage.getItem("yogaPlan"),
@@ -16,13 +29,14 @@ const TraineeProfile = (props) => {
     <>
       <br />
       <br />
-      <div className="container text-center">
+      <div id="tp">
+      <div className="container text-center" style={{paddingTop:"5em"}}>
         <div className="row">
           <div className="col"></div>
           <div className="col-md-8">
-            <div className="card user-card">
+            <div className="bg-white user-card">
               <div className="card-header">
-                <h5>Profile</h5>
+                <h5>Personal Profile</h5>
               </div>
               <div className="card-block">
                 <div className="user-image">
@@ -83,8 +97,9 @@ const TraineeProfile = (props) => {
                   <div className="col-4">Plan Category </div>
                 </div>
                 <div className="row mt-4 ">
-                  <div className="col-4">name</div>
+                <div className="col-4">{trainerName}</div>
                   <div className="col-4">
+                  
                     {parseInt(localStorage.getItem("workoutPlan"))
                       ? WorkoutPlans.filter(
                           (e) =>
@@ -95,7 +110,7 @@ const TraineeProfile = (props) => {
                   <div className="col-4">Workout Plans </div>
                 </div>
                 <div className="row mt-4 ">
-                  <div className="col-4">name </div>
+                <div className="col-4">{trainerName}</div>
                   <div className="col-4">
                     {parseInt(localStorage.getItem("yogaPlan"))
                       ? YogaPlans.filter(
@@ -111,6 +126,7 @@ const TraineeProfile = (props) => {
           </div>
           <div className="col"></div>
         </div>
+      </div>
       </div>
     </>
   );

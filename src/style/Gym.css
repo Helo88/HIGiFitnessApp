@@ -105,7 +105,9 @@ video {
 .listtext i {
     color: #072227;
 }
-
+.editfont{
+    font-size: 1.5em;
+}
 .listtext {
     line-height: 2.3em;
 }
@@ -119,4 +121,28 @@ video {
     font-size: 2.3em !important;
     color: white !important;
     padding-bottom: 1.3em;
+}
+
+#quotegym2{
+    font-size:x-large;
+}
+
+#btn2 {
+    background-color: #35858B;
+    width: 20%;
+    margin: 0 auto;
+}
+
+btn2:hover {
+    background-color: #AEFEFF;
+    color: #072227;
+}
+
+#GymMain h1{
+    letter-spacing: 4px;
+    background: linear-gradient(to right , var(--foColor), white,var(--tColor) );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color:transparent;
+    font-size: 34px;
 }

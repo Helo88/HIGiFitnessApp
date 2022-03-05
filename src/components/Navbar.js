@@ -11,7 +11,7 @@ const Navbar = () => {
   const location = useLocation();
   const history = useHistory();
   let token = localStorage.getItem("token");
-  let email = localStorage.getItem("email");
+  let username = localStorage.getItem("username");
   let is_staff = localStorage.getItem("is_staff");
 
   function logoutHandle() {
@@ -47,7 +47,7 @@ const Navbar = () => {
         <div className="container">
           <div className="navbar-brand">
             <Link className="navbar-item" to="/">
-              <img src={`${mylogo}`} id="logo" />
+              <img src={`${mylogo}`} id="logo" className="img-radius" />
             </Link>
           </div>
 
@@ -120,47 +120,57 @@ const Navbar = () => {
                       </li>
                     </ul>
                   </li>
-                  <li>
-                    {" "}
-                    <Link className="dropdown-item" to="/">
+                  {is_staff === "true" ? (
+                    <span></span>
+                  ) : (
+                    <li>
                       {" "}
-                      Healthy Life{" "}
-                    </Link>
-                    <ul className="submenu dropdown-menu">
-                      <li>
-                        <Link className="dropdown-item" to={"/water"}>
-                          {" "}
-                          Water Tracker
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="dropdown-item" to={"/we"}>
-                          Weight Tracker
-                        </Link>
-                      </li>
-                      <hr className="navbar-divider" />
-                      <li>
-                        <Link className="dropdown-item" to={"/healthytips"}>
-                          <strong>Healthy Tips</strong>
-                        </Link>
-                      </li>
-                    </ul>
-                  </li>
-                  {localStorage.getItem("is_staff") === "false" ? (
+                      <Link className="dropdown-item" to="/">
+                        {" "}
+                        Healthy Life{" "}
+                      </Link>
+                      <ul className="submenu dropdown-menu">
+                        <li>
+                          <Link className="dropdown-item" to={"/water"}>
+                            {" "}
+                            Water Tracker
+                          </Link>
+                        </li>
+                        <li>
+                          <Link className="dropdown-item" to={"/we"}>
+                            Weight Tracker
+                          </Link>
+                        </li>
+                        <hr className="navbar-divider" />
+                        <li>
+                          <Link className="dropdown-item" to={"/healthytips"}>
+                            <strong>Healthy Tips</strong>
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                  )}
+                  {is_staff === "false" ? (
                     <Link className="dropdown-item" to="/choosetrainer">
                       {" "}
                       Choose Trainer{" "}
                     </Link>
                   ) : null}
                   <hr className="navbar-divider" />
-                  <li onClick={() => setIssue()}>
-                    <Link className="dropdown-item" to="/">
-                      <strong>Report an issue </strong>{" "}
-                    </Link>
-                  </li>
+                  {token ? (
+                    <li onClick={() => setIssue()}>
+                      <Link className="dropdown-item" to="/">
+                        <strong>Report an issue </strong>{" "}
+                      </Link>
+                    </li>
+                  ) : (
+                    <>
+                      <span></span>
+                    </>
+                  )}
                 </ul>
               </li>
-              {localStorage.getItem("is_staff") === "false" ? (
+              {is_staff === "false" ? (
                 <li className="nav-item hoverable">
                   <Link className="nav-link" to={"/favplans"}>
                     {" "}
@@ -169,12 +179,18 @@ const Navbar = () => {
                 </li>
               ) : null}
 
-              <li className="nav-item hoverable">
-                <Link className="nav-link" to="/joinus">
-                  {" "}
-                  <strong>Join Us</strong>
-                </Link>
-              </li>
+              {!token ? (
+                <li className="nav-item hoverable">
+                  <Link className="nav-link" to="/joinus">
+                    {" "}
+                    <strong>Join Us</strong>
+                  </Link>
+                </li>
+              ) : (
+                <>
+                  <span></span>
+                </>
+              )}
             </ul>
             {token ? (
               <li className="nav-item dropdown" id="myDropdown">
@@ -184,7 +200,7 @@ const Navbar = () => {
                   data-bs-toggle="dropdown"
                 >
                   {" "}
-                  <strong>Profile</strong>{" "}
+                  <strong>{username}</strong>{" "}
                 </Link>
                 <ul className="dropdown-menu">
                   <li>
@@ -192,16 +208,16 @@ const Navbar = () => {
                     <Link
                       className="dropdown-item"
                       to={
-                        localStorage.getItem("is_staff") === "false"
+                        is_staff === "false"
                           ? "/trainee"
                           : "trainer"
                       }
                     >
                       {" "}
-                      <li className="navbar-item hoverable">{email}</li>
+                      <li className="navbar-item hoverable">Your Profile</li>
                     </Link>
                   </li>
-                  {localStorage.getItem("is_staff") === "false" ? (
+                  {is_staff === "false" ? (
                     <li>
                       {" "}
                       <Link className="dropdown-item" to={"/taskmanagar"}>

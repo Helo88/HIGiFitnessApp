@@ -46,7 +46,7 @@ const ShowWorkoutPlans = (props) => {
       handleAddPlan(e, id);
     }
   };
-  useEffect(() => {}, [change]);
+  useEffect(() => { }, [change]);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -57,17 +57,19 @@ const ShowWorkoutPlans = (props) => {
       {isLoading === true ? (
         <Loader />
       ) : (
-        <main className="bg">
+        <main className="bg" style={{paddingTop:"5em"}}>
           <div className="row">
             <h1 className="f h1 d-flex justify-content-center mt-5">
               Work<span className="text-info">out</span>&nbsp;Plans
-            </h1>
-            <br />
+            </h1> <br />
+
             <div className="container containercolor">
               <br />
               <br />
+
               <div className="row">
                 {WorkoutPlans.map((plan) => (
+
                   <div className="col mb-6  d-flex ms-3 ">
                     <div
                       key={plan.id}
@@ -84,9 +86,9 @@ const ShowWorkoutPlans = (props) => {
                                 >
                                   {" "}
                                   {plan.id ===
-                                  Number(
-                                    localStorage.getItem("workoutPlan")
-                                  ) ? (
+                                    Number(
+                                      localStorage.getItem("workoutPlan")
+                                    ) ? (
                                     <i className="bi bi-star-fill"></i>
                                   ) : (
                                     <i className="bi bi-star"></i>
@@ -129,7 +131,7 @@ const ShowWorkoutPlans = (props) => {
                                       Math.floor(
                                         plan.totalTimeOfExercises / 60
                                       ) *
-                                        60}{" "}
+                                      60}{" "}
                                     minutes
                                   </span>
                                 </div>
@@ -143,13 +145,15 @@ const ShowWorkoutPlans = (props) => {
 
                       <br />
                     </div>
+
                   </div>
+
                 ))}
+
               </div>
-              <br />
-              <br />
             </div>
           </div>
+          <br /><br />
         </main>
       )}
     </>

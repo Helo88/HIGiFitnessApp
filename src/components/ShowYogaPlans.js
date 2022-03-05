@@ -53,7 +53,8 @@ const ShowYogaPlans = (props) => {
       {isLoading === true ? (
         <Loader />
       ) : (
-        <main className="bg">
+        <main className="bg" style={{paddingTop:"5em"}}>
+          <div className="row">
           <h1 className="f h1 d-flex justify-content-center mt-5">
             Yo<span className="text-info">ga</span>&nbsp;Plans
           </h1>
@@ -117,6 +118,7 @@ const ShowYogaPlans = (props) => {
                 </div>
               ))}
             </div>
+          </div>
           </div>
           <br />
           <br />

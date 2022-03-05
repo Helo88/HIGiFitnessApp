@@ -29,7 +29,8 @@ class Reminder extends Component {
                 <div>{moment(new Date(reminder.date)).fromNow()}</div>
               </div>
               <div
-                className="closeIcon btn btn-danger col-3"
+                id="closeIcon"
+                className=" btn btn-danger col-3"
                 onClick={() => this.props.remove_Reminder(reminder.id)}
               >
                 X
@@ -42,13 +43,15 @@ class Reminder extends Component {
   };
   render() {
     return (
+      <div id="bodyy" style={{paddingTop:"5em"}}>
       <div className="App_reminder">
         <img src={img} alt="reminder" />
         <div>
           <h2 className="reminder-title">What shoud I do !!</h2>
         </div>
         <input
-          className="form-control"
+          className="form-control mt-5"
+          id="rem"
           type="text"
           placeholder="Enter what do you think...?"
           value={this.state.text}
@@ -56,7 +59,8 @@ class Reminder extends Component {
         />
 
         <DatePicker
-          className="form-control"
+          className="form-control mt-5 mb-5"
+          id="rem2"
           value={this.state.date}
           selected={this.state.date}
           onChange={(date) => this.setState({ date: date })}
@@ -66,11 +70,12 @@ class Reminder extends Component {
           dateFormat="MMMM d,yyyy h:mm aa"
           timeCaption="time"
         />
+      
         {this.render_reminders()}
         <div className="d-flex flex-column">
           <button
-            className="btn btn-lg btn-block " 
-            id="btn2"
+            className="btn btn-lg btn-block mt-5 " 
+            id="btnAdd"
             onClick={() => {
               this.props.add_Reminder(this.state.text, this.state.date);
               this.setState({ text: "", date: "" });
@@ -79,12 +84,14 @@ class Reminder extends Component {
             Add Task
           </button>
           <button
-            className="clearReminder btn btn-danger btn-lg btn-block"
+            className="clearReminder btn btn-danger btn-lg btn-block mt-3"
+            id="btnRem"
             onClick={() => this.props.clear_Reminder()}
           >
             Remove Tasks
           </button>
         </div>
+      </div>
       </div>
     );
   }

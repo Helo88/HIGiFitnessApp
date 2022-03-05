@@ -6,6 +6,10 @@ h2 {
     color: #072227;
 }
 
+.hh{
+    font-size: large;
+}
+
 #btn2 {
     background-color: #35858B;
     width: 50%;
@@ -17,6 +21,20 @@ btn2:hover {
     color: #072227;
 }
 
+#btnnxx{
+    background-color: #072227;
+    color: #AEFEFF;
+    margin-bottom: 1%;
+}
+
+#btnnxx:hover {
+    background-color: #AEFEFF;
+    color: #072227;
+}
+
+#cur{
+    cursor:pointer;
+}
 
 
 .des {
@@ -392,7 +410,9 @@ btn2:hover {
 #contact .container-fluid .n3 ul li {
     display: inline-block;
 }
-
+#contact .footerlogo{
+    padding-top: 30vh;
+}
 /* contact */
 
 
@@ -459,3 +479,11 @@ btn2:hover {
 }
 
 /* circles animation */
+
+#content{
+    height: 10vh;
+}
+
+.ch{
+    background-color: #f9f9fa;
+}
