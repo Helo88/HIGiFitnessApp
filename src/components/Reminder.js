@@ -84,7 +84,7 @@ class Reminder extends Component {
         <i id="plusIcon" 
         onClick={() => {
           if(this.state.text.length ==0){
-              this.setState({"err1":"Text can't be empty"})
+              this.setState({"err1":"Todo can't be empty"})
           }
           else if (this.state.date.length ==0){
               this.setState({"err2":"Date can't be empty"})
