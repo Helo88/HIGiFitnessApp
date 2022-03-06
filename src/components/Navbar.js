@@ -209,8 +209,8 @@ const Navbar = () => {
                       className="dropdown-item"
                       to={
                         is_staff === "false"
-                          ? "/trainee"
-                          : "trainer"
+                          ? "trainee/"
+                          : "trainer/"
                       }
                     >
                       {" "}

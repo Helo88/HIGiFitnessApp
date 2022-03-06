@@ -246,8 +246,8 @@ async function deleteComment(pk){
                        value={post.text}
                        disabled
                       ></textarea>  
-                     <ClockFill/>  <sub className="px-3">{}</sub>
-                     <sub>{new Date(post.createdAt).toLocaleString('en-US')}</sub>
+                     <ClockFill/> 
+                     <sub className="ps-2">{new Date(post.createdAt).toLocaleString('en-US')}</sub>
                      
                     </div>
                   </div>
@@ -297,7 +297,7 @@ async function deleteComment(pk){
                { comment.fields.owner === userPk ?
                <>
                
-               <i title="edit comment" onClick={()=>editComment(comment.pk)} className="bi bi-pencil p-1"></i>
+               <i title="edit comment" onClick={()=>editComment(comment.pk)} className="bi bi-pencil p-2"></i>
                <i title="delete comment" onClick={()=>deleteComment(comment.pk)}  className="bi bi-x-lg text-danger p-1"></i>
                </> 
                
@@ -316,7 +316,9 @@ async function deleteComment(pk){
                 <span href="#" className="card-link" id="com">
                   <ChatDotsFill className="" /> 
                 </span>
-              
+          {localStorage.getItem('is_staff') === "true" ?
+          <></> 
+          :
                 <form className="w-100" id="commentForm"
                 onSubmit={handleSubmit}>
                   <input  
@@ -327,9 +329,9 @@ async function deleteComment(pk){
                     onChange={(e) => handleChange(e)}
                   />
                   
-                  <button className="btn mt-1" id="my-2" type="submit"> add </button>
+                  <button className="btn my-4" id="my-2" type="submit"> add </button>
                 </form>
-            
+}
 
               </div>
               

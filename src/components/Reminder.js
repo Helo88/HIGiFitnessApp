@@ -15,26 +15,25 @@ class Reminder extends Component {
   state = {
     text: "",
     date: new Date(),
+    err1:"",
+    err2:""
+  
   };
 
   render_reminders = () => {
     const { reminders } = this.props;
     return (
       <ul className="list-group">
-        {reminders.map((reminder) => {
+        {reminders.map((reminder,index) => {
           return (
-            <li key={reminder.id} className="list-group-item row">
+            <li key={reminder.id} className="list-group-item row my-2 col-11 mx-auto">
               <div className="col-8">
-                <div>{reminder.text}</div>
-                <div>{moment(new Date(reminder.date)).fromNow()}</div>
+                <div >{reminder.text}</div>
+                <div  className="dateTodo"> <i className="bi bi-clock"></i>{moment(new Date(reminder.date)).fromNow()}</div>
               </div>
-              <div
-                id="closeIcon"
-                className=" btn btn-danger col-3"
-                onClick={() => this.props.remove_Reminder(reminder.id)}
-              >
-                X
-              </div>
+              
+                 <i id="closeIcon" onClick={() => this.props.remove_Reminder(reminder.id)}
+                 title="remove task" className="bi bi-x"></i>
             </li>
           );
         })}
@@ -45,10 +44,12 @@ class Reminder extends Component {
     return (
       <div id="bodyy" style={{paddingTop:"5em"}}>
       <div className="App_reminder">
-        <img src={img} alt="reminder" />
+        <img src={"/assets/images/fit1.png"} alt="reminder" />
         <div>
-          <h2 className="reminder-title">What shoud I do !!</h2>
+          <h2 className="reminder-title"><small>W</small>hat <small>sho</small>ud <small>I</small>  do <small>?!</small></h2>
         </div>
+        <div className="d-flex">
+          <div className ="col-11">
         <input
           className="form-control mt-5"
           id="rem"
@@ -57,9 +58,13 @@ class Reminder extends Component {
           value={this.state.text}
           onChange={(e) => this.setState({ text: e.target.value })}
         />
-
+        {this.state.err1 ?
+        <div className="text-danger mt-2 w-50 mx-5 px-5">{this.state.err1}</div>
+        :
+        <></>
+  }
         <DatePicker
-          className="form-control mt-5 mb-5"
+          className="form-control mt-5 mb-3 text-secondary"
           id="rem2"
           value={this.state.date}
           selected={this.state.date}
@@ -70,23 +75,38 @@ class Reminder extends Component {
           dateFormat="MMMM d,yyyy h:mm aa"
           timeCaption="time"
         />
-      
+        {this.state.err2 ?
+        <div className="text-danger w-50 mx-5 px-5 mb-3">{this.state.err2}</div>
+        :
+        <></>
+        }
+        </div>
+        <i id="plusIcon" 
+        onClick={() => {
+          if(this.state.text.length ==0){
+              this.setState({"err1":"Text can't be empty"})
+          }
+          else if (this.state.date.length ==0){
+              this.setState({"err2":"Date can't be empty"})
+          }
+          
+          else{
+          this.props.add_Reminder(this.state.text, this.state.date);
+          this.setState({ text: "", date:"",err1:"",err2:""});
+          }
+        }}
+        title="Add Todo" class="bi bi-patch-plus align-self-center fs-1"></i>
+        
+      </div>
         {this.render_reminders()}
         <div className="d-flex flex-column">
+     
           <button
-            className="btn btn-lg btn-block mt-5 " 
-            id="btnAdd"
-            onClick={() => {
-              this.props.add_Reminder(this.state.text, this.state.date);
-              this.setState({ text: "", date: "" });
-            }}
-          >
-            Add Task
-          </button>
-          <button
-            className="clearReminder btn btn-danger btn-lg btn-block mt-3"
+            className="clearReminder btn btn-outline-danger btn-lg btn-block mt-3"
             id="btnRem"
-            onClick={() => this.props.clear_Reminder()}
+            onClick={() => {this.props.clear_Reminder()
+              this.setState({ text: "", date:"" ,err1:"",err2:""});
+            }}
           >
             Remove Tasks
           </button>
@@ -96,16 +116,7 @@ class Reminder extends Component {
     );
   }
 }
-// function mapDispatchToProps(dispatch){
-//     return{
-//         add_Reminder : ()=> dispatch(add_Reminder())
-//     }
-// }
-// function mapStateToProps(state){
-//     return {
-//         reminders : state
-//     }
-// }
+
 
 export default connect(
   (state) => {
